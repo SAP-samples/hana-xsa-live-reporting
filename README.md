@@ -2,13 +2,13 @@
 ## Description
 The current repository contains templates with Calculation Views for SAP HANA and models and dashboards for consumption in SAP Analytics Cloud.
 
-The Calculation Views and other design-tieme artifacts can be cloned into SAP Web IDE Full Stack or SAP Web IDE for SAP HANA. The artifacts can be deployed into SAP Cloud Platform, SAP HANA Service in Cloud Foundry or SAP HANA, extended application services, advanced model (XS Advanced).
+The Calculation Views and other design-time artifacts can be cloned into SAP Web IDE Full Stack or SAP Web IDE for SAP HANA. The artifacts can be deployed into SAP Cloud Platform, SAP HANA Service in Cloud Foundry or SAP HANA, extended application services, advanced model (XS Advanced).
 
 
 ## Requirements
-The current repository contains sample data so that the models can be tested without configuring the replication. 
+The current repository contains sample data so that the models can be tested without configuring the replication through Smart Data Integration. 
 
-The replication from the SAP Netweaver system is done through the activation of Operational Data Provisioning extractors and the ABAP adapter .
+The replication from the SAP Netweaver system is done through the activation of Operational Data Provisioning extractors and the ABAP adapter.
 
 - For replication:
     - Follow instructions in note [1931427 - ODP Data Replication API 2.0](https://launchpad.support.sap.com/#/notes/1931427) to check or fulfill prerequisites in the source system
@@ -30,7 +30,9 @@ The replication from the SAP Netweaver system is done through the activation of 
 1. Check these instructions to set up the SAP HANA Service and connect through SAP Web IDE Full Stack: [Get Started with SAP Cloud Platform, SAP HANA Service](https://developers.sap.com/mission.haas-get-started.html)
 2. In SAP Web IDE, right-click on the Workspace and choose `Git -> Clone Repository`. Paste the URL for the current repository and clone.
 3. Remove the folders with names `CONFIGURE_ME` in `db` and in `db/src`
+
    ![Remove configurable files](https://github.com/SAPDocuments/Tutorials/blob/master/tutorials/haas-dm-connect-sdi/remove.png)
+   
 4. Right-click on the `db` folder and choose **Build**. After a successful build, the models can be executed.
 
 ### Using Smart Data Integration
@@ -49,6 +51,7 @@ The replication from the SAP Netweaver system is done through the activation of 
 7. Create a user-provided service to provide the credentials for access to the remote source form the HDI Container. Call it **CC_ACCESS** unless you want to adapt references to it. See sample steps in [Step 3 in this tutorial](https://developers.sap.com/tutorials/haas-dm-access-cross-container-schema.html#874fa741-8693-4407-80bb-16a53f3c6c16)
 8. Adapt the mta.yaml file to include the user-provided service as a resource for the HDI Container. See [Step 4 in this tutorial](https://developers.sap.com/tutorials/haas-dm-access-cross-container-schema.html#3c27eccb-a523-412c-81de-302798bfceaa) for an example.  
 9. Remove `_CONFIGURE_ME` from the folders `cfg`, `src/loads` and from the file `remote.hdbgrants`. Be sure to **Save all** the modified artifacts
+
   ![Remove configure me](https://github.com/SAPDocuments/Tutorials-Contribution/blob/master/tutorials/haas-dm-connect-sdi/conf1.png)
   
   > Note: The virtual tables use a remote source called `SAPECC`, adapt them if the name of your remote source is different. The `.hdbgrants` file refers to a user-provided service called `CC_ACCESS` and also references the remote source `SAPECC`. Adapt them if necessary.

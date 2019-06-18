@@ -1,0 +1,24 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "COMP_CODE_TEXT",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "COMP_CODE_TEXT.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   "BUKRS" : 1,
+                                    "TXTMD" : 2, 
+                                    "LANGU" : 3}
+        }
+    ]
+}

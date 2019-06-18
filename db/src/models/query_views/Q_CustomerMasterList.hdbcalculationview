@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="Q_CustomerMasterList" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Customer"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CUSTOMER_ATTR">
+    <resourceUri>CUSTOMER_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="CUSTOMER_TEXT">
+    <resourceUri>CUSTOMER_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="COUNTRY_TEXT">
+    <resourceUri>COUNTRY_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="ACCOUNT_GRP_TEXT">
+    <resourceUri>ACCOUNT_GRP_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="CUST_COMPC_ATTR">
+    <resourceUri>CUST_COMPC_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="COMP_CODE_TEXT">
+    <resourceUri>COMP_CODE_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="Address"/>
+      <viewAttribute id="CountryKey"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="DeletionFlagforMasterRecord"/>
+      <viewAttribute id="Region"/>
+      <viewAttribute id="Plant"/>
+    
+      <viewAttribute id="CustomerAccountGroup"/>
+    
+      <viewAttribute id="City"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CUSTOMER_ATTR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Address" source="ADRNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryKey" source="LAND1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="LIFNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeletionFlagforMasterRecord" source="LOEVM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="REGIO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerAccountGroup" source="KTOKD"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="City" source="CITYC"/>
+    </input></calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="KUNNR"/>
+      <viewAttribute id="CustomerText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CUSTOMER_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="TXTMD"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="Address"/>
+      <viewAttribute id="CountryKey"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="DeletionFlagforMasterRecord"/>
+      <viewAttribute id="Region"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="CustomerAccountGroup"/>
+      <viewAttribute id="City"/>
+      <viewAttribute id="CustomerText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="CustomerNumber"/></input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="KUNNR"/>
+    </input>
+    <joinAttribute name="CustomerNumber"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="TXTSH"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COUNTRY_TEXT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="textTable" languageColumn="SPRAS">
+    <viewAttributes>
+      <viewAttribute id="CountryText"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="Address"/>
+      <viewAttribute id="CountryKey"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="DeletionFlagforMasterRecord"/>
+      <viewAttribute id="Region"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="CustomerAccountGroup"/>
+      <viewAttribute id="City"/>
+      <viewAttribute id="CustomerText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryKey" source="CountryKey"/></input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="TXTSH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryKey" source="LAND1"/>
+    </input>
+    <joinAttribute name="CountryKey"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="KTOKD"/>
+      <viewAttribute id="TXT30"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ACCOUNT_GRP_TEXT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_5" cardinality="CN_N" joinType="textTable" languageColumn="SPRAS">
+    <viewAttributes>
+      <viewAttribute id="AccountGroupText"/>
+    
+      <viewAttribute id="CountryText"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="Address"/>
+      <viewAttribute id="CountryKey"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="DeletionFlagforMasterRecord"/>
+      <viewAttribute id="Region"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="CustomerAccountGroup"/>
+      <viewAttribute id="City"/>
+      <viewAttribute id="CustomerText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerAccountGroup" source="CustomerAccountGroup"/></input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="AccountGroupText" source="TXT30"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerAccountGroup" source="KTOKD"/>
+    </input>
+    <joinAttribute name="CustomerAccountGroup"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5">
+    <viewAttributes>
+      <viewAttribute id="KUNNR"/>
+      <viewAttribute id="CompanyCode"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CUST_COMPC_ATTR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="BUKRS"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_6" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="AccountGroupText"/>
+      <viewAttribute id="CountryText"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="Address"/>
+      <viewAttribute id="CountryKey"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="DeletionFlagforMasterRecord"/>
+      <viewAttribute id="Region"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="CustomerAccountGroup"/>
+      <viewAttribute id="City"/>
+      <viewAttribute id="CustomerText"/>
+      <viewAttribute id="CompanyCode"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="CustomerNumber"/></input>
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="KUNNR"/>
+    </input>
+    <joinAttribute name="CustomerNumber"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_6">
+    <viewAttributes>
+      <viewAttribute id="BUKRS"/>
+      <viewAttribute id="CompanyCodeText"/>
+      <viewAttribute id="LANGU"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COMP_CODE_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="TXTMD"/></input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_7" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="AccountGroupText"/>
+      <viewAttribute id="CountryText"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="Address"/>
+      <viewAttribute id="CountryKey"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="DeletionFlagforMasterRecord"/>
+      <viewAttribute id="Region"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="CustomerAccountGroup"/>
+      <viewAttribute id="City"/>
+      <viewAttribute id="CustomerText"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="CompanyCodeText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_6">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    </input>
+    <input node="Projection_6">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="BUKRS"/>
+    </input>
+    <joinAttribute name="CompanyCode"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_7">
+  <attributes>
+    <attribute id="AccountGroupText" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Account Group Text"/>
+      <keyMapping columnObjectName="Join_7" columnName="AccountGroupText"/>
+    </attribute>
+    <attribute id="CountryText" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Country Text"/>
+      <keyMapping columnObjectName="Join_7" columnName="CountryText"/>
+    </attribute>
+    <attribute id="CustomerNumber" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer Number"/>
+      <keyMapping columnObjectName="Join_7" columnName="CustomerNumber"/>
+    </attribute>
+    <attribute id="Address" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer Address"/>
+      <keyMapping columnObjectName="Join_7" columnName="Address"/>
+    </attribute>
+    <attribute id="CountryKey" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Country"/>
+      <keyMapping columnObjectName="Join_7" columnName="CountryKey"/>
+    </attribute>
+    <attribute id="Vendor" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Vendor Key"/>
+      <keyMapping columnObjectName="Join_7" columnName="Vendor"/>
+    </attribute>
+    <attribute id="DeletionFlagforMasterRecord" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Deletion Indicator"/>
+      <keyMapping columnObjectName="Join_7" columnName="DeletionFlagforMasterRecord"/>
+    </attribute>
+    <attribute id="Region" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Region"/>
+      <keyMapping columnObjectName="Join_7" columnName="Region"/>
+    </attribute>
+    <attribute id="Plant" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Plant"/>
+      <keyMapping columnObjectName="Join_7" columnName="Plant"/>
+    </attribute>
+    <attribute id="CustomerAccountGroup" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer Account Group"/>
+      <keyMapping columnObjectName="Join_7" columnName="CustomerAccountGroup"/>
+    </attribute>
+    <attribute id="City" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="City"/>
+      <keyMapping columnObjectName="Join_7" columnName="City"/>
+    </attribute>
+    <attribute id="CustomerText" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer Text"/>
+      <keyMapping columnObjectName="Join_7" columnName="CustomerText"/>
+    </attribute>
+  
+    <attribute id="CompanyCode" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+  
+      <keyMapping columnObjectName="Join_7" columnName="CompanyCode"/>
+  
+    </attribute>
+    <attribute id="CompanyCodeText" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCodeText"/>
+      <keyMapping columnObjectName="Join_7" columnName="CompanyCodeText"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="CustomerPerCountry" order="1" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="INTEGER" length="">
+      <descriptions defaultDescription="Customer Per Country"/>
+      <exceptionAggregation>
+        <attribute attributeName="CustomerNumber"/>
+        <attribute attributeName="CountryKey"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      
+      
+      
+      
+      
+      
+      </measure>
+    <measure id="CC_CustomerCount" order="14" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <descriptions defaultDescription="Customer Count"/>
+      <exceptionAggregation>
+        <attribute attributeName="CustomerNumber"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+
+  <localDimensions>
+
+    <localDimension id="CountryHierarchy">
+
+      <attributeRef xsi:type="DataFoundation:Attribute">CountryKey</attributeRef>
+
+      <attributeRef xsi:type="DataFoundation:Attribute">Region</attributeRef>
+
+      <attributeRef xsi:type="DataFoundation:Attribute">City</attributeRef>
+
+      <hierarchies>
+
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="CountryHierarchy" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+
+          <descriptions defaultDescription="Country Hierarchy"/>
+
+          <unassignedMemberProperties mode="FALSE"/>
+
+          <levels>
+
+            <level levelAttribute="CountryKey" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="CountryKey" sortDirection="ASC"/>
+
+            <level levelAttribute="Region" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="Region" sortDirection="ASC"/>
+
+            <level levelAttribute="City" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="City" sortDirection="ASC"/>
+
+          </levels>
+
+        </hierarchy>
+
+      </hierarchies>
+
+    </localDimension>
+
+  </localDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="660" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="false" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="996"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="false" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="996"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="false" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="836"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="380" y="836"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="596" y="77"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="153" y="50"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="474" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="172" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="584" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="198" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_5" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="156"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_6" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="708" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_7" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="660" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_6" modelObjectNameSpace="Join_7" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_6" modelObjectNameSpace="Join_7" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="176"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

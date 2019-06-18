@@ -1,0 +1,91 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "CUST_COMPC_ATTR",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "CUST_COMPC_ATTR.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {                                       
+									"KUNNR" : 1,
+									"BUKRS" : 2, 
+									"PERNR" : 3,
+									"ERDAT" : 4,
+									"ERNAM" : 5, 
+									"SPERR" : 6, 
+									"LOEVM" : 7, 
+									"ZUAWA" : 8, 
+									"BUSAB" : 9, 
+									"AKONT" : 10, 
+									"BEGRU" : 11, 
+									"KNRZE" : 12, 
+									"KNRZB" : 13, 
+									"ZAMIM" : 14, 
+									"ZAMIV" : 15, 
+									"ZAMIR" : 16, 
+									"ZAMIB" : 17, 
+									"ZAMIO" : 18, 
+									"ZWELS" : 19, 
+									"XVERR" : 20, 
+									"ZAHLS" : 21, 
+									"ZTERM" : 22, 
+									"WAKON" : 23, 
+									"VZSKZ" : 24, 
+									"EIKTO" : 25, 
+									"ZSABE" : 26, 
+									"KVERM" : 27, 
+									"FDGRV" : 28, 
+									"VRBKZ" : 29, 
+									"VRSZL" : 30, 
+									"VRSPR" : 31, 
+									"VRSNR" : 32, 
+									"VERDT" : 33, 
+									"PERKZ" : 34, 
+									"XDEZV" : 35, 
+									"XAUSZ" : 36, 
+									"REMIT" : 37, 
+									"DATLZ" : 38, 
+									"XZVER" : 39, 
+									"TOGRU" : 40, 
+									"KULTG" : 41, 
+									"HBKID" : 42, 
+									"XPORE" : 43, 
+									"BLNKZ" : 44, 
+									"ALTKN" : 45, 
+									"ZGRUP" : 46, 
+									"URLID" : 47, 
+									"MGRUP" : 48, 
+									"LOCKB" : 49, 
+									"UZAWE" : 50, 
+									"EKVBD" : 51, 
+									"SREGL" : 52, 
+									"XEDIP" : 53, 
+									"FRGRP" : 54, 
+									"VRSDG" : 55, 
+									"TLFXS" : 56, 
+									"INTAD" : 57, 
+									"XKNZB" : 58, 
+									"GUZTE" : 59, 
+									"GRICD" : 60, 
+									"GRIDT" : 61, 
+									"WBRSL" : 62, 
+									"CONFS" : 63, 
+									"UPDAT" : 64, 
+									"UPTIM" : 65, 
+									"NODEL" : 66, 
+									"TLFNS" : 67, 
+									"CESSION_KZ" : 68
+								}
+        }
+    ]
+}

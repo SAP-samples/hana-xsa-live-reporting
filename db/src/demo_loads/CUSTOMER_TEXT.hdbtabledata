@@ -1,0 +1,25 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "CUSTOMER_TEXT",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "CUSTOMER_TEXT.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   
+                                    "KUNNR" : 1,
+                                    "TXTMD" : 2 
+								}
+        }
+    ]
+}

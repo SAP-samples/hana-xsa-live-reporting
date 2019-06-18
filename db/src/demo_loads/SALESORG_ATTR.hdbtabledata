@@ -1,0 +1,30 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "SALESORG_ATTR",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "SALESORG_ATTR.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   
+								 "VKORG" : 1,
+								 "WAERS_V" : 2,
+								 "BUKRS" : 3,
+								 "KUNNR" : 4,
+								 "LAND1" : 5,
+								 "WAERS" : 6,
+								 "PERIV" : 7
+								}
+        }
+    ]
+}

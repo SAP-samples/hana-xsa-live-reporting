@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flowgraph:ContainerNode xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowgraph="http://www.sap.com/ndb/flowgraph/1.0" xmi:version="2.0" xmi:id="4d930fd3d7ede6b85c6efe38a46280b3" name="FG_MATERIAL_GRP_TXT" runtimeBehavior="BATCH_TASK">
+  <annotations key="sap.afm.layout" xmi:id="111af55816e8e4bdabadd4bf9434a92a">
+    <annotations xmi:id="4577256e5d7552f13fb2a0e29f48e226" key="x" value="10">
+    </annotations>
+    <annotations xmi:id="fdab186de352cf24f9237bc9a435cc6f" key="y" value="10">
+    </annotations>
+    <annotations xmi:id="98a65dd2d489604280f7ba89608fa276" key="width" value="100">
+    </annotations>
+    <annotations xmi:id="a8aa41f6bf5af76869e0b5a3f3128050" key="height" value="84">
+    </annotations>
+  </annotations>
+  <annotations xmi:id="bd4a544bfec64d63fa227872191402f1" key="sap.afm.palette">
+    <annotations xmi:id="202ded081164de70dbe23c048456ecd1" key="additions" value=""/>
+  </annotations>
+  <annotations xmi:id="0a400e6fc892a23faa81195dfb572e15" key="sap.afm.nodeType" value="ContainerNode">
+  </annotations>
+  <annotations xmi:id="83ab4a349a3d55fc39b557bfdc45f008" key="sap.afm.nodeInputs">
+  </annotations>
+  <annotations xmi:id="cdb3d21a6c97a79d0f963950cb9ce003" key="sap.afm.nodeOutputs">
+  </annotations>
+  <tableMappings xmi:id="aa97ce512ad9ea637d74d4bb8a407d48" source="22a7cd22b0fea959ed5bb47847859432" target="ce7ff20175ca2128430abeca3e40e1b6">
+    <attributeMappings xmi:id="601a81bbc6640d90ac0dd91480e0a682" source="cbd2f056fb494b7fece4b14c4179b817" target="2d0260aece3a57c75cdcd18c8e38e63f">
+    </attributeMappings>
+    <attributeMappings xmi:id="aac4f3b34fb8faa1210a917be0fcca1b" source="568fcde0f185af9b232a928e743e2ad4" target="aa0cecc93af88c36a84a5fd9d8ca5145">
+    </attributeMappings>
+    <attributeMappings xmi:id="2cc8ace2196483c9a65320d45b52fbdd" source="e09bcdc5e57747c4cba305f079585ee6" target="c53df0a442983c0bd6a1ed152d7b4a54">
+    </attributeMappings>
+  </tableMappings>
+  <tableMappings xmi:id="8c34e5bffa60a2542bd3a1f81f4b4d8b" source="2cdb2ea05981e4182b2b3a9e77483995" target="10f6f8ae5cf0accb5243c6193ee71d47">
+    <attributeMappings xmi:id="ad9978139d022c4a2640a44ae79e4412" source="614ad25fe2010a28e14e9f9815d13b6b" target="060af2ec3ef64620a547a0ddbd886d65">
+    </attributeMappings>
+    <attributeMappings xmi:id="7a02e20ebe545515e3bbb8e11d03c46d" source="9188df9b5498b4bc69c16ef25d125347" target="4b6347cd5eb79956fb88f93475a947d8">
+    </attributeMappings>
+    <attributeMappings xmi:id="bf316a62301b5113011e9ec86dd6f721" source="7ab852bc3d087c2912eceae828e01ebc" target="1bd476f44df0b16165419bcdb13051a1">
+    </attributeMappings>
+  </tableMappings>
+  <nodes xmi:id="587d5c112c8b68cad50001cbd0c97c3c" name="VX_MATL_GROUP_TEXT" catalogObjectName="VX_MATL_GROUP_TEXT" type="VIRTUAL_TABLE" xsi:type="flowgraph:DataNode" dataLayout="ROW">
+    <annotations key="sap.afm.layout" xmi:id="cfbdf76901e4b6c7846d869eaffd30be">
+      <annotations xmi:id="b4aa461827c1ffa79cd13723c0844a6b" key="x" value="12">
+      </annotations>
+      <annotations xmi:id="e7c9d674d5c1b0a9e0d3de43e81b0298" key="y" value="12">
+      </annotations>
+      <annotations xmi:id="d0a26f3ce82bf85b15da3664e7e0e39f" key="width" value="179">
+      </annotations>
+      <annotations xmi:id="860e240d96bd7c3392495791f543f751" key="height" value="115">
+      </annotations>
+    </annotations>
+    <annotations xmi:id="f95e72721f947365ee970d9979bceb07" key="sap.afm.description">
+    </annotations>
+    <annotations xmi:id="0b7b735336dbcb387672be91c5c4e2ad" key="sap.afm.nodeType" value="DataNode">
+    </annotations>
+    <annotations xmi:id="8a5afbcd5d6a7365aba29abd11b2cf66" key="sap.afm.nodeInputs">
+    </annotations>
+    <annotations xmi:id="a24050f711b00fe6b9f287aacf8dd8e0" key="sap.afm.nodeOutputs">
+    </annotations>
+    <annotations xmi:id="1a0f01f52003bde385ef8b69f0be8f4e" key="sap.afm.displayName" value="Data Source">
+    </annotations>
+    <annotations xmi:id="cb1ec176f532c2e5e879a12fac955125" key="columns" value="[{&quot;name&quot;:&quot;SPRAS&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:1,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;cbd2f056fb494b7fece4b14c4179b817&quot;},{&quot;name&quot;:&quot;MATKL&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:9,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;568fcde0f185af9b232a928e743e2ad4&quot;},{&quot;name&quot;:&quot;TXTSH&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:20,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;e09bcdc5e57747c4cba305f079585ee6&quot;}]">
+    </annotations>
+    <outputs xmi:id="22a7cd22b0fea959ed5bb47847859432" name="VX_MATL_GROUP_TEXT">
+      <attributes xmi:id="cbd2f056fb494b7fece4b14c4179b817" name="SPRAS" type="NVARCHAR" nullable="true" length="1">
+      </attributes>
+      <attributes xmi:id="568fcde0f185af9b232a928e743e2ad4" name="MATKL" type="NVARCHAR" nullable="true" length="9">
+      </attributes>
+      <attributes xmi:id="e09bcdc5e57747c4cba305f079585ee6" name="TXTSH" type="NVARCHAR" nullable="true" length="20">
+      </attributes>
+    </outputs>
+  </nodes>
+  <nodes xmi:id="966bd8322a248c1e928951bea941fd4b" xsi:type="flowgraph:DataNode" name="MATL_GROUP_TEXT" truncateTable="false" catalogObjectName="MATL_GROUP_TEXT" type="TEMPLATE_TABLE" dataLayout="COLUMN">
+    <annotations key="sap.afm.layout" xmi:id="07f291b1b4c4b36e0bcc711704605929">
+      <annotations xmi:id="7c11ce16aeeb6be5a1269de6c0375b85" key="x" value="433">
+      </annotations>
+      <annotations xmi:id="94b0e54648b5394185a857317d23f34d" key="y" value="12">
+      </annotations>
+      <annotations xmi:id="82a65604eafb4ee6f3fad5b4cc43d502" key="width" value="138">
+      </annotations>
+      <annotations xmi:id="bb95ad70a90554e07c1a3da56658da01" key="height" value="115">
+      </annotations>
+    </annotations>
+    <annotations xmi:id="df0e7b8f47f8c71be0a2b80b667ab244" key="sap.afm.description">
+    </annotations>
+    <annotations xmi:id="db3bd32c521199d6c459e93a4ad74698" key="sap.afm.nodeType" value="DataNode">
+    </annotations>
+    <annotations xmi:id="66d75b070a295c169df6db2a49f8e481" key="sap.afm.nodeInputs">
+    </annotations>
+    <annotations xmi:id="d1ec2418c639672731b6388fb756e7e5" key="sap.afm.nodeOutputs">
+    </annotations>
+    <annotations xmi:id="d7cb454a14f8c331972035a7bf09e11a" key="sap.afm.displayName" value="Data Target">
+    </annotations>
+    <annotations xmi:id="5ac1bd3166c6a80a161442c29f43110e" key="columns" value="[{&quot;name&quot;:&quot;MAT_GRP_MATKL&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:18,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;a7cf8ba45efd62af35fe456cdaf94016&quot;},{&quot;name&quot;:&quot;SPRAS&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:1,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;060af2ec3ef64620a547a0ddbd886d65&quot;},{&quot;name&quot;:&quot;MAT_GRP_TXT&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:40,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;28a00f0bcc8fec3605a914a88944af3c&quot;}]">
+    </annotations>
+    <inputs xmi:id="10f6f8ae5cf0accb5243c6193ee71d47" name="MATL_GROUP_TEXT" kind="TABLE">
+      <attributes xmi:id="060af2ec3ef64620a547a0ddbd886d65" name="SPRAS" type="NVARCHAR" nullable="true" length="1">
+        <annotations xmi:id="1d5b30e09dd78f1face01de5cce58c61" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="4b6347cd5eb79956fb88f93475a947d8" name="MATKL" type="NVARCHAR" nullable="true" length="9">
+        <annotations xmi:id="6d358a1a75a69c2f44e4ea26468404d3" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="1bd476f44df0b16165419bcdb13051a1" name="TXTSH" type="NVARCHAR" nullable="true" length="20">
+        <annotations xmi:id="5816551348b7d47cf07cae3a07d254be" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+    </inputs>
+  </nodes>
+  <nodes xmi:id="3c7eb3c611eab11c3c6f102380be893a" xsi:type="flowgraph:FilterNode" name="Projection" expression="&quot;SPRAS&quot;=&#x27;E&#x27;">
+    <annotations key="sap.afm.layout" xmi:id="f7e02dc8ca4769ef83a43be6353e13b8">
+      <annotations xmi:id="d4d4aa5c1ba94d40238af0a10037112f" key="x" value="252">
+      </annotations>
+      <annotations xmi:id="b28ad9a10d407cc458c5491b132d80b0" key="y" value="12">
+      </annotations>
+      <annotations xmi:id="06b9fc736f76f9794de54bb116ba6697" key="width" value="120">
+      </annotations>
+      <annotations xmi:id="36dcd5b9e04de1cf4737865ee51c7d0f" key="height" value="115">
+      </annotations>
+    </annotations>
+    <inputs xmi:id="ce7ff20175ca2128430abeca3e40e1b6" name="Projection_IN">
+      <attributes xmi:id="2d0260aece3a57c75cdcd18c8e38e63f" name="SPRAS" type="NVARCHAR" nullable="true" length="1">
+      </attributes>
+      <attributes xmi:id="aa0cecc93af88c36a84a5fd9d8ca5145" name="MATKL" type="NVARCHAR" nullable="true" length="9">
+      </attributes>
+      <attributes xmi:id="c53df0a442983c0bd6a1ed152d7b4a54" name="TXTSH" type="NVARCHAR" nullable="true" length="20">
+      </attributes>
+    </inputs>
+    <outputs xmi:id="2cdb2ea05981e4182b2b3a9e77483995" name="Projection_OUT">
+      <attributes xmi:id="614ad25fe2010a28e14e9f9815d13b6b" name="SPRAS" type="NVARCHAR" nullable="true" expression="&quot;SPRAS&quot;" length="1">
+      </attributes>
+      <attributes xmi:id="9188df9b5498b4bc69c16ef25d125347" name="MATKL" type="NVARCHAR" nullable="true" expression="&quot;MATKL&quot;" length="9">
+      </attributes>
+      <attributes xmi:id="7ab852bc3d087c2912eceae828e01ebc" name="TXTSH" type="NVARCHAR" nullable="true" expression="&quot;TXTSH&quot;" length="20">
+      </attributes>
+    </outputs>
+  </nodes>
+</flowgraph:ContainerNode>

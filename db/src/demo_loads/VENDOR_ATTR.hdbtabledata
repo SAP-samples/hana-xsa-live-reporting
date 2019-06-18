@@ -1,0 +1,93 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "VENDOR_ATTR",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "VENDOR_ATTR.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   
+                                  "LIFNR" : 1,
+								  "ANRED" : 2,
+                                  "BAHNS" : 3,
+                                  "BBBNR" : 4,
+                                  "BBSNR" : 5,
+                                  "BEGRU" : 6,
+                                  "BRSCH" : 7,
+                                  "BUBKZ" : 8,
+                                  "DATLT" : 9,
+                                  "DTAMS" : 10,
+                                  "DTAWS" : 11,
+                                  "ERDAT" : 12,
+                                  "ERNAM" : 13,
+                                  "ESRNR" : 14,
+                                  "KONZS" : 15,
+                                  "KTOKK" : 16,
+                                  "KUNNR" : 17,
+                                  "LAND1" : 18,
+                                  "LNRZA" : 19,
+                                  "LOEVM" : 20,
+                                  "NAME1" : 21,
+                                  "NAME2" : 22,
+                                  "NAME3" : 23,
+                                  "NAME4" : 24,
+                                  "ORT01" : 25,
+                                  "ORT02" : 26,
+                                  "PFACH" : 27,
+                                  "PSTL2" : 28,
+                                  "PSTLZ" : 29,
+                                  "REGIO" : 30,
+                                  "SORTL" : 31,
+                                  "SPERR" : 32,
+                                  "SPERM" : 33,
+                                  "SPRAS" : 34,
+                                  "STCD1" : 35,
+                                  "STCD2" : 36,
+                                  "STCD3" : 37,
+                                  "STKZA" : 38,
+								  "STKZU" : 39,
+								  "STRAS" : 40,
+								  "TELBX" : 41,
+								  "TELF1" : 42,
+								  "TELF2" : 43,
+								  "TELFX" : 44,
+								  "TELTX" : 45,
+								  "TELX1" : 46,
+								  "XCPDK" : 47,
+								  "XZEMP" : 48,
+								  "VBUND" : 49,
+								  "FISKN" : 50,
+								  "STCEG" : 51,
+								  "STKZN" : 52,
+								  "SPERQ" : 53,
+								  "MCOD1" : 54,
+								  "MCOD2" : 55,
+								  "MCOD3" : 56,
+								  "GBORT" : 57,
+								  "GBDAT" : 58,
+								  "SEXKZ" : 59,
+								  "KRAUS" : 60,
+								  "REVDB" : 61,
+								  "QSSYS" : 62,
+								  "KTOCK" : 63,
+								  "PFORT" : 64,
+								  "WERKS" : 65,
+								  "LTSNA" : 66,
+								  "WERKR" : 67,
+								  "PLKAL" : 68,
+								  "TXJCD" : 69,
+								  "SPERZ" : 70
+								}
+        }
+    ]
+}

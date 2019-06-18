@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="D_Customer" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="D_Customer"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CUSTOMER_ATTR">
+    <resourceUri>CUSTOMER_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="CUSTOMER_TEXT">
+    <resourceUri>CUSTOMER_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Cust_Attr_P">
+    <viewAttributes>
+      <viewAttribute id="CustomerNumber">
+        <descriptions defaultDescription="KUNNR"/>
+      </viewAttribute>
+      <viewAttribute id="Address">
+        <descriptions defaultDescription="ADRNR"/>
+      </viewAttribute>
+      <viewAttribute id="Country">
+        <descriptions defaultDescription="LAND1"/>
+      </viewAttribute>
+      <viewAttribute id="Vendor">
+        <descriptions defaultDescription="LIFNR"/>
+      </viewAttribute>
+      <viewAttribute id="DeletionFlagforMasterRecord">
+        <descriptions defaultDescription="LOEVM"/>
+      </viewAttribute>
+      <viewAttribute id="Region">
+        <descriptions defaultDescription="REGIO"/>
+      </viewAttribute>
+      <viewAttribute id="Plant">
+        <descriptions defaultDescription="WERKS"/>
+      </viewAttribute>
+      <viewAttribute id="CustomerAccountGroup">
+        <descriptions defaultDescription="KTOKD"/>
+      </viewAttribute>
+      <viewAttribute id="City">
+        <descriptions defaultDescription="CITYC"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CUSTOMER_ATTR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Address" source="ADRNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="LAND1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="LIFNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeletionFlagforMasterRecord" source="LOEVM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="REGIO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerAccountGroup" source="KTOKD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="City" source="CITYC"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Cust_Txt_P">
+    <viewAttributes>
+      <viewAttribute id="KUNNR">
+        <descriptions defaultDescription="KUNNR"/>
+      </viewAttribute>
+      <viewAttribute id="CustomerName">
+        <descriptions defaultDescription="TXTMD"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="CUSTOMER_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerName" source="TXTMD"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter" optimizeJoinColumns="true">
+    <viewAttributes>
+      <viewAttribute id="CustomerNumber">
+        <descriptions defaultDescription="KUNNR"/>
+      </viewAttribute>
+      <viewAttribute id="Address">
+        <descriptions defaultDescription="ADRNR"/>
+      </viewAttribute>
+      <viewAttribute id="Country">
+        <descriptions defaultDescription="LAND1"/>
+      </viewAttribute>
+      <viewAttribute id="Vendor">
+        <descriptions defaultDescription="LIFNR"/>
+      </viewAttribute>
+      <viewAttribute id="DeletionFlagforMasterRecord">
+        <descriptions defaultDescription="LOEVM"/>
+      </viewAttribute>
+      <viewAttribute id="Region">
+        <descriptions defaultDescription="REGIO"/>
+      </viewAttribute>
+      <viewAttribute id="Plant">
+        <descriptions defaultDescription="WERKS"/>
+      </viewAttribute>
+      <viewAttribute id="CustomerAccountGroup">
+        <descriptions defaultDescription="KTOKD"/>
+      </viewAttribute>
+      <viewAttribute id="City">
+        <descriptions defaultDescription="CITYC"/>
+      </viewAttribute>
+      <viewAttribute id="CustomerName">
+        <descriptions defaultDescription="TXTMD"/>
+      </viewAttribute>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Cust_Attr_P">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="CustomerNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Address" source="Address"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeletionFlagforMasterRecord" source="DeletionFlagforMasterRecord"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerAccountGroup" source="CustomerAccountGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="City" source="City"/>
+    </input>
+    <input node="Cust_Txt_P">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerName" source="CustomerName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="KUNNR"/>
+    </input>
+    <joinAttribute name="CustomerNumber"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="CustomerNumber" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KUNNR"/>
+      <keyMapping columnObjectName="Join_1" columnName="CustomerNumber"/>
+    </attribute>
+    <attribute id="Address" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADRNR"/>
+      <keyMapping columnObjectName="Join_1" columnName="Address"/>
+    </attribute>
+    <attribute id="Country" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAND1"/>
+      <keyMapping columnObjectName="Join_1" columnName="Country"/>
+    </attribute>
+    <attribute id="Vendor" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LIFNR"/>
+      <keyMapping columnObjectName="Join_1" columnName="Vendor"/>
+    </attribute>
+    <attribute id="DeletionFlagforMasterRecord" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LOEVM"/>
+      <keyMapping columnObjectName="Join_1" columnName="DeletionFlagforMasterRecord"/>
+    </attribute>
+    <attribute id="Region" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGIO"/>
+      <keyMapping columnObjectName="Join_1" columnName="Region"/>
+    </attribute>
+    <attribute id="Plant" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WERKS"/>
+      <keyMapping columnObjectName="Join_1" columnName="Plant"/>
+    </attribute>
+    <attribute id="CustomerAccountGroup" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KTOKD"/>
+      <keyMapping columnObjectName="Join_1" columnName="CustomerAccountGroup"/>
+    </attribute>
+    <attribute id="City" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITYC"/>
+      <keyMapping columnObjectName="Join_1" columnName="City"/>
+    </attribute>
+    <attribute id="CustomerName" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTMD"/>
+      <keyMapping columnObjectName="Join_1" columnName="CustomerName"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Cust_Attr_P" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Cust_Txt_P" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.00000000000006" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Cust_Attr_P" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Cust_Txt_P" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

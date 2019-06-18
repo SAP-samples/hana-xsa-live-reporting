@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="D_BillingCategoryText" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="D_BillingCategoryText"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="BILL_CAT_TEXT">
+    <resourceUri>BILL_CAT_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="BILL_CAT_TEXT">
+  <attributes>
+    <attribute id="LANGU" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LANGU"/>
+      <keyMapping columnObjectName="BILL_CAT_TEXT" columnName="LANGU"/>
+    </attribute>
+    <attribute id="KEY1" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KEY1"/>
+      <keyMapping columnObjectName="BILL_CAT_TEXT" columnName="KEY1"/>
+    </attribute>
+    <attribute id="BillingCategoryText" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTLG"/>
+      <keyMapping columnObjectName="BILL_CAT_TEXT" columnName="TXTLG"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

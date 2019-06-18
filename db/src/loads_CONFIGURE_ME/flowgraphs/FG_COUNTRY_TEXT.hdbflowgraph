@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flowgraph:ContainerNode xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowgraph="http://www.sap.com/ndb/flowgraph/1.0" xmi:version="2.0" xmi:id="d2559f50285b1f5820011f61dc890395" name="FG_CountryText" runtimeBehavior="BATCH_TASK">
+  <annotations key="sap.afm.layout" xmi:id="18f2c89f5403c2e1594952939a3fcd23">
+    <annotations xmi:id="4d8a3c3d89dcd2cc0deb91817ce36b94" key="x" value="10">
+    </annotations>
+    <annotations xmi:id="a0504b7063cb6b82994c9157ee567677" key="y" value="10">
+    </annotations>
+    <annotations xmi:id="82985198a481a5f8130a5bf9ce3acce8" key="width" value="100">
+    </annotations>
+    <annotations xmi:id="9bc05804b92e56278f955935a40f4e80" key="height" value="84">
+    </annotations>
+  </annotations>
+  <annotations xmi:id="3aaefd04850a447f0ff0ffb86bdc6175" key="sap.afm.palette">
+    <annotations xmi:id="846a1470229026077dd4a5e1cf5d5a05" key="additions" value=""/>
+  </annotations>
+  <annotations xmi:id="2202b3a420a57a545a1fcf3809286090" key="sap.afm.nodeType" value="ContainerNode">
+  </annotations>
+  <annotations xmi:id="c49933224736cf07b09eff8c7091eb8f" key="sap.afm.nodeInputs">
+  </annotations>
+  <annotations xmi:id="8b2dd0cb7c08e7b81fa87e825c8ac830" key="sap.afm.nodeOutputs">
+  </annotations>
+  <tableMappings xmi:id="dfb0bff83c0506b9d8dcd6f6c03be4a8" source="949d5f8e7313fe581a2e1c4c891fe1a7" target="e057c277f4bc9e7df3c214759c5b197d">
+    <attributeMappings xmi:id="86e3277ea01733a24bf5c37326cbd1bc" source="6019b55c8a4167a67a9b172c2391415d" target="b1b74e317c81e91b10c927bfe3addd24">
+    </attributeMappings>
+    <attributeMappings xmi:id="f12acde30edc78375330d89198e95b6d" source="eaf71a505196ada21d3ca9d50cb2c954" target="58adf42ea3be89cc69a1f4f7f4374574">
+    </attributeMappings>
+    <attributeMappings xmi:id="7f73bfe9f7e8f4459f8ffbd002a7fb79" source="707cc6b5989a91c63df54ae7f21b6580" target="6c0d4e4418e7e9a39edf5656b79cccba">
+    </attributeMappings>
+  </tableMappings>
+  <tableMappings xmi:id="d97b86a750864d030cc587089e05009d" source="29a02c427924fe45f9fcc1a1e5fe1934" target="c6655dce0e8e809d19e8d68e54f2b255">
+    <attributeMappings xmi:id="d718d6019dd28d2ea9cdcde1a65d545b" source="1527d64b2674083a986426a160bd061d" target="831f9207d7db4d8df0b88b9a48a2d0d3">
+    </attributeMappings>
+    <attributeMappings xmi:id="4aeaef873cdc806054c83d29e24b5769" source="ba74ca95f87b4fe33a3f8dafbcf40a96" target="a60a68d225f76d2f471e268b0c86bb32">
+    </attributeMappings>
+    <attributeMappings xmi:id="eaad65c5d39c4583486f8806dda82329" source="c2d010cea1263c93a2220ce5909385a0" target="c0fd046fa23fdbc8e524d69d861db722">
+    </attributeMappings>
+  </tableMappings>
+  <nodes xmi:id="3abb3f55cbbf995cadc1647461036ac5" name="VX_COUNTRY_TEXT" catalogObjectName="VX_COUNTRY_TEXT" type="VIRTUAL_TABLE" xsi:type="flowgraph:DataNode" dataLayout="ROW">
+    <annotations key="sap.afm.layout" xmi:id="e98fcce409328370169f3fbbad944edb">
+      <annotations xmi:id="7e562d528e1da1398569fbc53de6aa8f" key="x" value="65">
+      </annotations>
+      <annotations xmi:id="335bdb553ebea031f4b24383cd413818" key="y" value="114">
+      </annotations>
+      <annotations xmi:id="b6daf5f4322d087d289c83acbce6dcdf" key="width" value="120">
+      </annotations>
+      <annotations xmi:id="776dfab48d4e6087ce86808aa5f9027f" key="height" value="115">
+      </annotations>
+    </annotations>
+    <annotations xmi:id="1a65ee453901788f3c1290216786e4a3" key="sap.afm.description">
+    </annotations>
+    <annotations xmi:id="0e628fb5e66c5b4b7c1644a8b4466359" key="sap.afm.nodeType" value="DataNode">
+    </annotations>
+    <annotations xmi:id="d89f4ca75bd1c23454b76abc704417e1" key="sap.afm.nodeInputs">
+    </annotations>
+    <annotations xmi:id="a10a3e4628b92634bb35ea0078c232b6" key="sap.afm.nodeOutputs">
+    </annotations>
+    <annotations xmi:id="c201c6151c4cf32040813a082586762c" key="sap.afm.displayName" value="Data Source">
+    </annotations>
+    <annotations xmi:id="33bf4e1d89567c9cc6e6884ca4af1c64" key="columns" value="[{&quot;name&quot;:&quot;SPRAS&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:1,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;6019b55c8a4167a67a9b172c2391415d&quot;},{&quot;name&quot;:&quot;LAND1&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:3,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;eaf71a505196ada21d3ca9d50cb2c954&quot;},{&quot;name&quot;:&quot;TXTSH&quot;,&quot;type&quot;:&quot;NVARCHAR&quot;,&quot;length&quot;:20,&quot;nullable&quot;:&quot;true&quot;,&quot;id&quot;:&quot;707cc6b5989a91c63df54ae7f21b6580&quot;}]">
+    </annotations>
+    <outputs xmi:id="949d5f8e7313fe581a2e1c4c891fe1a7" name="VX_COUNTRY_TEXT">
+      <attributes xmi:id="6019b55c8a4167a67a9b172c2391415d" name="SPRAS" type="NVARCHAR" nullable="true" length="1">
+        <annotations xmi:id="ddc79e8c09665c1eb521b4bf0c49ad70" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="eaf71a505196ada21d3ca9d50cb2c954" name="LAND1" type="NVARCHAR" nullable="true" length="3">
+        <annotations xmi:id="46e4486f315ac3453f08667a51ab6e63" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="707cc6b5989a91c63df54ae7f21b6580" name="TXTSH" type="NVARCHAR" nullable="true" length="20">
+        <annotations xmi:id="0163157d12b970eaa4b97979d81d94e5" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+    </outputs>
+  </nodes>
+  <nodes xmi:id="f96a6eb6491e3cf3554c6f3ef89667b6" xsi:type="flowgraph:FilterNode" name="Projection">
+    <annotations key="sap.afm.layout" xmi:id="21fabe93c8ab33cbe6033dc4621ce7db">
+      <annotations xmi:id="09793089661ad8c48274f284e68b1510" key="x" value="303">
+      </annotations>
+      <annotations xmi:id="8778034facd9f67c8c3894e60bf9410e" key="y" value="123">
+      </annotations>
+      <annotations xmi:id="79382a99bf11e9589e5d16558cffedcd" key="width" value="120">
+      </annotations>
+      <annotations xmi:id="729099b2c5826781b16961f053ff9eaf" key="height" value="115">
+      </annotations>
+    </annotations>
+    <inputs xmi:id="e057c277f4bc9e7df3c214759c5b197d" name="Projection_IN">
+      <attributes xmi:id="b1b74e317c81e91b10c927bfe3addd24" name="SPRAS" type="NVARCHAR" nullable="true" length="1">
+        <annotations xmi:id="c20ff62103d99ec4622adc52be372b47" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="58adf42ea3be89cc69a1f4f7f4374574" name="LAND1" type="NVARCHAR" nullable="true" length="3">
+        <annotations xmi:id="120b1bb9e3b1dab51fa9179dd7adeafe" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="6c0d4e4418e7e9a39edf5656b79cccba" name="TXTSH" type="NVARCHAR" nullable="true" length="20">
+        <annotations xmi:id="fcf83359d5195574153b32d9c0f3791b" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+    </inputs>
+    <outputs xmi:id="29a02c427924fe45f9fcc1a1e5fe1934" name="Projection_OUT">
+      <attributes xmi:id="1527d64b2674083a986426a160bd061d" name="SPRAS" type="NVARCHAR" nullable="false" expression="&quot;SPRAS&quot;" length="1">
+        <annotations xmi:id="3821d50fb487c75062c66056437726eb" key="sap.im.primaryKey" value="true">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="ba74ca95f87b4fe33a3f8dafbcf40a96" name="LAND1" type="NVARCHAR" nullable="false" expression="&quot;LAND1&quot;" length="3">
+        <annotations xmi:id="afd3f1e368789746c13ed8af64de6ea5" key="sap.im.primaryKey" value="true">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="c2d010cea1263c93a2220ce5909385a0" name="TXTSH" type="NVARCHAR" nullable="true" expression="&quot;TXTSH&quot;" length="20">
+        <annotations xmi:id="bf45eedb8cd300929a7675726b164243" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+    </outputs>
+  </nodes>
+  <nodes xmi:id="dc24a2315ef52253aa44a287dea645c4" xsi:type="flowgraph:DataNode" name="COUNTRY_TEXT" truncateTable="false" catalogObjectName="COUNTRY_TEXT" type="TEMPLATE_TABLE">
+    <annotations key="sap.afm.layout" xmi:id="3593b0804cb484fdf5f89d12d49bc3e2">
+      <annotations xmi:id="5c763588577b21349f555f6120df7db4" key="x" value="474">
+      </annotations>
+      <annotations xmi:id="6ce3c08c27862ee7fadec721e975f503" key="y" value="132">
+      </annotations>
+      <annotations xmi:id="733fdffd28bd1542a33985de458f0e98" key="width" value="120">
+      </annotations>
+      <annotations xmi:id="933b444b030baaad9d272671830f252a" key="height" value="115">
+      </annotations>
+    </annotations>
+    <annotations xmi:id="905e07211a48c72616ed774ea5aec39e" key="sap.afm.description">
+    </annotations>
+    <annotations xmi:id="742c2823365b80876652a04a8e0b5f63" key="sap.afm.nodeType" value="DataNode">
+    </annotations>
+    <annotations xmi:id="fc9499eb8458ed15525bc4590fd06963" key="sap.afm.nodeInputs">
+    </annotations>
+    <annotations xmi:id="38107911389415848508c6c19f274365" key="sap.afm.nodeOutputs">
+    </annotations>
+    <annotations xmi:id="7e1987a6294d7652c6f710e4c8c59cb8" key="sap.afm.displayName" value="Data Target">
+    </annotations>
+    <inputs xmi:id="c6655dce0e8e809d19e8d68e54f2b255" name="COUNTRY_TEXT" kind="TABLE">
+      <attributes xmi:id="831f9207d7db4d8df0b88b9a48a2d0d3" name="SPRAS" type="NVARCHAR" nullable="false" length="1">
+        <annotations xmi:id="17f750e8c56c703cf333f95982a2872d" key="sap.im.primaryKey" value="true">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="a60a68d225f76d2f471e268b0c86bb32" name="LAND1" type="NVARCHAR" nullable="false" length="3">
+        <annotations xmi:id="a3a49a64b079e7ebf77ba1a38e567a15" key="sap.im.primaryKey" value="true">
+        </annotations>
+      </attributes>
+      <attributes xmi:id="c0fd046fa23fdbc8e524d69d861db722" name="TXTSH" type="NVARCHAR" nullable="true" length="20">
+        <annotations xmi:id="e0eef18b98b8361c40007738ea476628" key="sap.im.primaryKey" value="false">
+        </annotations>
+      </attributes>
+    </inputs>
+  </nodes>
+</flowgraph:ContainerNode>

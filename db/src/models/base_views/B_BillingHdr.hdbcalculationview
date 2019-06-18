@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="B_BillingHdr" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="B_BillingHdr"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="BILLING_DOC_HDR">
+    <resourceUri>BILLING_DOC_HDR</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="BillingDocHdr_P">
+    <viewAttributes>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="BUCHK"/>
+      <viewAttribute id="GBSTK"/>
+      <viewAttribute id="VBELN"/>
+      <viewAttribute id="BUKRS"/>
+      <viewAttribute id="BZIRK"/>
+      <viewAttribute id="ERDAT"/>
+      <viewAttribute id="ERNAM"/>
+      <viewAttribute id="FKART"/>
+      <viewAttribute id="FKDAT"/>
+      <viewAttribute id="FKTYP"/>
+      <viewAttribute id="HWAER"/>
+      <viewAttribute id="INCO1"/>
+      <viewAttribute id="INCO2"/>
+      <viewAttribute id="KDGRP"/>
+      <viewAttribute id="KUNAG"/>
+      <viewAttribute id="KUNRG"/>
+      <viewAttribute id="KURRF"/>
+      <viewAttribute id="KURST"/>
+      <viewAttribute id="NETWR"/>
+      <viewAttribute id="PVRTNR"/>
+      <viewAttribute id="PZPERS"/>
+      <viewAttribute id="SPART"/>
+      <viewAttribute id="STWAE"/>
+      <viewAttribute id="VBTYP"/>
+      <viewAttribute id="VKORG"/>
+      <viewAttribute id="VTWEG"/>
+      <viewAttribute id="WAERK"/>
+      <viewAttribute id="ANZFK"/>
+      <viewAttribute id="PERIV"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="BILLING_DOC_HDR"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="BillingDocHdr_P">
+  <attributes>
+    <attribute id="BillingDocument" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VBELN"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="VBELN"/>
+    </attribute>
+    <attribute id="CompanyCode" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUKRS"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="BUKRS"/>
+    </attribute>
+    <attribute id="SalesDistrict" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BZIRK"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="BZIRK"/>
+    </attribute>
+    <attribute id="CreationDate" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ERDAT"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="ERDAT"/>
+    </attribute>
+    <attribute id="CreatedByUser" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ERNAM"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="ERNAM"/>
+    </attribute>
+    <attribute id="BillingDocumentType" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FKART"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="FKART"/>
+    </attribute>
+    <attribute id="InvoiceListBillingDate" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FKDAT"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="FKDAT"/>
+    </attribute>
+    <attribute id="BillingDocumentCategory" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FKTYP"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="FKTYP"/>
+    </attribute>
+    <attribute id="IncotermsClassification" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="INCO1"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="INCO1"/>
+    </attribute>
+    <attribute id="IncotermsTransferLocation" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="INCO2"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="INCO2"/>
+    </attribute>
+    <attribute id="CustomerGroup" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KDGRP"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="KDGRP"/>
+    </attribute>
+    <attribute id="SoldToParty" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KUNAG"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="KUNAG"/>
+    </attribute>
+    <attribute id="PayerParty" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KUNRG"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="KUNRG"/>
+    </attribute>
+    <attribute id="AccountingExchangeRate" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KURRF"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="KURRF"/>
+    </attribute>
+    <attribute id="ExchangeRateType" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KURST"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="KURST"/>
+    </attribute>
+    <attribute id="Division" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SPART"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="SPART"/>
+    </attribute>
+    <attribute id="StatisticsCurrency" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STWAE"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="STWAE"/>
+    </attribute>
+    <attribute id="SDDocumentCategory" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VBTYP"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="VBTYP"/>
+    </attribute>
+    <attribute id="SalesOrganization" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VKORG"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="VKORG"/>
+    </attribute>
+    <attribute id="DistributionChannel" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VTWEG"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="VTWEG"/>
+    </attribute>
+    <attribute id="TransactionCurrency" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WAERK"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="WAERK"/>
+    </attribute>
+    <attribute id="NETWR" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NETWR"/>
+      <keyMapping columnObjectName="BillingDocHdr_P" columnName="NETWR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="BillingDocHdr_P" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="135" y="221"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

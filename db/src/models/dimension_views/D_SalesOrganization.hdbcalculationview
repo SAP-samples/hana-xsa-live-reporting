@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="D_SalesOrganization" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="D_SalesOrganization"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SALESORG_ATTR">
+    <resourceUri>SALESORG_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="SALESORG_TEXT">
+    <resourceUri>SALESORG_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SALESORG_ATTR_P">
+    <viewAttributes>
+      <viewAttribute id="SalesOrganization"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="Customer"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="FiscalYearVariant"/>
+    
+      <viewAttribute id="SalesOrganizationCurrency"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SALESORG_ATTR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganization" source="VKORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="BUKRS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="LAND1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYearVariant" source="PERIV"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganizationCurrency" source="WAERS"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SALESORG_TEXT_P">
+    <viewAttributes>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="SalesOrganization"/>
+      <viewAttribute id="SalesOrganizationName"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SALESORG_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganization" source="VKORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganizationName" source="VTEXT"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="textTable" languageColumn="SPRAS">
+    <viewAttributes>
+      <viewAttribute id="SalesOrganization"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="Customer"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="FiscalYearVariant"/>
+      <viewAttribute id="SalesOrganizationCurrency"/>
+      <viewAttribute id="SalesOrganizationName"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="SALESORG_ATTR_P">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganization" source="SalesOrganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FiscalYearVariant" source="FiscalYearVariant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganizationCurrency" source="SalesOrganizationCurrency"/>
+    </input>
+    <input node="SALESORG_TEXT_P">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganizationName" source="SalesOrganizationName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganization" source="SalesOrganization"/>
+    </input>
+    <joinAttribute name="SalesOrganization"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="SalesOrganization" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrganization"/>
+      <keyMapping columnObjectName="Join_1" columnName="SalesOrganization"/>
+    </attribute>
+    <attribute id="CompanyCode" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Join_1" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="Customer" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer"/>
+      <keyMapping columnObjectName="Join_1" columnName="Customer"/>
+    </attribute>
+    <attribute id="Country" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Country"/>
+      <keyMapping columnObjectName="Join_1" columnName="Country"/>
+    </attribute>
+    <attribute id="FiscalYearVariant" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYearVariant"/>
+      <keyMapping columnObjectName="Join_1" columnName="FiscalYearVariant"/>
+    </attribute>
+    <attribute id="SalesOrganizationCurrency" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WAERS"/>
+      <keyMapping columnObjectName="Join_1" columnName="SalesOrganizationCurrency"/>
+    </attribute>
+    <attribute id="SalesOrganizationName" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrganizationName"/>
+      <keyMapping columnObjectName="Join_1" columnName="SalesOrganizationName"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SALESORG_ATTR_P" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="SALESORG_TEXT_P" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="167" y="233"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="SALESORG_ATTR_P" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="SALESORG_TEXT_P" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>   

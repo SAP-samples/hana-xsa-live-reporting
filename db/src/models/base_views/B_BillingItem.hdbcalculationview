@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="B_BillingItem" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="B_BillingDocItm"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="BILLING_DOC_ITM">
+    <resourceUri>BILLING_DOC_ITM</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="BillingDocItem">
+    <viewAttributes>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="VBELN"/>
+      <viewAttribute id="POSNR"/>
+      <viewAttribute id="AEDAT"/>
+      <viewAttribute id="BUKRS"/>
+      <viewAttribute id="BZIRK"/>
+      <viewAttribute id="FKART"/>
+      <viewAttribute id="FKDAT"/>
+      <viewAttribute id="FKTYP"/>
+      <viewAttribute id="HWAER"/>
+      <viewAttribute id="KDGRP"/>
+      <viewAttribute id="KUNAG"/>
+      <viewAttribute id="KUNRG"/>
+      <viewAttribute id="KURRF"/>
+      <viewAttribute id="KURST"/>
+      <viewAttribute id="STWAE"/>
+      <viewAttribute id="VBTYP"/>
+      <viewAttribute id="VKORG"/>
+      <viewAttribute id="VTWEG"/>
+      <viewAttribute id="WAERK"/>
+      <viewAttribute id="AKTNR"/>
+      <viewAttribute id="AUBEL"/>
+      <viewAttribute id="AUPOS"/>
+      <viewAttribute id="BONBA"/>
+      <viewAttribute id="BONUS"/>
+      <viewAttribute id="BRGEW"/>
+      <viewAttribute id="BRTWR"/>
+      <viewAttribute id="BWAPPLNM"/>
+      <viewAttribute id="BWVORG"/>
+      <viewAttribute id="CHARG"/>
+      <viewAttribute id="EAN11"/>
+      <viewAttribute id="ERDAT"/>
+      <viewAttribute id="FAREG"/>
+      <viewAttribute id="FBUDA"/>
+      <viewAttribute id="FKIMG"/>
+      <viewAttribute id="FKLMG"/>
+      <viewAttribute id="GEWEI"/>
+      <viewAttribute id="KNUMA_AG"/>
+      <viewAttribute id="KOKRS"/>
+      <viewAttribute id="KOSTL"/>
+      <viewAttribute id="KURSK"/>
+      <viewAttribute id="KURSK_DAT"/>
+      <viewAttribute id="KVGR1"/>
+      <viewAttribute id="KVGR2"/>
+      <viewAttribute id="KVGR3"/>
+      <viewAttribute id="KVGR4"/>
+      <viewAttribute id="KVGR5"/>
+      <viewAttribute id="KZWI1"/>
+      <viewAttribute id="KZWI2"/>
+      <viewAttribute id="KZWI3"/>
+      <viewAttribute id="KZWI4"/>
+      <viewAttribute id="KZWI5"/>
+      <viewAttribute id="KZWI6"/>
+      <viewAttribute id="LGORT"/>
+      <viewAttribute id="LMENG"/>
+      <viewAttribute id="MATKL"/>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="MATWA"/>
+      <viewAttribute id="MEINS"/>
+      <viewAttribute id="MVGR1"/>
+      <viewAttribute id="MVGR2"/>
+      <viewAttribute id="MVGR3"/>
+      <viewAttribute id="MVGR4"/>
+      <viewAttribute id="MVGR5"/>
+      <viewAttribute id="MWSBP"/>
+      <viewAttribute id="NETWR"/>
+      <viewAttribute id="NTGEW"/>
+      <viewAttribute id="PKUNRE"/>
+      <viewAttribute id="PKUNWE"/>
+      <viewAttribute id="POSAR"/>
+      <viewAttribute id="PRODH"/>
+      <viewAttribute id="PROVG"/>
+      <viewAttribute id="PRSDT"/>
+      <viewAttribute id="PSTYV"/>
+      <viewAttribute id="PVRTNR"/>
+      <viewAttribute id="PZPERS"/>
+      <viewAttribute id="SKFBP"/>
+      <viewAttribute id="SMENG"/>
+      <viewAttribute id="SPARA"/>
+      <viewAttribute id="SPART"/>
+      <viewAttribute id="STADAT"/>
+      <viewAttribute id="STCUR"/>
+      <viewAttribute id="UMVKN"/>
+      <viewAttribute id="UMVKZ"/>
+      <viewAttribute id="VDATU"/>
+      <viewAttribute id="VGBEL"/>
+      <viewAttribute id="VGPOS"/>
+      <viewAttribute id="VKBUR"/>
+      <viewAttribute id="VKGRP"/>
+      <viewAttribute id="VOLEH"/>
+      <viewAttribute id="VOLUM"/>
+      <viewAttribute id="VRKME"/>
+      <viewAttribute id="VSTEL"/>
+      <viewAttribute id="WAVWR"/>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="PS_POSID"/>
+      <viewAttribute id="ANZFKPOS"/>
+      <viewAttribute id="PERIV"/>
+      <viewAttribute id="MCEX_APCAMPAIGN"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="BILLING_DOC_ITM"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="BillingDocItem">
+  <attributes>
+    <attribute id="BillingDocument" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VBELN"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="VBELN"/>
+    </attribute>
+    <attribute id="BillingDocumentItem" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POSNR"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="POSNR"/>
+    </attribute>
+    <attribute id="BillingQuantityUnit" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VRKME"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="VRKME"/>
+    </attribute>
+    <attribute id="BillingToBaseQuantityNumrtr" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UMVKZ"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="UMVKZ"/>
+    </attribute>
+    <attribute id="BillingToBaseQuantityDnmntr" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UMVKN"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="UMVKN"/>
+    </attribute>
+    <attribute id="BaseUnit" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MEINS"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="MEINS"/>
+    </attribute>
+    <attribute id="ItemWeightUnit" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GEWEI"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="GEWEI"/>
+    </attribute>
+    <attribute id="ItemVolumeUnit" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VOLEH"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="VOLEH"/>
+    </attribute>
+    <attribute id="PricingDate" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRSDT"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="PRSDT"/>
+    </attribute>
+    <attribute id="ServicesRenderedDate" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FBUDA"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="FBUDA"/>
+    </attribute>
+    <attribute id="PriceDetnExchangeRate" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KURSK"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="KURSK"/>
+    </attribute>
+    <attribute id="ReferenceSDDocument" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VGBEL"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="VGBEL"/>
+    </attribute>
+    <attribute id="SalesDocument" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AUBEL"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="AUBEL"/>
+    </attribute>
+    <attribute id="SalesDocumentItem" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AUPOS"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="AUPOS"/>
+    </attribute>
+    <attribute id="Material" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATNR"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="MATNR"/>
+    </attribute>
+    <attribute id="Batch" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CHARG"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="CHARG"/>
+    </attribute>
+    <attribute id="MaterialGroup" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATKL"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="MATKL"/>
+    </attribute>
+    <attribute id="SalesDocumentItemCategory" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PSTYV"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="PSTYV"/>
+    </attribute>
+    <attribute id="SalesDocumentItemType" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POSAR"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="POSAR"/>
+    </attribute>
+    <attribute id="ProductHierarchyNode" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODH"/>
+      <keyMapping columnObjectName="BillingDocItem" columnName="PRODH"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="RebateBasisAmount" order="21" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="BONBA"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="BONBA"/>
+    </measure>
+    <measure id="ItemGrossWeight" order="22" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="BRGEW"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="BRGEW"/>
+    </measure>
+    <measure id="ItemGrossAmountOfBillingDoc" order="23" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="BRTWR"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="BRTWR"/>
+    </measure>
+    <measure id="BillingQuantity" order="24" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="FKIMG"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="FKIMG"/>
+    </measure>
+    <measure id="BillingQuantityInBaseUnit" order="25" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="FKLMG"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="FKLMG"/>
+    </measure>
+    <measure id="Subtotal1Amount" order="26" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="KZWI1"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="KZWI1"/>
+    </measure>
+    <measure id="Subtotal2Amount" order="27" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="KZWI2"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="KZWI2"/>
+    </measure>
+    <measure id="Subtotal3Amount" order="28" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="KZWI3"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="KZWI3"/>
+    </measure>
+    <measure id="Subtotal4Amount" order="29" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="KZWI4"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="KZWI4"/>
+    </measure>
+    <measure id="Subtotal5Amount" order="30" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="KZWI5"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="KZWI5"/>
+    </measure>
+    <measure id="Subtotal6Amount" order="31" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="KZWI6"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="KZWI6"/>
+    </measure>
+    <measure id="MRPRequiredQuantityInBaseUnit" order="32" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="LMENG"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="LMENG"/>
+    </measure>
+    <measure id="TaxAmount" order="33" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MWSBP"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="MWSBP"/>
+    </measure>
+    <measure id="ItemNetAmountOfBillingDoc" order="34" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NETWR"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="NETWR"/>
+    </measure>
+    <measure id="ItemNetWeight" order="35" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NTGEW"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="NTGEW"/>
+    </measure>
+    <measure id="EligibleAmountForCashDiscount" order="36" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SKFBP"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="SKFBP"/>
+    </measure>
+    <measure id="CostAmount" order="37" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="WAVWR"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="WAVWR"/>
+    </measure>
+    <measure id="PricingScaleQuantityInBaseUnit" order="38" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SMENG"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="SMENG"/>
+    </measure>
+    <measure id="ItemVolume" order="39" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="VOLUM"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="VOLUM"/>
+    </measure></baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="BillingDocItem" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="256"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

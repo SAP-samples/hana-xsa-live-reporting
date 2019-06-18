@@ -1,0 +1,64 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "SALES_DOC_HDR",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "SALES_DOC_HDR.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   
+                                     "ROCANCEL" : 1,
+								     "ABSTK" : 2,
+								     "RFGSK" : 3,
+								     "RFSTK" : 4,
+								     "VBELN" : 5,
+								     "WBSTK" : 6,
+								     "ABDIS" : 7,
+								     "AEDAT" : 8,
+								     "ANGDT" : 9,
+								     "AUART" : 10,
+								     "AUGRU" : 11,
+								     "AWAHR" : 12,
+								     "BNDDT" : 13,
+								     "BUKRS" : 14,
+								     "ERDAT" : 15,
+								     "FAKSK" : 16,
+								     "HWAER" : 17,
+								     "KUNNR" : 18,
+								     "KURST" : 19,
+								     "KVGR1" : 20,
+								     "KVGR2" : 21,
+								     "KVGR3" : 22,
+								     "KVGR4" : 23,
+								     "KVGR5" : 24,
+								     "LIFSK" : 25,
+								     "NETWR" : 26,
+								     "PVRTNR" : 27,
+								     "PZPERS" : 28,
+								     "STWAE" : 29,
+								     "VBTYP" : 30,
+								     "VDATU" : 31,
+								     "VKBUR" : 32,
+								     "VKGRP" : 33,
+								     "VKORG" : 34,
+								     "VSBED" : 35,
+								     "VTWEG" : 36,
+								     "WAERK" : 37,
+								     "SPARA" : 38,
+								     "VGTYP_AK" : 39,
+								     "ANZAU" : 40,
+								     "PERIV" : 41
+								}
+        }
+    ]
+}

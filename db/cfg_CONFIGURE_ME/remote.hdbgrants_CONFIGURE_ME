@@ -1,0 +1,38 @@
+{
+   "CC_ACCESS":
+   
+   {
+      "object_owner":{
+         "global_object_privileges":[
+            {
+               "name":"SAPECC",
+               "type":"REMOTE SOURCE",
+               "privileges":[
+                  "CREATE VIRTUAL TABLE",
+                  "CREATE VIRTUAL FUNCTION",
+                  "CREATE REMOTE SUBSCRIPTION",
+                  "PROCESS REMOTE SUBSCRIPTION EXCEPTION",
+                  "ALTER",
+                  "DROP"
+               ]
+            }
+         ]
+      },
+      "application_user":{
+         "global_object_privileges":[
+            {
+               "name":"SAPECC",
+               "type":"REMOTE SOURCE",
+               "privileges":[
+                  "CREATE VIRTUAL TABLE",
+                  "CREATE VIRTUAL FUNCTION",
+                  "CREATE REMOTE SUBSCRIPTION",
+                  "PROCESS REMOTE SUBSCRIPTION EXCEPTION",
+                  "ALTER",
+                  "DROP"
+               ]
+            }
+         ]
+      }
+   }
+}

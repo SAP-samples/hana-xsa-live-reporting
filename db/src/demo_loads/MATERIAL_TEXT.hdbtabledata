@@ -1,0 +1,26 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "MATERIAL_TEXT",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "MATERIAL_TEXT.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   
+                                    "MATNR" : 1,
+                                    "SPRAS" : 2, 
+                                    "TXTMD" : 3
+                                }
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="D_MATGROUP_TEXT" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="D_MATGROUP_TEXT"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MATL_GROUP_TEXT">
+    <resourceUri>MATL_GROUP_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="MATL_GROUP_TEXT">
+  <attributes>
+    <attribute id="SPRAS" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SPRAS"/>
+      <keyMapping columnObjectName="MATL_GROUP_TEXT" columnName="SPRAS"/>
+    </attribute>
+    <attribute id="MaterialGroup" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATKL"/>
+      <keyMapping columnObjectName="MATL_GROUP_TEXT" columnName="MATKL"/>
+    </attribute>
+    <attribute id="MaterialGroupText" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTSH"/>
+      <keyMapping columnObjectName="MATL_GROUP_TEXT" columnName="TXTSH"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

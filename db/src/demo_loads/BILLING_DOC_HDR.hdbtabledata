@@ -1,0 +1,52 @@
+{
+    "format_version": 1,
+    "imports":
+    [
+        {
+            "target_table": "BILLING_DOC_HDR",
+            "source_data":
+            {
+                "data_type": "CSV",
+                "file_name": "BILLING_DOC_HDR.csv",
+                "has_header": false
+            },
+            "import_settings":
+              {
+                "include_filter": [],
+                "import_columns": []
+              },
+            "column_mappings" : {  
+                                    "ROCANCEL" : 1,
+                                    "BUCHK" : 2,
+                                    "GBSTK" : 3,
+								    "VBELN" : 4,
+								    "BUKRS" : 5,
+                                    "BZIRK" : 6,
+                                    "ERDAT" : 7,
+                                    "ERNAM" : 8,
+                                    "FKART" : 9,
+                                    "FKDAT" : 10,
+                                    "FKTYP" : 11,
+                                    "HWAER" : 12,
+                                    "INCO1" : 13,
+                                    "INCO2" : 14,
+                                    "KDGRP" : 15,
+                                    "KUNAG" : 16,
+                                    "KUNRG" : 17,
+                                    "KURRF" : 18,
+                                    "KURST" : 19,
+                                    "NETWR" : 20,
+                                    "PVRTNR" : 21,
+                                    "PZPERS" : 22,
+                                    "SPART" : 23,
+                                    "STWAE" : 24,
+                                    "VBTYP" : 25,
+                                    "VKORG" : 26,
+                                    "VTWEG" : 27,
+                                    "WAERK" : 28,
+                                    "ANZFK" : 29,
+                                    "PERIV" : 30
+								}
+                            }	
+    ]
+}	

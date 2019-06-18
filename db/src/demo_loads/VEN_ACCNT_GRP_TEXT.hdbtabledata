@@ -1,0 +1,25 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "VEN_ACCNT_GRP_TEXT",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "VEN_ACCNT_GRP_TEXT.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   
+                                    "SPRAS" : 1,
+                                    "KTOKK" : 2, 
+                                    "TXT30" : 3}
+        }
+    ]
+}

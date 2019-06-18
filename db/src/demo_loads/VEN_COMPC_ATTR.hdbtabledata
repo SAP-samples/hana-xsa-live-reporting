@@ -1,0 +1,82 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "VEN_COMPC_ATTR",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "VEN_COMPC_ATTR.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   
+                                       "LIFNR" : 1,
+									   "BUKRS" : 2,
+									   "PERNR" : 3,
+									   "ERDAT" : 4,
+									   "ERNAM" : 5,
+									   "SPERR" : 6,
+									   "LOEVM" : 7,
+									   "ZUAWA" : 8,
+									   "AKONT" : 9,
+									   "BEGRU" : 10,
+									   "VZSKZ" : 11,
+									   "ZWELS" : 12,
+									   "XVERR" : 13,
+									   "ZAHLS" : 14,
+									   "ZTERM" : 15,
+									   "EIKTO" : 16,
+									   "ZSABE" : 17,
+									   "KVERM" : 18,
+									   "FDGRV" : 19,
+									   "BUSAB" : 20,
+									   "LNRZE" : 21,
+									   "LNRZB" : 22,
+									   "ZINDT" : 23,
+									   "ZINRT" : 24,
+									   "DATLZ" : 25,
+									   "XDEZV" : 26,
+									   "KULTG" : 27,
+									   "REPRF" : 28,
+									   "TOGRU" : 29,
+									   "HBKID" : 30,
+									   "XPORE" : 31,
+									   "QSZNR" : 32,
+									   "QSZDT" : 33,
+									   "QSSKZ" : 34,
+									   "BLNKZ" : 35,
+									   "MINDK" : 36,
+									   "ALTKN" : 37,
+									   "ZGRUP" : 38,
+									   "MGRUP" : 39,
+									   "UZAWE" : 40,
+									   "QSREC" : 41,
+									   "QSBGR" : 42,
+									   "QLAND" : 43,
+									   "XEDIP" : 44,
+									   "FRGRP" : 45,
+									   "TOGRR" : 46,
+									   "TLFXS" : 47,
+									   "INTAD" : 48,
+									   "XLFZB" : 48,
+									   "GUZTE" : 50,
+									   "GRICD" : 51,
+									   "GRIDT" : 52,
+									   "XAUSZ" : 53,
+									   "CERDT" : 54,
+									   "CONFS" : 55,
+									   "UPDAT" : 56,
+									   "UPTIM" : 57,
+									   "NODEL" : 58,
+									   "TLFNS" : 59
+								}
+        }
+    ]
+}

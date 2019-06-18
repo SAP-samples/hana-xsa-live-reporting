@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="D_COMPANY_CODE" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="D_COMPANY_CODE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="COMP_CODE_ATTR">
+    <resourceUri>COMP_CODE_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="COMP_CODE_TEXT">
+    <resourceUri>COMP_CODE_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="COMPCODE_ATTR_P">
+    <viewAttributes>
+      <viewAttribute id="BUKRS"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="WAERS"/>
+      <viewAttribute id="KTOPL"/>
+      <viewAttribute id="KKBER"/>
+      <viewAttribute id="PERIV"/>
+      <viewAttribute id="RCOMP"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="COMP_CODE_ATTR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="COMCODE_TEXT_P">
+    <viewAttributes>
+      <viewAttribute id="BUKRS"/>
+      <viewAttribute id="TXTMD"/>
+      <viewAttribute id="LANGU"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="COMP_CODE_TEXT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="BUKRS"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="WAERS"/>
+      <viewAttribute id="KTOPL"/>
+      <viewAttribute id="KKBER"/>
+      <viewAttribute id="PERIV"/>
+      <viewAttribute id="RCOMP"/>
+      <viewAttribute id="TXTMD"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="COMPCODE_ATTR_P">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/></input>
+    <input node="COMCODE_TEXT_P">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+    </input>
+    <joinAttribute name="BUKRS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="CompanyCode" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUKRS"/>
+      <keyMapping columnObjectName="Join_1" columnName="BUKRS"/>
+    </attribute>
+    <attribute id="Country" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAND1"/>
+      <keyMapping columnObjectName="Join_1" columnName="LAND1"/>
+    </attribute>
+    <attribute id="Currency" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WAERS"/>
+      <keyMapping columnObjectName="Join_1" columnName="WAERS"/>
+    </attribute>
+    <attribute id="ChartOfAccounts" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KTOPL"/>
+      <keyMapping columnObjectName="Join_1" columnName="KTOPL"/>
+    </attribute>
+    <attribute id="CreditControlArea" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KKBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="KKBER"/>
+    </attribute>
+    <attribute id="FiscalYearVariant" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PERIV"/>
+      <keyMapping columnObjectName="Join_1" columnName="PERIV"/>
+    </attribute>
+    <attribute id="Company" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RCOMP"/>
+      <keyMapping columnObjectName="Join_1" columnName="RCOMP"/>
+    </attribute>
+    <attribute id="CompanyCodeName" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTMD"/>
+      <keyMapping columnObjectName="Join_1" columnName="TXTMD"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="COMPCODE_ATTR_P" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="234" y="353"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="COMCODE_TEXT_P" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="522" y="375"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="496" y="201"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="COMPCODE_ATTR_P" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="182"/>
+    </shape>
+    <shape modelObjectName="COMCODE_TEXT_P" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="174"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

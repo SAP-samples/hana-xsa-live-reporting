@@ -58,6 +58,7 @@ The replication from the SAP Netweaver system is done through the activation of 
 10. Delete the folder `demo_loads`.
 11. Right-click on the database module and choose **Build**. 
 12. You can now execute the flowgraphs and preview data on calculation views
+13. It is recommended to apply performance tweaks to the Calculation Views once they have been adapted to your reporting needs. Check the [SAP Help](https://help.sap.com/viewer/9de0171a6027400bb3b9bee385222eff/2.0.04/en-US/fe76cf4d9daa4cd7865bf93b25993e70.html) for suggestions.
 
 ### Deploy the SAP HANA Advanced Analytics Adapter
 The SAP HANA Advanced Analytics adapter allows for the consumption of Calculation Views in HDI Containers through Information Access. SAP Analytics Cloud uses Information Access for Live connection. Other tools, such as Analysis for Office work with this connector too.
@@ -66,6 +67,6 @@ Follow the instructions in this [blog post series for installation on SAP Cloud 
 
 ### Configure SAP Analytics Cloud
 1. Create a connection to your HANA Analytics Adapter entry endpoint called `HANALIVE`. **Note that the models currently depend on the connection being called HANALIVE**. This can be adapter later. 
-2. Download the sample models and import them from **Deployment -> Import**
+2. Download the [sample models](https://github.com/SAP-samples/hana-xsa-live-reporting/blob/pictures/SAC.tgz) and import them from **Deployment -> Import**
 3. Open the models to make sure the connection has been successful.
 

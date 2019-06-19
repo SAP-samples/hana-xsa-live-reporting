@@ -1,8 +1,21 @@
-# SAP HANA Live Reporting Templates
+# SAP HANA Operational Reporting Templates for SAP ECC
 ## Description
 The current repository contains templates with Calculation Views for SAP HANA and models and dashboards for consumption in SAP Analytics Cloud.
 
 The Calculation Views and other design-time artifacts can be cloned into SAP Web IDE Full Stack or SAP Web IDE for SAP HANA. The artifacts can be deployed into SAP Cloud Platform, SAP HANA Service in Cloud Foundry or SAP HANA, extended application services, advanced model (XS Advanced).
+
+## Templates in this release
+
+**Master Data**
+- Materials 
+- Customers
+- Vendors
+
+**Sales**
+- Sales Order List (Header) 
+- Sales Order List (Items)  
+- Credit Memo Analysis
+- Billing Document List
 
 
 ## Requirements

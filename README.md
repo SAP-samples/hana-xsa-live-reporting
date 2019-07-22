@@ -1,4 +1,8 @@
 # SAP HANA Operational Reporting Templates for SAP ECC
+
+![Sample deployment architecture](https://github.com/SAPDocuments/Tutorials/blob/master/tutorials/haas-ecc-operational-reporting-sample-data/prod.png)
+
+
 ## Description
 The current repository contains templates with Calculation Views for SAP HANA and models and dashboards for consumption in SAP Analytics Cloud.
 
@@ -24,11 +28,12 @@ The current repository contains sample data so that the models can be tested wit
 The replication from the SAP Netweaver system is done through the activation of Operational Data Provisioning extractors and the ABAP adapter.
 
 - For replication:
+    - These templates leverage the Operational Data Provisioning (ODP) extractors embedded in the BW component in an ECC system. You can get further information about them in the [introduction to ODP](https://wiki.scn.sap.com/wiki/display/BI/Introduction+to+Operational+Data+Provisioning)
     - Follow instructions in note [1931427 - ODP Data Replication API 2.0](https://launchpad.support.sap.com/#/notes/1931427) to check or fulfill prerequisites in the source system
     - Version 2.3.5.2 or higher of the Data Provisioning Agent available in the [SAP Development Tools](https://tools.hana.ondemand.com/#cloudintegration) or the [SAP Software Downloads Center](https://launchpad.support.sap.com/#/softwarecenter/search/dpagent)
 
 - To clone the calculation views:
-    - SAP Cloud Platform, SAP HANA Service in Cloud Foundry (requires a productive account) **or** SAP HANA (on-premises) with XS Advanced.
+    - SAP Cloud Platform, SAP HANA Service in Cloud Foundry (requires a productive account) **or** SAP HANA (on-premises) with XS Advanced. The trial account in Cloud Foundry can only be used with the test data and does not allow for integration with SAP Analytics Cloud.
     - SAP Web IDE Full Stack in SAP CLoud Platform **or** SAP Web IDE for SAP HANA in XS Advanced
     - Permissions to create a user-provided service in the same organization and space in which the HDI container will be deployed
 - To expose the models through Information Access
@@ -40,6 +45,7 @@ The replication from the SAP Netweaver system is done through the activation of 
 ## Download and Installation
 
 ### Using Sample data
+You can find step-by-step instructions in the following tutorial: [https://developers.sap.com/tutorials/haas-ecc-operational-reporting-sample-data.html](https://developers.sap.com/tutorials/haas-ecc-operational-reporting-sample-data.html)
 1. Check these instructions to set up the SAP HANA Service and connect through SAP Web IDE Full Stack: [Get Started with SAP Cloud Platform, SAP HANA Service](https://developers.sap.com/mission.haas-get-started.html)
 2. In SAP Web IDE, right-click on the Workspace and choose `Git -> Clone Repository`. Paste the URL for the current repository and clone.
 3. Remove the folders with names `CONFIGURE_ME` in `db` and in `db/src`
@@ -49,6 +55,8 @@ The replication from the SAP Netweaver system is done through the activation of 
 4. Right-click on the `db` folder and choose **Build**. After a successful build, the models can be executed.
 
 ### Using Smart Data Integration
+The integration requires the publication of ODP extractors from the ABAP system using the ABAP adapter in Smart Data Integration. The Calculation Views will be deployed in an HDI container and the virtual tables will access a remote source. The remote source is accessed in the same way as a plain or replicated schema. Further context about this process is provided in this [blog post](https://blogs.sap.com/2019/02/23/smart-data-integration-cross-container-access-and-the-sap-hana-service/).
+
 1. Check these instructions to set up the SAP HANA Service and connect through SAP Web IDE Full Stack: [Get Started with SAP Cloud Platform, SAP HANA Service](https://developers.sap.com/mission.haas-get-started.html)
 2. Install the Data Provisioing Agent in the source ABAP system
 3. Connect the Data Provisioning Agent to the SAP HANA System. For the SAP HANA Service in Cloud Foundry, use JDBC: Web Sockets  as in [Step 3 in this tutorial](https://developers.sap.com/tutorials/haas-dm-connect-sdi.html#7528fa4a-b1c9-4113-9323-006da3688291).

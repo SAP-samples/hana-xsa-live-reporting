@@ -91,3 +91,5 @@ Follow the instructions in this [blog post series for installation on SAP Cloud 
 2. Download the [sample models](https://github.com/SAP-samples/hana-xsa-live-reporting/blob/pictures/SAC.tgz) and import them from **Deployment -> Import**
 3. Open the models to make sure the connection has been successful.
 
+# LICENSE
+Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the SAP Sample Code License except as noted otherwise in the LICENSE file.

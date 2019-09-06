@@ -154,6 +154,19 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$VBELN$SalesDocument" source="VBELN"/>
     </input>
     <input node="Projection_1">
@@ -161,6 +174,12 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocYear"/>
     
       <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$VBELN$SalesDocument" source="SalesDocument"/>
     </input>
     <joinAttribute name="JOIN$VBELN$SalesDocument"/>
@@ -203,14 +222,36 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_3">
       <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="TXTMD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="KUNNR"/>
     </input>
     <joinAttribute name="Customer"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_1" joinType="textTable" languageColumn="SPRAS">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_1" joinType="leftOuter">
     <viewAttributes>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="CreationDate"/>
@@ -241,7 +282,30 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_2">
-      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_4">
       <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="TXTMD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="MATNR"/>
@@ -255,14 +319,10 @@
       <viewAttribute id="MATNR"/>
       <viewAttribute id="SPRAS"/></viewAttributes>
     <calculatedViewAttributes/>
-    <input node="MATERIAL_TEXT">
-      <mapping xsi:type="Calculation:AttributeMapping" target="TXTMD" source="TXTMD"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
-    </input>
+    <input node="MATERIAL_TEXT"/>
     <filter>&quot;SPRAS&quot;='E'</filter>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_1" joinType="textTable" languageColumn="SPRAS" optimizeJoinColumns="true">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_1" joinType="leftOuter" optimizeJoinColumns="true">
     <viewAttributes>
       <viewAttribute id="CompanyCode"/>
       <viewAttribute id="CreationDate"/>
@@ -294,7 +354,31 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_3">
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_5">
       <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="TXTSH"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MATKL"/>
@@ -308,11 +392,7 @@
       <viewAttribute id="MATKL"/>
       <viewAttribute id="SPRAS"/></viewAttributes>
     <calculatedViewAttributes/>
-    <input node="MATL_GROUP_TEXT">
-      <mapping xsi:type="Calculation:AttributeMapping" target="MATKL" source="MATKL"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="TXTSH" source="TXTSH"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
-    </input>
+    <input node="MATL_GROUP_TEXT"/>
     <filter>&quot;SPRAS&quot;='E'</filter>
   </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_7">
@@ -362,10 +442,36 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_4">
-      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_7">
       <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="LAND1"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="REGIO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="KUNNR"/>
     </input>
     <joinAttribute name="Customer"/>
@@ -417,7 +523,35 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_6">
-      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_8">
       <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="TXTSH"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="LAND1"/>
@@ -469,7 +603,36 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_7">
-      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_9">
       <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="TXTMD"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="BUKRS"/>
@@ -526,8 +689,39 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_8">
-      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="CompanyCodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_10">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrgText" source="SalesOrgText"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="VKORG"/>
     </input>
     <joinAttribute name="SalesOrg"/>
@@ -583,8 +777,41 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_9">
-      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="CompanyCodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrgText" source="SalesOrgText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_11">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CALQUARTER" source="CALQUARTER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="DATE_SAP"/>
     </input>
     <joinAttribute name="CreationDate"/>
@@ -644,7 +871,40 @@
       </calculatedViewAttribute>
     </calculatedViewAttributes>
     <input node="Join_10">
-      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="SalesDocType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreationDate" source="CreationDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customer" source="Customer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrg" source="SalesOrg"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocDate" source="DocDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocMonth" source="DocMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item" source="Item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Createdby" source="Createdby"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLoc" source="StorageLoc"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetValue" source="NetValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQty" source="TargetQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QtyUnits" source="QtyUnits"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetWeight" source="NetWeight"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="CompanyCodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrgText" source="SalesOrgText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CALQUARTER" source="CALQUARTER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQty" source="OrderQty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentRejectReason" source="SalesDocumentRejectReason"/>
+    </input>
     <input node="Projection_12">
       <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocTypeText" source="BEZEI"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocType" source="AUART"/>
@@ -1143,4 +1403,4 @@
     </shape>
   </shapes>
 </layout>
-</Calculation:scenario> 
+</Calculation:scenario>

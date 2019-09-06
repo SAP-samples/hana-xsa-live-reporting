@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="Q_InvoiceVerification" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Q_InvoiceVerification"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="B_InvoiceVerification">
+    <resourceUri>B_InvoiceVerification</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="InvoiceVerification_P">
+    <viewAttributes>
+      <viewAttribute id="NameOfRequisitioner_Requester"/>
+      <viewAttribute id="MainAssetNumber"/>
+      <viewAttribute id="AssetSubnumber"/>
+      <viewAttribute id="Gr_IrAccountClearingValueInLocalCurrency"/>
+      <viewAttribute id="ClearingValueOnGr_IrClearingAccountInTransacCurrency"/>
+      <viewAttribute id="SalesTaxPortionOfAutomaticInvoiceReductionAmount"/>
+      <viewAttribute id="AutomaticInvoiceReductionAmountNet"/>
+      <viewAttribute id="OrderNumber"/>
+      <viewAttribute id="BaseUnitOfMeasureForBom"/>
+      <viewAttribute id="AccountingDocumentNumber"/>
+      <viewAttribute id="PurchaseOrderCurrency"/>
+      <viewAttribute id="UnplannedDeliveryCosts"/>
+      <viewAttribute id="DocumentHeaderText"/>
+      <viewAttribute id="DocumentDateInDocument"/>
+      <viewAttribute id="QuantityInPurchaseOrderPriceUnit"/>
+      <viewAttribute id="QuantityInPoPriceUnit"/>
+      <viewAttribute id="QtyInvoicedInVendorInvoiceInPoPriceUnits"/>
+      <viewAttribute id="InvoiceReceiptQuantityInOrderPriceUnit"/>
+      <viewAttribute id="PurchasingOrderPriceUnit"/>
+      <viewAttribute id="DenominatorForConv_OfOrderPriceUnitIntoOrderUnit"/>
+      <viewAttribute id="NumeratorForConversionOfOrderPriceUnitIntoOrderUnit"/>
+      <viewAttribute id="GoodsReceiptQuantityInPurchaseOrderPriceUnit"/>
+      <viewAttribute id="QuantityOrderedAgainstThisPurchaseRequisition"/>
+      <viewAttribute id="PurchaseOrderUnitOfMeasure"/>
+      <viewAttribute id="PostingDateInTheDocument"/>
+      <viewAttribute id="FM_BudgetPeriod"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="DocumentItemInInvoiceDocument"/>
+      <viewAttribute id="FourCharacterSequentialNumberForCodingBlock"/>
+      <viewAttribute id="SalesTaxPortionOfTheInvoiceVerificationDifference"/>
+      <viewAttribute id="DocumentBalance"/>
+      <viewAttribute id="PurchasingDocumentNumber"/>
+      <viewAttribute id="ItemNumberOfPurchasingDocument"/>
+      <viewAttribute id="PurchasingGroup"/>
+      <viewAttribute id="PurchasingOrganization"/>
+      <viewAttribute id="FinalInvoiceIndicator"/>
+      <viewAttribute id="FinancialManagementArea"/>
+      <viewAttribute id="CommitmentItem"/>
+      <viewAttribute id="FundsCenter"/>
+      <viewAttribute id="FunctionalArea"/>
+      <viewAttribute id="Fund"/>
+      <viewAttribute id="FiscalYear"/>
+      <viewAttribute id="BusinessArea"/>
+      <viewAttribute id="CurrencyKeyHWAER"/>
+      <viewAttribute id="OriginOfALogisticsInvoiceVerificationDocument"/>
+      <viewAttribute id="AccountAssignmentCategory"/>
+      <viewAttribute id="AccountType"/>
+      <viewAttribute id="ControllingArea"/>
+      <viewAttribute id="NumberOfPrincipalPurchaseAgreement"/>
+      <viewAttribute id="CostCenter"/>
+      <viewAttribute id="ChartOfAccounts"/>
+      <viewAttribute id="ItemNumberOfPrincipalPurchaseAgreement"/>
+      <viewAttribute id="DocumentNo_OfAReferenceDocument"/>
+      <viewAttribute id="FiscalYearOfCurrentPeriod"/>
+      <viewAttribute id="ItemOfAReferenceDocument"/>
+      <viewAttribute id="TaxInVendorError"/>
+      <viewAttribute id="VendorErrorExclusiveOfTax"/>
+      <viewAttribute id="DifferentInvoicingParty"/>
+      <viewAttribute id="VendorAccountNumber"/>
+      <viewAttribute id="LogicalSystem"/>
+      <viewAttribute id="ActivityType"/>
+      <viewAttribute id="TaxAmountAcceptedManually"/>
+      <viewAttribute id="ManuallyAcceptedNetDifferenceAmount"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="BaseUnitOfMeasure"/>
+      <viewAttribute id="Quantity"/>
+      <viewAttribute id="LogisticsPaymentBlock"/>
+      <viewAttribute id="TaxCode"/>
+      <viewAttribute id="NetPriceInPurchasingDocumentInDocumentCurrency"/>
+      <viewAttribute id="NetValueInDocumentCurrency"/>
+      <viewAttribute id="DocumentItemWithoutQuantity"/>
+      <viewAttribute id="NetworkNumberForAccountAssignment"/>
+      <viewAttribute id="ProfitabilitySegmentNumber"/>
+      <viewAttribute id="PriceUnit"/>
+      <viewAttribute id="ProfitCenter"/>
+      <viewAttribute id="ItemCategoryInPurchasingDocument"/>
+      <viewAttribute id="WBSElement"/>
+      <viewAttribute id="QtyInvoicedInVendorInvoiceInPoOrderUnits"/>
+      <viewAttribute id="InvoiceDocumentStatus"/>
+      <viewAttribute id="InvoiceAmountInDocumentCurrencyOfVendorInvoice"/>
+      <viewAttribute id="InvoiceValueInForeignCurrency"/>
+      <viewAttribute id="QuantityInvoiced"/>
+      <viewAttribute id="ReturnsItem"/>
+      <viewAttribute id="InvoiceAmountInForeignCurrency"/>
+      <viewAttribute id="GrossInvoiceAmountInDocumentCurrency"/>
+      <viewAttribute id="RecordTypeInExtractionOfInvoiceVerificationData"/>
+      <viewAttribute id="GL_AccountNumber"/>
+      <viewAttribute id="Debit_CreditIndicator"/>
+      <viewAttribute id="Block_Reason_Quality"/>
+      <viewAttribute id="BlockingReason_OrderPriceQuantity"/>
+      <viewAttribute id="BlockingReason_Quantity"/>
+      <viewAttribute id="BlockingReason_Price"/>
+      <viewAttribute id="ManualBlockingReason"/>
+      <viewAttribute id="BlockingReason_ItemAmount"/>
+      <viewAttribute id="BlockingReason_Date"/>
+      <viewAttribute id="BlockingReason_ProjectBudget"/>
+      <viewAttribute id="ReversalDocumentNumber"/>
+      <viewAttribute id="FiscalYearOfReversalDocument"/>
+      <viewAttribute id="Indicator_SubsequentDebit_Credit"/>
+      <viewAttribute id="ShortText"/>
+      <viewAttribute id="DenominatorForConversionToBaseUnitsOfMeasure"/>
+      <viewAttribute id="NumeratorForConversionToBaseUnitsOfMeasure"/>
+      <viewAttribute id="Operation_ActivityNumber"/>
+      <viewAttribute id="QuantityOfGoodsReceived"/>
+      <viewAttribute id="AcceptedNetValueOfServiceInForeignCurrency"/>
+      <viewAttribute id="GoodsReceiptIndicator"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="GoodsReceipt_Non_Valuated"/>
+      <viewAttribute id="ValueOfGoodsReceivedInForeignCurrency"/>
+      <viewAttribute id="SignedTaxAmountInDocumentCurrency"/>
+      <viewAttribute id="AmountInDocumentCurrency"/>
+      <viewAttribute id="ReferenceDocumentNumber"/>
+      <viewAttribute id="Indicator_PostInvoice"/>
+      <viewAttribute id="PaymentBlockKey"/>
+      <viewAttribute id="CurrencyKeyWAERS"/>
+      <viewAttribute id="COUNT_ITEM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="B_InvoiceVerification"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="InvoiceVerification_P">
+  <attributes>
+    <attribute id="NameOfRequisitioner_Requester" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NameOfRequisitioner_Requester"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="NameOfRequisitioner_Requester"/>
+    </attribute>
+    <attribute id="MainAssetNumber" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MainAssetNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="MainAssetNumber"/>
+    </attribute>
+    <attribute id="AssetSubnumber" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AssetSubnumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="AssetSubnumber"/>
+    </attribute>
+    <attribute id="OrderNumber" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OrderNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="OrderNumber"/>
+    </attribute>
+    <attribute id="BaseUnitOfMeasureForBom" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BaseUnitOfMeasureForBom"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BaseUnitOfMeasureForBom"/>
+    </attribute>
+    <attribute id="AccountingDocumentNumber" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountingDocumentNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="AccountingDocumentNumber"/>
+    </attribute>
+    <attribute id="PurchaseOrderCurrency" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderCurrency"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="PurchaseOrderCurrency"/>
+    </attribute>
+    <attribute id="DocumentHeaderText" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DocumentHeaderText"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="DocumentHeaderText"/>
+    </attribute>
+    <attribute id="DocumentDateInDocument" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DocumentDateInDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="DocumentDateInDocument"/>
+    </attribute>
+    <attribute id="PurchasingOrderPriceUnit" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchasingOrderPriceUnit"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="PurchasingOrderPriceUnit"/>
+    </attribute>
+    <attribute id="PurchaseOrderUnitOfMeasure" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderUnitOfMeasure"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="PurchaseOrderUnitOfMeasure"/>
+    </attribute>
+    <attribute id="PostingDateInTheDocument" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PostingDateInTheDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="PostingDateInTheDocument"/>
+    </attribute>
+    <attribute id="FM_BudgetPeriod" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FM_BudgetPeriod"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FM_BudgetPeriod"/>
+    </attribute>
+    <attribute id="CompanyCode" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="DocumentItemInInvoiceDocument" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DocumentItemInInvoiceDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="DocumentItemInInvoiceDocument"/>
+    </attribute>
+    <attribute id="FourCharacterSequentialNumberForCodingBlock" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FourCharacterSequentialNumberForCodingBlock"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FourCharacterSequentialNumberForCodingBlock"/>
+    </attribute>
+    <attribute id="PurchasingDocumentNumber" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchasingDocumentNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="PurchasingDocumentNumber"/>
+    </attribute>
+    <attribute id="ItemNumberOfPurchasingDocument" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ItemNumberOfPurchasingDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ItemNumberOfPurchasingDocument"/>
+    </attribute>
+    <attribute id="PurchasingGroup" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchasingGroup"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="PurchasingGroup"/>
+    </attribute>
+    <attribute id="PurchasingOrganization" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchasingOrganization"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="PurchasingOrganization"/>
+    </attribute>
+    <attribute id="FinalInvoiceIndicator" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FinalInvoiceIndicator"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FinalInvoiceIndicator"/>
+    </attribute>
+    <attribute id="FinancialManagementArea" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FinancialManagementArea"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FinancialManagementArea"/>
+    </attribute>
+    <attribute id="CommitmentItem" order="45" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CommitmentItem"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="CommitmentItem"/>
+    </attribute>
+    <attribute id="FundsCenter" order="46" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FundsCenter"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FundsCenter"/>
+    </attribute>
+    <attribute id="FunctionalArea" order="47" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FunctionalArea"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FunctionalArea"/>
+    </attribute>
+    <attribute id="Fund" order="48" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Fund"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="Fund"/>
+    </attribute>
+    <attribute id="FiscalYear" order="49" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYear"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FiscalYear"/>
+    </attribute>
+    <attribute id="BusinessArea" order="50" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BusinessArea"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BusinessArea"/>
+    </attribute>
+    <attribute id="CurrencyKeyHWAER" order="51" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CurrencyKeyHWAER"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="CurrencyKeyHWAER"/>
+    </attribute>
+    <attribute id="OriginOfALogisticsInvoiceVerificationDocument" order="52" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OriginOfALogisticsInvoiceVerificationDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="OriginOfALogisticsInvoiceVerificationDocument"/>
+    </attribute>
+    <attribute id="AccountAssignmentCategory" order="53" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountAssignmentCategory"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="AccountAssignmentCategory"/>
+    </attribute>
+    <attribute id="AccountType" order="54" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AccountType"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="AccountType"/>
+    </attribute>
+    <attribute id="ControllingArea" order="55" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ControllingArea"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ControllingArea"/>
+    </attribute>
+    <attribute id="NumberOfPrincipalPurchaseAgreement" order="56" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NumberOfPrincipalPurchaseAgreement"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="NumberOfPrincipalPurchaseAgreement"/>
+    </attribute>
+    <attribute id="CostCenter" order="57" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CostCenter"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="CostCenter"/>
+    </attribute>
+    <attribute id="ChartOfAccounts" order="58" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChartOfAccounts"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ChartOfAccounts"/>
+    </attribute>
+    <attribute id="ItemNumberOfPrincipalPurchaseAgreement" order="59" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ItemNumberOfPrincipalPurchaseAgreement"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ItemNumberOfPrincipalPurchaseAgreement"/>
+    </attribute>
+    <attribute id="DocumentNo_OfAReferenceDocument" order="60" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DocumentNo_OfAReferenceDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="DocumentNo_OfAReferenceDocument"/>
+    </attribute>
+    <attribute id="FiscalYearOfCurrentPeriod" order="61" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYearOfCurrentPeriod"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FiscalYearOfCurrentPeriod"/>
+    </attribute>
+    <attribute id="ItemOfAReferenceDocument" order="62" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ItemOfAReferenceDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ItemOfAReferenceDocument"/>
+    </attribute>
+    <attribute id="DifferentInvoicingParty" order="65" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DifferentInvoicingParty"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="DifferentInvoicingParty"/>
+    </attribute>
+    <attribute id="VendorAccountNumber" order="66" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorAccountNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="VendorAccountNumber"/>
+    </attribute>
+    <attribute id="LogicalSystem" order="67" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LogicalSystem"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="LogicalSystem"/>
+    </attribute>
+    <attribute id="ActivityType" order="68" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ActivityType"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ActivityType"/>
+    </attribute>
+    <attribute id="MaterialGroup" order="71" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialGroup"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="MaterialGroup"/>
+    </attribute>
+    <attribute id="MaterialNumber" order="72" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="MaterialNumber"/>
+    </attribute>
+    <attribute id="BaseUnitOfMeasure" order="73" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BaseUnitOfMeasure"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BaseUnitOfMeasure"/>
+    </attribute>
+    <attribute id="LogisticsPaymentBlock" order="75" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LogisticsPaymentBlock"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="LogisticsPaymentBlock"/>
+    </attribute>
+    <attribute id="TaxCode" order="76" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TaxCode"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="TaxCode"/>
+    </attribute>
+    <attribute id="DocumentItemWithoutQuantity" order="79" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DocumentItemWithoutQuantity"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="DocumentItemWithoutQuantity"/>
+    </attribute>
+    <attribute id="NetworkNumberForAccountAssignment" order="80" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NetworkNumberForAccountAssignment"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="NetworkNumberForAccountAssignment"/>
+    </attribute>
+    <attribute id="ProfitabilitySegmentNumber" order="81" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProfitabilitySegmentNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ProfitabilitySegmentNumber"/>
+    </attribute>
+    <attribute id="ProfitCenter" order="83" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProfitCenter"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ProfitCenter"/>
+    </attribute>
+    <attribute id="ItemCategoryInPurchasingDocument" order="84" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ItemCategoryInPurchasingDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ItemCategoryInPurchasingDocument"/>
+    </attribute>
+    <attribute id="WBSElement" order="85" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WBSElement"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="WBSElement"/>
+    </attribute>
+    <attribute id="InvoiceDocumentStatus" order="87" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="InvoiceDocumentStatus"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="InvoiceDocumentStatus"/>
+    </attribute>
+    <attribute id="ReturnsItem" order="91" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ReturnsItem"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ReturnsItem"/>
+    </attribute>
+    <attribute id="RecordTypeInExtractionOfInvoiceVerificationData" order="94" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RecordTypeInExtractionOfInvoiceVerificationData"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="RecordTypeInExtractionOfInvoiceVerificationData"/>
+    </attribute>
+    <attribute id="GL_AccountNumber" order="95" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GL_AccountNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="GL_AccountNumber"/>
+    </attribute>
+    <attribute id="Debit_CreditIndicator" order="96" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Debit_CreditIndicator"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="Debit_CreditIndicator"/>
+    </attribute>
+    <attribute id="Block_Reason_Quality" order="97" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Block_Reason_Quality"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="Block_Reason_Quality"/>
+    </attribute>
+    <attribute id="BlockingReason_OrderPriceQuantity" order="98" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BlockingReason_OrderPriceQuantity"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BlockingReason_OrderPriceQuantity"/>
+    </attribute>
+    <attribute id="BlockingReason_Quantity" order="99" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BlockingReason_Quantity"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BlockingReason_Quantity"/>
+    </attribute>
+    <attribute id="BlockingReason_Price" order="100" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BlockingReason_Price"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BlockingReason_Price"/>
+    </attribute>
+    <attribute id="ManualBlockingReason" order="101" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ManualBlockingReason"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ManualBlockingReason"/>
+    </attribute>
+    <attribute id="BlockingReason_ItemAmount" order="102" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BlockingReason_ItemAmount"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BlockingReason_ItemAmount"/>
+    </attribute>
+    <attribute id="BlockingReason_Date" order="103" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BlockingReason_Date"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BlockingReason_Date"/>
+    </attribute>
+    <attribute id="BlockingReason_ProjectBudget" order="104" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BlockingReason_ProjectBudget"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="BlockingReason_ProjectBudget"/>
+    </attribute>
+    <attribute id="ReversalDocumentNumber" order="105" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ReversalDocumentNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ReversalDocumentNumber"/>
+    </attribute>
+    <attribute id="FiscalYearOfReversalDocument" order="106" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FiscalYearOfReversalDocument"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="FiscalYearOfReversalDocument"/>
+    </attribute>
+    <attribute id="Indicator_SubsequentDebit_Credit" order="107" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Indicator_SubsequentDebit_Credit"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="Indicator_SubsequentDebit_Credit"/>
+    </attribute>
+    <attribute id="ShortText" order="108" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ShortText"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ShortText"/>
+    </attribute>
+    <attribute id="Operation_ActivityNumber" order="111" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Operation_ActivityNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="Operation_ActivityNumber"/>
+    </attribute>
+    <attribute id="GoodsReceiptIndicator" order="114" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GoodsReceiptIndicator"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="GoodsReceiptIndicator"/>
+    </attribute>
+    <attribute id="Plant" order="115" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Plant"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="Plant"/>
+    </attribute>
+    <attribute id="GoodsReceipt_Non_Valuated" order="116" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GoodsReceipt_Non_Valuated"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="GoodsReceipt_Non_Valuated"/>
+    </attribute>
+    <attribute id="ReferenceDocumentNumber" order="120" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ReferenceDocumentNumber"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="ReferenceDocumentNumber"/>
+    </attribute>
+    <attribute id="Indicator_PostInvoice" order="121" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Indicator_PostInvoice"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="Indicator_PostInvoice"/>
+    </attribute>
+    <attribute id="PaymentBlockKey" order="122" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PaymentBlockKey"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="PaymentBlockKey"/>
+    </attribute>
+    <attribute id="CurrencyKeyWAERS" order="123" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CurrencyKeyWAERS"/>
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="CurrencyKeyWAERS"/>
+    </attribute>
+    <attribute id="DifferentInvoicingParty$local">
+      <keyMapping columnObjectName="InvoiceVerification_P" columnName="DifferentInvoicingParty"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="Gr_IrAccountClearingValueInLocalCurrency" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Gr_IrAccountClearingValueInLocalCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="Gr_IrAccountClearingValueInLocalCurrency"/>
+    </measure>
+    <measure id="ClearingValueOnGr_IrClearingAccountInTransacCurrency" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ClearingValueOnGr_IrClearingAccountInTransacCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="ClearingValueOnGr_IrClearingAccountInTransacCurrency"/>
+    </measure>
+    <measure id="SalesTaxPortionOfAutomaticInvoiceReductionAmount" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SalesTaxPortionOfAutomaticInvoiceReductionAmount"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="SalesTaxPortionOfAutomaticInvoiceReductionAmount"/>
+    </measure>
+    <measure id="AutomaticInvoiceReductionAmountNet" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AutomaticInvoiceReductionAmountNet"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="AutomaticInvoiceReductionAmountNet"/>
+    </measure>
+    <measure id="UnplannedDeliveryCosts" order="19" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="UnplannedDeliveryCosts"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="UnplannedDeliveryCosts"/>
+    </measure>
+    <measure id="QuantityInPurchaseOrderPriceUnit" order="22" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QuantityInPurchaseOrderPriceUnit"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="QuantityInPurchaseOrderPriceUnit"/>
+    </measure>
+    <measure id="QuantityInPoPriceUnit" order="23" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QuantityInPoPriceUnit"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="QuantityInPoPriceUnit"/>
+    </measure>
+    <measure id="QtyInvoicedInVendorInvoiceInPoPriceUnits" order="24" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QtyInvoicedInVendorInvoiceInPoPriceUnits"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="QtyInvoicedInVendorInvoiceInPoPriceUnits"/>
+    </measure>
+    <measure id="InvoiceReceiptQuantityInOrderPriceUnit" order="25" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="InvoiceReceiptQuantityInOrderPriceUnit"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="InvoiceReceiptQuantityInOrderPriceUnit"/>
+    </measure>
+    <measure id="DenominatorForConv_OfOrderPriceUnitIntoOrderUnit" order="27" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DenominatorForConv_OfOrderPriceUnitIntoOrderUnit"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="DenominatorForConv_OfOrderPriceUnitIntoOrderUnit"/>
+    </measure>
+    <measure id="NumeratorForConversionOfOrderPriceUnitIntoOrderUnit" order="28" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NumeratorForConversionOfOrderPriceUnitIntoOrderUnit"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="NumeratorForConversionOfOrderPriceUnitIntoOrderUnit"/>
+    </measure>
+    <measure id="GoodsReceiptQuantityInPurchaseOrderPriceUnit" order="29" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GoodsReceiptQuantityInPurchaseOrderPriceUnit"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="GoodsReceiptQuantityInPurchaseOrderPriceUnit"/>
+    </measure>
+    <measure id="QuantityOrderedAgainstThisPurchaseRequisition" order="30" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QuantityOrderedAgainstThisPurchaseRequisition"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="QuantityOrderedAgainstThisPurchaseRequisition"/>
+    </measure>
+    <measure id="SalesTaxPortionOfTheInvoiceVerificationDifference" order="37" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SalesTaxPortionOfTheInvoiceVerificationDifference"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="SalesTaxPortionOfTheInvoiceVerificationDifference"/>
+    </measure>
+    <measure id="DocumentBalance" order="38" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DocumentBalance"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="DocumentBalance"/>
+    </measure>
+    <measure id="TaxInVendorError" order="63" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TaxInVendorError"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="TaxInVendorError"/>
+    </measure>
+    <measure id="VendorErrorExclusiveOfTax" order="64" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="VendorErrorExclusiveOfTax"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="VendorErrorExclusiveOfTax"/>
+    </measure>
+    <measure id="TaxAmountAcceptedManually" order="69" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="TaxAmountAcceptedManually"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="TaxAmountAcceptedManually"/>
+    </measure>
+    <measure id="ManuallyAcceptedNetDifferenceAmount" order="70" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ManuallyAcceptedNetDifferenceAmount"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="ManuallyAcceptedNetDifferenceAmount"/>
+    </measure>
+    <measure id="Quantity" order="74" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Quantity"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="Quantity"/>
+    </measure>
+    <measure id="NetPriceInPurchasingDocumentInDocumentCurrency" order="77" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NetPriceInPurchasingDocumentInDocumentCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="NetPriceInPurchasingDocumentInDocumentCurrency"/>
+    </measure>
+    <measure id="NetValueInDocumentCurrency" order="78" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NetValueInDocumentCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="NetValueInDocumentCurrency"/>
+    </measure>
+    <measure id="PriceUnit" order="82" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PriceUnit"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="PriceUnit"/>
+    </measure>
+    <measure id="QtyInvoicedInVendorInvoiceInPoOrderUnits" order="86" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QtyInvoicedInVendorInvoiceInPoOrderUnits"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="QtyInvoicedInVendorInvoiceInPoOrderUnits"/>
+    </measure>
+    <measure id="InvoiceAmountInDocumentCurrencyOfVendorInvoice" order="88" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="InvoiceAmountInDocumentCurrencyOfVendorInvoice"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="InvoiceAmountInDocumentCurrencyOfVendorInvoice"/>
+    </measure>
+    <measure id="InvoiceValueInForeignCurrency" order="89" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="InvoiceValueInForeignCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="InvoiceValueInForeignCurrency"/>
+    </measure>
+    <measure id="QuantityInvoiced" order="90" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QuantityInvoiced"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="QuantityInvoiced"/>
+    </measure>
+    <measure id="InvoiceAmountInForeignCurrency" order="92" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="InvoiceAmountInForeignCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="InvoiceAmountInForeignCurrency"/>
+    </measure>
+    <measure id="GrossInvoiceAmountInDocumentCurrency" order="93" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GrossInvoiceAmountInDocumentCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="GrossInvoiceAmountInDocumentCurrency"/>
+    </measure>
+    <measure id="DenominatorForConversionToBaseUnitsOfMeasure" order="109" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DenominatorForConversionToBaseUnitsOfMeasure"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="DenominatorForConversionToBaseUnitsOfMeasure"/>
+    </measure>
+    <measure id="NumeratorForConversionToBaseUnitsOfMeasure" order="110" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NumeratorForConversionToBaseUnitsOfMeasure"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="NumeratorForConversionToBaseUnitsOfMeasure"/>
+    </measure>
+    <measure id="QuantityOfGoodsReceived" order="112" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QuantityOfGoodsReceived"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="QuantityOfGoodsReceived"/>
+    </measure>
+    <measure id="AcceptedNetValueOfServiceInForeignCurrency" order="113" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AcceptedNetValueOfServiceInForeignCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="AcceptedNetValueOfServiceInForeignCurrency"/>
+    </measure>
+    <measure id="ValueOfGoodsReceivedInForeignCurrency" order="117" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ValueOfGoodsReceivedInForeignCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="ValueOfGoodsReceivedInForeignCurrency"/>
+    </measure>
+    <measure id="SignedTaxAmountInDocumentCurrency" order="118" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SignedTaxAmountInDocumentCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="SignedTaxAmountInDocumentCurrency"/>
+    </measure>
+    <measure id="AmountInDocumentCurrency" order="119" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AmountInDocumentCurrency"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="AmountInDocumentCurrency"/>
+    </measure>
+    <measure id="COUNT_ITEM" order="124" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="COUNT_ITEM"/>
+      <measureMapping columnObjectName="InvoiceVerification_P" columnName="COUNT_ITEM"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="AmountVarianceQuantity" order="127" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+      <descriptions defaultDescription="Amount Variance Due To Quantity"/>
+      <formula>&quot;QuantityOfGoodsReceived&quot;-&quot;QuantityInvoiced&quot;</formula>
+    </measure>
+    <measure id="AmountVarianceDueToPrice" order="128" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+      <descriptions defaultDescription="Amount Variance Due to Price"/>
+      <formula>&quot;NetValueInDocumentCurrency&quot;-&quot;InvoiceAmountInDocumentCurrencyOfVendorInvoice&quot;</formula>
+    </measure>
+    <measure id="VendorError_IncudingTaxes" order="129" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+      <descriptions defaultDescription="Vendor Error Including Taxes"/>
+      <formula>&quot;TaxInVendorError&quot;+&quot;VendorErrorExclusiveOfTax&quot;</formula>
+    </measure>
+    <measure id="TotalBasedAcceptance_IncludingTaxes" order="130" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+      <descriptions defaultDescription="Total Based Acceptance Including Taxes"/>
+      <formula>&quot;GrossInvoiceAmountInDocumentCurrency&quot;</formula>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures>
+    <measure id="Num_InvoicesManualBlock" order="1" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" restrictionExpressionLanguage="SQL" baseMeasure="COUNT_ITEM">
+      <descriptions defaultDescription="Num_InvoicesManualBlock"/>
+      <restrictionExpression>(&quot;ManualBlockingReason&quot; != ''  )</restrictionExpression>
+    </measure>
+  
+    <measure id="Num_InvoicesOrderQuantityPriceBlock" order="2" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" restrictionExpressionLanguage="SQL" baseMeasure="COUNT_ITEM">
+      <descriptions defaultDescription="Num_InvoicesOrderQuantityPriceBlock"/>
+  
+      <restrictionExpression>(&quot;BlockingReason_OrderPriceQuantity&quot; != '')</restrictionExpression>
+  
+    </measure>
+    <measure id="Num_InvoicesQuantityBlock" order="3" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" restrictionExpressionLanguage="SQL" baseMeasure="COUNT_ITEM">
+      <descriptions defaultDescription="Num_InvoicesQuantityBlock"/>
+      <restrictionExpression>(&quot;BlockingReason_Quantity&quot; != '')</restrictionExpression>
+    </measure>
+    <measure id="Num_InvoicesPriceBlock" order="4" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" restrictionExpressionLanguage="SQL" baseMeasure="COUNT_ITEM">
+      <descriptions defaultDescription="Num_InvoicesPriceBlock"/>
+      <restrictionExpression>(&quot;BlockingReason_Quantity&quot; != '')</restrictionExpression>
+    </measure>
+    <measure id="Num_Invoices_ItemAmountBlock" order="5" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" restrictionExpressionLanguage="SQL" baseMeasure="COUNT_ITEM">
+      <descriptions defaultDescription="Num_Invoices_ItemAmountBlock"/>
+      <restrictionExpression>(&quot;BlockingReason_ItemAmount&quot; != '')</restrictionExpression>
+    </measure>
+    <measure id="Num_InvoicesDateBlock" order="6" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" restrictionExpressionLanguage="SQL" baseMeasure="COUNT_ITEM">
+      <descriptions defaultDescription="Num_InvoicesDateBlock"/>
+      <restrictionExpression>(&quot;BlockingReason_Date&quot; != '')</restrictionExpression>
+    </measure>
+    <measure id="Num_InvoicesProjectBudgetBlock" order="7" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" restrictionExpressionLanguage="SQL" baseMeasure="COUNT_ITEM">
+      <descriptions defaultDescription="Num_InvoicesProjectBudgetBlock"/>
+      <restrictionExpression>(&quot;BlockingReason_ProjectBudget&quot; != '')</restrictionExpression>
+    </measure>
+  
+    <measure id="Num_of_ReturnItems" order="125" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" baseMeasure="COUNT_ITEM" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="Num_of_ReturnItems"/>
+  
+      <restrictionExpression>(&quot;ReturnsItem&quot; != '')</restrictionExpression>
+  
+    </measure>
+    <measure id="Num_of_SubsequentDebit_Credits" order="126" aggregationType="sum" datatype="DECIMAL" length="18" scale="0" baseMeasure="COUNT_ITEM">
+      <descriptions defaultDescription="Num_of_SubsequentDebit_Credits"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="Indicator_SubsequentDebit_Credit">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X"/>
+        </filter>
+        <attributeName>Indicator_SubsequentDebit_Credit</attributeName>
+      </restriction>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+
+  <sharedDimensions>
+
+    <logicalJoin associatedObjectUri="D_Vendor">
+
+      <attributes>
+
+        <attributeRef>DifferentInvoicingParty$local</attributeRef>
+
+      </attributes>
+
+      <associatedAttributeNames>
+
+        <attributeName>VendorNO</attributeName>
+
+      </associatedAttributeNames>
+
+      <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+
+      <associatedAttributeFeatures/>
+
+    </logicalJoin>
+
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="InvoiceVerification_P" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape modelObjectName="InvoiceVerification_P" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="D_Vendor" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="502" y="34"/>
+      <rectangleSize width="192"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

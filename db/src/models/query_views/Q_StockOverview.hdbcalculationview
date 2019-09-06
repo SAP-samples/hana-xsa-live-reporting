@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="Q_StockOverview" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Stock Overview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MATERIAL_STOCK">
+    <resourceUri>MATERIAL_STOCK</resourceUri>
+  </DataSource>
+  <DataSource id="Q_Material">
+    <resourceUri>Q_Material</resourceUri>
+  </DataSource>
+  <DataSource id="Q_VendorMasterList">
+    <resourceUri>Q_VendorMasterList</resourceUri>
+  </DataSource>
+  <DataSource id="STOR_LOC_TEXT">
+    <resourceUri>STOR_LOC_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="PLANT_TEXT">
+    <resourceUri>PLANT_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="StockAttributesintheLIS"/>
+      <viewAttribute id="StockCategory"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="BatchNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="QuantityinBaseUOM"/>
+    
+      <viewAttribute id="ValuationSpecialStock"/>
+      <viewAttribute id="PurchaseValueinLocalCurrency"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MATERIAL_STOCK">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StockAttributesintheLIS" source="BSTAUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StockCategory" source="BSTTYP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="BUDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BatchNumber" source="CHARG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="LGORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="WAERS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="MEINS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="LIFNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QuantityinBaseUOM" source="BWMNG"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValuationSpecialStock" source="KZBWS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseValueinLocalCurrency" source="BWGEO"/>
+    </input></calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialType"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Q_Material"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    
+      <viewAttribute id="Material"/>
+      <viewAttribute id="StockAttributesintheLIS"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="BatchNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="QuantityinBaseUOM" aggregationType="sum"/>
+      <viewAttribute id="Vendor"/>
+    
+      <viewAttribute id="ValuationSpecialStock"/>
+      <viewAttribute id="PurchaseValueinLocalCurrency" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StockAttributesintheLIS" source="StockAttributesintheLIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BatchNumber" source="BatchNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QuantityinBaseUOM" source="QuantityinBaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValuationSpecialStock" source="ValuationSpecialStock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseValueinLocalCurrency" source="PurchaseValueinLocalCurrency"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+    </input>
+    <joinAttribute name="Material"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="VendorNO"/>
+      <viewAttribute id="VendorText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Q_VendorMasterList"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+      <viewAttribute id="VendorText"/>
+    
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="StockAttributesintheLIS"/>
+      <viewAttribute id="BatchNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="QuantityinBaseUOM" aggregationType="sum"/>
+      <viewAttribute id="Vendor"/>
+    
+      <viewAttribute id="StoragelocationText"/>
+    
+      <viewAttribute id="ValuationSpecialStock"/>
+      <viewAttribute id="PurchaseValueinLocalCurrency" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StockAttributesintheLIS" source="StockAttributesintheLIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BatchNumber" source="BatchNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QuantityinBaseUOM" source="QuantityinBaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="StoragelocationText" source="StoragelocationText"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValuationSpecialStock" source="ValuationSpecialStock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseValueinLocalCurrency" source="PurchaseValueinLocalCurrency"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorText" source="VendorText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="VendorNO"/>
+    </input>
+    <joinAttribute name="Vendor"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="StockAttributesintheLIS"/>
+      <viewAttribute id="BatchNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="QuantityinBaseUOM" aggregationType="sum"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="StoragelocationText"/>
+      <viewAttribute id="ValuationSpecialStock"/>
+      <viewAttribute id="PurchaseValueinLocalCurrency" aggregationType="sum"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StockAttributesintheLIS" source="StockAttributesintheLIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BatchNumber" source="BatchNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QuantityinBaseUOM" source="QuantityinBaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValuationSpecialStock" source="ValuationSpecialStock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseValueinLocalCurrency" source="PurchaseValueinLocalCurrency"/>
+    </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="StoragelocationText" source="StoragelocationText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="LGORT"/>
+    </input>
+    <joinAttribute name="Plant"/>
+    <joinAttribute name="StorageLocation"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="StoragelocationText"/>
+    
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="LGORT"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="STOR_LOC_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="StoragelocationText" source="TXTMD"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+      <viewAttribute id="VendorText"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="StockAttributesintheLIS"/>
+      <viewAttribute id="BatchNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="QuantityinBaseUOM" aggregationType="sum"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="StoragelocationText"/>
+      <viewAttribute id="PlantText"/>
+    
+      <viewAttribute id="ValuationSpecialStock"/>
+      <viewAttribute id="PurchaseValueinLocalCurrency" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorText" source="VendorText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StockAttributesintheLIS" source="StockAttributesintheLIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BatchNumber" source="BatchNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QuantityinBaseUOM" source="QuantityinBaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StoragelocationText" source="StoragelocationText"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValuationSpecialStock" source="ValuationSpecialStock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseValueinLocalCurrency" source="PurchaseValueinLocalCurrency"/>
+    </input>
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlantText" source="PlantText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+    </input>
+    <joinAttribute name="Plant"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5">
+    <viewAttributes>
+      <viewAttribute id="PlantText"/>
+    
+      <viewAttribute id="WERKS"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PLANT_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlantText" source="TXTMD"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_4">
+  <attributes>
+    <attribute id="MaterialName" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTMD"/>
+      <keyMapping columnObjectName="Join_4" columnName="MaterialName"/>
+    </attribute>
+    <attribute id="MaterialGroupText" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTSH"/>
+      <keyMapping columnObjectName="Join_4" columnName="MaterialGroupText"/>
+    </attribute>
+    <attribute id="VendorText" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorText"/>
+      <keyMapping columnObjectName="Join_4" columnName="VendorText"/>
+    </attribute>
+    <attribute id="Material" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Material"/>
+      <keyMapping columnObjectName="Join_4" columnName="Material"/>
+    </attribute>
+    <attribute id="Plant" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Plant"/>
+      <keyMapping columnObjectName="Join_4" columnName="Plant"/>
+    </attribute>
+    <attribute id="StockAttributesintheLIS" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="StockAttributesintheLIS"/>
+      <keyMapping columnObjectName="Join_4" columnName="StockAttributesintheLIS"/>
+    </attribute>
+    <attribute id="BatchNumber" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BatchNumber"/>
+      <keyMapping columnObjectName="Join_4" columnName="BatchNumber"/>
+    </attribute>
+    <attribute id="StorageLocation" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="StorageLocation"/>
+      <keyMapping columnObjectName="Join_4" columnName="StorageLocation"/>
+    </attribute>
+    <attribute id="LocalCurrency" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LocalCurrency"/>
+      <keyMapping columnObjectName="Join_4" columnName="LocalCurrency"/>
+    </attribute>
+    <attribute id="BaseUOM" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BaseUOM"/>
+      <keyMapping columnObjectName="Join_4" columnName="BaseUOM"/>
+    </attribute>
+    <attribute id="Vendor" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Vendor"/>
+      <keyMapping columnObjectName="Join_4" columnName="Vendor"/>
+    </attribute>
+  
+    <attribute id="StoragelocationText" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="StoragelocationText"/>
+  
+      <keyMapping columnObjectName="Join_4" columnName="StoragelocationText"/>
+  
+    </attribute>
+    <attribute id="PlantText" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlantText"/>
+      <keyMapping columnObjectName="Join_4" columnName="PlantText"/>
+    </attribute>
+  
+    <attribute id="ValuationSpecialStock" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ValuationSpecialStock"/>
+  
+      <keyMapping columnObjectName="Join_4" columnName="ValuationSpecialStock"/>
+  
+    </attribute></attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="QuantityinBaseUOM" order="22" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="QuantityinBaseUOM"/>
+      <measureMapping columnObjectName="Join_4" columnName="QuantityinBaseUOM"/>
+    </measure>
+  
+    <measure id="PurchaseValueinLocalCurrency" order="27" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PurchaseValueinLocalCurrency"/>
+      <measureMapping columnObjectName="Join_4" columnName="PurchaseValueinLocalCurrency"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="RES_UnrestrictedUse" order="3" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Unrestricted Use"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="A"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+  
+    <measure id="RES_QualityInspection" order="5" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Quality Inspection"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+  
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="B"/>
+  
+        </filter>
+  
+        <attributeName>StockAttributesintheLIS</attributeName>
+  
+      </restriction>
+  
+    </measure>
+    <measure id="RES_BlockedStock" order="6" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Blocked Stock"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="D"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_Restricted-Use" order="7" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Restricted-Use"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="E"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_StockTransfer" order="8" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Stock Transfer"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="F"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_Transit" order="9" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Transit"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="H"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_BlockedStockReturns" order="10" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Blocked Stock Returns"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="C"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+  
+    <measure id="RES_MaterialProvidedByCustomer" order="11" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Material Provided By Customer"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+  
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="G"/>
+  
+        </filter>
+  
+        <attributeName>StockAttributesintheLIS</attributeName>
+  
+      </restriction>
+  
+    </measure>
+    <measure id="RES_TiedEmpties" order="12" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Tied Empties"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="T"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_Consumption" order="13" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Consumption"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="V"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_ValuatedGRBlockedStock" order="14" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="QuantityinBaseUOM">
+      <descriptions defaultDescription="Valuated GR Blocked Stock"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="StockAttributesintheLIS">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="W"/>
+        </filter>
+        <attributeName>StockAttributesintheLIS</attributeName>
+      </restriction>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="663" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="981"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="512" y="981"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="821"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="151"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="173"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="584" y="661"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="171" y="501"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="296" y="164"/>
+      <rectangleSize width="141"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="661"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="182"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="486" y="821"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="647" y="341"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="701" y="501"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

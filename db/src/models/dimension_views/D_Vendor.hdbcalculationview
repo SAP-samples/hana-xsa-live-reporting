@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="D_Vendor" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Vendor Master"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="VENDOR_ATTR">
+    <resourceUri>VENDOR_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="VENDOR_TEXT">
+    <resourceUri>VENDOR_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="VEN_ACCNT_GRP_TEXT">
+    <resourceUri>VEN_ACCNT_GRP_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="VEN_COMPC_ATTR">
+    <resourceUri>VEN_COMPC_ATTR</resourceUri>
+  </DataSource>
+  <DataSource id="COUNTRY_TEXT">
+    <resourceUri>COUNTRY_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="VendorNO"/>
+      <viewAttribute id="VendorCountry"/>
+      <viewAttribute id="VendorAccountGroup"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VENDOR_ATTR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorNO" source="LIFNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCountry" source="LAND1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccountGroup" source="KTOKK"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="LIFNR"/>
+      <viewAttribute id="VendorText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VENDOR_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorText" source="TXTMD"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="VendorNO"/>
+      <viewAttribute id="VendorCountry"/>
+      <viewAttribute id="VendorAccountGroup"/>
+      <viewAttribute id="VendorText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorNO" source="VendorNO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCountry" source="VendorCountry"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccountGroup" source="VendorAccountGroup"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorText" source="VendorText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorNO" source="LIFNR"/>
+    </input>
+    <joinAttribute name="VendorNO"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="COLUMN_ENGINE">
+    <viewAttributes>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="KTOKK"/>
+      <viewAttribute id="VendorAccGrpText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VEN_ACCNT_GRP_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccGrpText" source="TXT30"/>
+    </input>
+    <filter>&quot;SPRAS&quot;='E'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="textTable" languageColumn="SPRAS">
+    <viewAttributes>
+      <viewAttribute id="VendorNO"/>
+      <viewAttribute id="VendorCountry"/>
+      <viewAttribute id="VendorAccountGroup"/>
+      <viewAttribute id="VendorText"/>
+      <viewAttribute id="VendorAccGrpText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccountGroup" source="VendorAccountGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorNO" source="VendorNO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCountry" source="VendorCountry"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorText" source="VendorText"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccGrpText" source="VendorAccGrpText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccountGroup" source="KTOKK"/>
+    </input>
+    <joinAttribute name="VendorAccountGroup"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="LIFNR"/>
+      <viewAttribute id="BUKRS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VEN_COMPC_ATTR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="VendorNO"/>
+      <viewAttribute id="VendorCountry"/>
+      <viewAttribute id="VendorAccountGroup"/>
+      <viewAttribute id="VendorText"/>
+      <viewAttribute id="VendorCompanyCode"/>
+    
+      <viewAttribute id="VendorAccGrpText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorNO" source="VendorNO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCountry" source="VendorCountry"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccountGroup" source="VendorAccountGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorText" source="VendorText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccGrpText" source="VendorAccGrpText"/>
+    </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCompanyCode" source="BUKRS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorNO" source="LIFNR"/>
+    </input>
+    <joinAttribute name="VendorNO"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5" filterExpressionLanguage="COLUMN_ENGINE">
+    <viewAttributes>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="VendorCountryText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COUNTRY_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCountryText" source="TXTSH"/>
+    </input>
+    <filter>&quot;SPRAS&quot;='E'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="C1_1" joinType="textTable" languageColumn="SPRAS">
+    <viewAttributes>
+      <viewAttribute id="VendorNO"/>
+      <viewAttribute id="VendorCountry"/>
+      <viewAttribute id="VendorAccountGroup"/>
+      <viewAttribute id="VendorText"/>
+      <viewAttribute id="VendorCompanyCode"/>
+      <viewAttribute id="VendorAccGrpText"/>
+      <viewAttribute id="VendorCountryText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCountry" source="VendorCountry"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorNO" source="VendorNO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccountGroup" source="VendorAccountGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorText" source="VendorText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCompanyCode" source="VendorCompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorAccGrpText" source="VendorAccGrpText"/>
+    </input>
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCountryText" source="VendorCountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorCountry" source="LAND1"/>
+    </input>
+    <joinAttribute name="VendorCountry"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_4">
+  <attributes>
+    <attribute id="VendorNO" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorNO"/>
+      <keyMapping columnObjectName="Join_4" columnName="VendorNO"/>
+    </attribute>
+    <attribute id="VendorCountry" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorCountry"/>
+      <keyMapping columnObjectName="Join_4" columnName="VendorCountry"/>
+    </attribute>
+    <attribute id="VendorAccountGroup" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorAccountGroup"/>
+      <keyMapping columnObjectName="Join_4" columnName="VendorAccountGroup"/>
+    </attribute>
+    <attribute id="VendorText" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorText"/>
+      <keyMapping columnObjectName="Join_4" columnName="VendorText"/>
+    </attribute>
+    <attribute id="VendorCompanyCode" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorCompanyCode"/>
+      <keyMapping columnObjectName="Join_4" columnName="VendorCompanyCode"/>
+    </attribute>
+    <attribute id="VendorAccGrpText" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorAccGrpText"/>
+      <keyMapping columnObjectName="Join_4" columnName="VendorAccGrpText"/>
+    </attribute>
+    <attribute id="VendorCountryText" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VendorCountryText"/>
+      <keyMapping columnObjectName="Join_4" columnName="VendorCountryText"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="534.5823433691181" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91.99999999999991" y="856.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="856.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118.66666666666666" y="696.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="380.70227186916225" y="696.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145.33333333333337" y="536.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="477.76671071096587" y="536.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="172" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="592.7406712788052" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="534.5823433691181" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="179"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

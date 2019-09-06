@@ -112,7 +112,6 @@
       <viewAttribute id="MCEX_APCAMPAIGN"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <restrictedViewAttributes/>
     <input node="BILLING_DOC_ITM"/>
   </calculationView>
 </calculationViews>
@@ -198,6 +197,13 @@
       <descriptions defaultDescription="PRODH"/>
       <keyMapping columnObjectName="BillingDocItem" columnName="PRODH"/>
     </attribute>
+  
+    <attribute id="VBTYP" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VBTYP"/>
+  
+      <keyMapping columnObjectName="BillingDocItem" columnName="VBTYP"/>
+  
+    </attribute>
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
@@ -276,7 +282,12 @@
     <measure id="ItemVolume" order="39" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="VOLUM"/>
       <measureMapping columnObjectName="BillingDocItem" columnName="VOLUM"/>
-    </measure></baseMeasures>
+    </measure>
+    <measure id="ANZFKPOS" order="41" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ANZFKPOS"/>
+      <measureMapping columnObjectName="BillingDocItem" columnName="ANZFKPOS"/>
+    </measure>
+  </baseMeasures>
   <calculatedMeasures/>
   <restrictedMeasures/>
   <localDimensions/>

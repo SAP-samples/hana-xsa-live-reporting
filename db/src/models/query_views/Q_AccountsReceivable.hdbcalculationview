@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="Q_AccountsReceivable" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Q_AccountsReceivable"/>
+<localVariables>
+  <variable id="IP_AgingDate" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="DATE" mandatory="true">
+      <valueDomain type="Date"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ACCOUNTS_RECEIVABLE">
+    <resourceUri>ACCOUNTS_RECEIVABLE</resourceUri>
+  </DataSource>
+  <DataSource id="Q_CustomerMasterList">
+    <resourceUri>Q_CustomerMasterList</resourceUri>
+  </DataSource>
+  <DataSource id="COUNTRY_TEXT">
+    <resourceUri>COUNTRY_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="COMP_CODE_TEXT">
+    <resourceUri>COMP_CODE_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="DocumentNumber"/>
+      <viewAttribute id="LineItem"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="BaselineDate"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="ClearingDate"/>
+      <viewAttribute id="GL_AccountNo"/>
+      <viewAttribute id="SalesDocument"/>
+      <viewAttribute id="PaymentTerms"/>
+      <viewAttribute id="Fiscalyear_period"/>
+      <viewAttribute id="DocumentCurrency"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="Amountinforeigncurrency"/>
+      <viewAttribute id="Amountinlocalcurrency"/>
+      <viewAttribute id="Creditamountinforeigncurrency"/>
+      <viewAttribute id="Creditamountinlocalcurrency"/>
+      <viewAttribute id="Debititamountinforeigncurrency"/>
+      <viewAttribute id="Debititamountinlocalcurrency"/>
+      <viewAttribute id="UPDMOD"/>
+    
+      <viewAttribute id="PostingDate"/>
+    
+      <viewAttribute id="DueDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_PostingDate" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;PostingDate&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_DueDate" datatype="DATE" expressionLanguage="SQL">
+    
+        <formula>TO_DATE(&quot;DueDate&quot;)</formula>
+    
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_DueDateYear" datatype="NVARCHAR" length="4" expressionLanguage="SQL">
+        <formula>YEAR(&quot;DueDate&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_Arrears" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+    
+        <formula>TO_INT(DAYS_BETWEEN(&quot;DueDate&quot;,'$$IP_AgingDate$$'))</formula>
+    
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_Aging" datatype="NVARCHAR" length="40" expressionLanguage="COLUMN_ENGINE">
+        <formula>if(int(&quot;CC_Arrears&quot;)&gt;= 211,'211 - 99999',
+if(int(&quot;CC_Arrears&quot;) &gt;= 181 AND int(&quot;CC_Arrears&quot;)&lt;= 210,'181 - 210',
+if(int(&quot;CC_Arrears&quot;) &gt;= 151 AND int(&quot;CC_Arrears&quot;)&lt;= 180,'151 - 180',
+if(int(&quot;CC_Arrears&quot;) &gt;= 121 AND int(&quot;CC_Arrears&quot;)&lt;= 150,'121 - 150',
+if(int(&quot;CC_Arrears&quot;) &gt;= 91 AND int(&quot;CC_Arrears&quot;)&lt;= 120,'91 - 120',
+if(int(&quot;CC_Arrears&quot;) &gt;= 61 AND int(&quot;CC_Arrears&quot;)&lt;= 90,'61 - 90',
+if(int(&quot;CC_Arrears&quot;) &gt;=31 AND int(&quot;CC_Arrears&quot;)&lt;= 60,'31 - 60',
+if(int(&quot;CC_Arrears&quot;) &gt;= 0 AND int(&quot;CC_Arrears&quot;)&lt;= 30,'0 - 30',
+if(int(&quot;CC_Arrears&quot;)&lt;=0,'0 - 30',' ')))))))))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="ACCOUNTS_RECEIVABLE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="BUKRS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentNumber" source="BELNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LineItem" source="BUZEI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaselineDate" source="ZFBDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="LAND1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClearingDate" source="AUGDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_AccountNo" source="HKONT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaymentTerms" source="ZTERM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Fiscalyear_period" source="FISCPER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="WAERS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LCURR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amountinforeigncurrency" source="WRSHB"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amountinlocalcurrency" source="DMSHB"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creditamountinforeigncurrency" source="WRHAB"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creditamountinlocalcurrency" source="DMHAB"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Debititamountinforeigncurrency" source="WRSOL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Debititamountinlocalcurrency" source="DMSOL"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="BUDAT"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="DueDate" source="NETDT"/>
+    </input>
+    <filter>&quot;ClearingDate&quot;='00000000'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="CustomerText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Q_CustomerMasterList"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="DocumentNumber"/>
+      <viewAttribute id="LineItem"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="BaselineDate"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="ClearingDate"/>
+      <viewAttribute id="GL_AccountNo"/>
+      <viewAttribute id="SalesDocument"/>
+      <viewAttribute id="PaymentTerms"/>
+      <viewAttribute id="Fiscalyear_period"/>
+      <viewAttribute id="DocumentCurrency"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="Amountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Amountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="Creditamountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Creditamountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="Debititamountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Debititamountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="UPDMOD"/>
+      <viewAttribute id="CustomerText"/>
+    
+      <viewAttribute id="CC_PostingDate"/>
+    
+      <viewAttribute id="CC_DueDate"/>
+      <viewAttribute id="CC_DueDateYear"/>
+    
+      <viewAttribute id="CC_Arrears"/>
+      <viewAttribute id="CC_Aging"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentNumber" source="DocumentNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LineItem" source="LineItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="CustomerNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaselineDate" source="BaselineDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClearingDate" source="ClearingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_AccountNo" source="GL_AccountNo"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaymentTerms" source="PaymentTerms"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Fiscalyear_period" source="Fiscalyear_period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amountinforeigncurrency" source="Amountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amountinlocalcurrency" source="Amountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creditamountinforeigncurrency" source="Creditamountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creditamountinlocalcurrency" source="Creditamountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Debititamountinforeigncurrency" source="Debititamountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Debititamountinlocalcurrency" source="Debititamountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPDMOD" source="UPDMOD"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DueDate" source="CC_DueDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DueDateYear" source="CC_DueDateYear"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Arrears" source="CC_Arrears"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Aging" source="CC_Aging"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="CustomerNumber"/>
+    </input>
+    <joinAttribute name="CustomerNumber"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="LAND1"/>
+      <viewAttribute id="CountryText"/>
+    
+      <viewAttribute id="SPRAS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COUNTRY_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="TXTSH"/>
+    </input>
+    <filter>&quot;SPRAS&quot;='E'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="DocumentNumber"/>
+      <viewAttribute id="LineItem"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="BaselineDate"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="ClearingDate"/>
+      <viewAttribute id="GL_AccountNo"/>
+      <viewAttribute id="SalesDocument"/>
+      <viewAttribute id="PaymentTerms"/>
+      <viewAttribute id="Fiscalyear_period"/>
+      <viewAttribute id="DocumentCurrency"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="Amountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Amountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="Creditamountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Creditamountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="Debititamountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Debititamountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="UPDMOD"/>
+      <viewAttribute id="CustomerText"/>
+      <viewAttribute id="CountryText"/>
+    
+      <viewAttribute id="CC_PostingDate"/>
+    
+      <viewAttribute id="CC_DueDate"/>
+      <viewAttribute id="CC_DueDateYear"/>
+    
+      <viewAttribute id="CC_Arrears"/>
+      <viewAttribute id="CC_Aging"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentNumber" source="DocumentNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LineItem" source="LineItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="CustomerNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaselineDate" source="BaselineDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClearingDate" source="ClearingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_AccountNo" source="GL_AccountNo"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaymentTerms" source="PaymentTerms"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Fiscalyear_period" source="Fiscalyear_period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amountinforeigncurrency" source="Amountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amountinlocalcurrency" source="Amountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creditamountinforeigncurrency" source="Creditamountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creditamountinlocalcurrency" source="Creditamountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Debititamountinforeigncurrency" source="Debititamountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Debititamountinlocalcurrency" source="Debititamountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPDMOD" source="UPDMOD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DueDate" source="CC_DueDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DueDateYear" source="CC_DueDateYear"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Arrears" source="CC_Arrears"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Aging" source="CC_Aging"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="LAND1"/>
+    </input>
+    <joinAttribute name="Country"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="BUKRS"/>
+      <viewAttribute id="CompanyCodeText"/>
+      <viewAttribute id="LANGU"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COMP_CODE_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="TXTMD"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="DocumentNumber"/>
+      <viewAttribute id="LineItem"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="BaselineDate"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="ClearingDate"/>
+      <viewAttribute id="GL_AccountNo"/>
+      <viewAttribute id="SalesDocument"/>
+      <viewAttribute id="PaymentTerms"/>
+      <viewAttribute id="Fiscalyear_period"/>
+      <viewAttribute id="DocumentCurrency"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="Amountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Amountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="Creditamountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Creditamountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="Debititamountinforeigncurrency" aggregationType="sum"/>
+      <viewAttribute id="Debititamountinlocalcurrency" aggregationType="sum"/>
+      <viewAttribute id="UPDMOD"/>
+      <viewAttribute id="CustomerText"/>
+      <viewAttribute id="CountryText"/>
+      <viewAttribute id="CC_PostingDate"/>
+      <viewAttribute id="CompanyCodeText"/>
+    
+      <viewAttribute id="CC_DueDate"/>
+      <viewAttribute id="CC_DueDateYear"/>
+    
+      <viewAttribute id="CC_Arrears"/>
+      <viewAttribute id="CC_Aging"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentNumber" source="DocumentNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LineItem" source="LineItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerNumber" source="CustomerNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaselineDate" source="BaselineDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ClearingDate" source="ClearingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GL_AccountNo" source="GL_AccountNo"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PaymentTerms" source="PaymentTerms"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Fiscalyear_period" source="Fiscalyear_period"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentCurrency" source="DocumentCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amountinforeigncurrency" source="Amountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Amountinlocalcurrency" source="Amountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creditamountinforeigncurrency" source="Creditamountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creditamountinlocalcurrency" source="Creditamountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Debititamountinforeigncurrency" source="Debititamountinforeigncurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Debititamountinlocalcurrency" source="Debititamountinlocalcurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPDMOD" source="UPDMOD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DueDate" source="CC_DueDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DueDateYear" source="CC_DueDateYear"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Arrears" source="CC_Arrears"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Aging" source="CC_Aging"/>
+    </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="CompanyCodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="BUKRS"/>
+    </input>
+    <joinAttribute name="CompanyCode"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_3">
+  <attributes>
+    <attribute id="CompanyCode" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUKRS"/>
+      <keyMapping columnObjectName="Join_3" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="DocumentNumber" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BELNR"/>
+      <keyMapping columnObjectName="Join_3" columnName="DocumentNumber"/>
+    </attribute>
+    <attribute id="LineItem" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUZEI"/>
+      <keyMapping columnObjectName="Join_3" columnName="LineItem"/>
+    </attribute>
+    <attribute id="CustomerNumber" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KUNNR"/>
+      <keyMapping columnObjectName="Join_3" columnName="CustomerNumber"/>
+    </attribute>
+    <attribute id="BaselineDate" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ZFBDT"/>
+      <keyMapping columnObjectName="Join_3" columnName="BaselineDate"/>
+    </attribute>
+    <attribute id="Country" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LAND1"/>
+      <keyMapping columnObjectName="Join_3" columnName="Country"/>
+    </attribute>
+    <attribute id="ClearingDate" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AUGDT"/>
+      <keyMapping columnObjectName="Join_3" columnName="ClearingDate"/>
+    </attribute>
+    <attribute id="GL_AccountNo" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HKONT"/>
+      <keyMapping columnObjectName="Join_3" columnName="GL_AccountNo"/>
+    </attribute>
+    <attribute id="SalesDocument" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="VBELN"/>
+      <keyMapping columnObjectName="Join_3" columnName="SalesDocument"/>
+    </attribute>
+    <attribute id="PaymentTerms" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ZTERM"/>
+      <keyMapping columnObjectName="Join_3" columnName="PaymentTerms"/>
+    </attribute>
+    <attribute id="Fiscalyear_period" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FISCPER"/>
+      <keyMapping columnObjectName="Join_3" columnName="Fiscalyear_period"/>
+    </attribute>
+    <attribute id="DocumentCurrency" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WAERS"/>
+      <keyMapping columnObjectName="Join_3" columnName="DocumentCurrency"/>
+    </attribute>
+    <attribute id="LocalCurrency" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LCURR"/>
+      <keyMapping columnObjectName="Join_3" columnName="LocalCurrency"/>
+    </attribute>
+    <attribute id="UPDMOD" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UPDMOD"/>
+      <keyMapping columnObjectName="Join_3" columnName="UPDMOD"/>
+    </attribute>
+    <attribute id="CustomerText" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customer Text"/>
+      <keyMapping columnObjectName="Join_3" columnName="CustomerText"/>
+    </attribute>
+    <attribute id="CountryText" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TXTSH"/>
+      <keyMapping columnObjectName="Join_3" columnName="CountryText"/>
+    </attribute>
+  
+    <attribute id="CC_PostingDate" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_PostingDate"/>
+  
+      <keyMapping columnObjectName="Join_3" columnName="CC_PostingDate"/>
+  
+    </attribute>
+    <attribute id="CompanyCodeText" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCodeText"/>
+      <keyMapping columnObjectName="Join_3" columnName="CompanyCodeText"/>
+    </attribute>
+  
+    <attribute id="CC_DueDate" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_DueDate"/>
+  
+      <keyMapping columnObjectName="Join_3" columnName="CC_DueDate"/>
+  
+    </attribute>
+    <attribute id="CC_DueDateYear" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_DueDateYear"/>
+      <keyMapping columnObjectName="Join_3" columnName="CC_DueDateYear"/>
+    </attribute>
+  
+    <attribute id="CC_Arrears" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Arrears"/>
+  
+      <keyMapping columnObjectName="Join_3" columnName="CC_Arrears"/>
+  
+    </attribute>
+    <attribute id="CC_Aging" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Aging"/>
+      <keyMapping columnObjectName="Join_3" columnName="CC_Aging"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="CC_CompanyCode" order="23" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyCalculation datatype="VARCHAR" expressionLanguage="SQL" length="60">
+        <formula>CONCAT(CONCAT(&quot;CompanyCode&quot;,' - '), &quot;CompanyCodeText&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="CC_Country" order="24" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Country"/>
+      <keyCalculation datatype="VARCHAR" expressionLanguage="SQL" length="120">
+        <formula>CONCAT(CONCAT(&quot;Country&quot;,' - '), &quot;CountryText&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  
+    <calculatedAttribute id="CC_Customer" order="30" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Customer"/>
+  
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="130">
+  
+        <formula>CONCAT(CONCAT(&quot;CustomerNumber&quot;,' - '), &quot;CustomerText&quot;)</formula>
+  
+      </keyCalculation>
+  
+    </calculatedAttribute>
+  
+    <calculatedAttribute id="CC_AgingDate" order="40" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="DATE" expressionLanguage="SQL">
+        <formula>'$$IP_AgingDate$$'</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="Amountinforeigncurrency" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="WRSHB"/>
+      <measureMapping columnObjectName="Join_3" columnName="Amountinforeigncurrency"/>
+    </measure>
+    <measure id="Amountinlocalcurrency" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DMSHB"/>
+      <measureMapping columnObjectName="Join_3" columnName="Amountinlocalcurrency"/>
+    </measure>
+    <measure id="Creditamountinforeigncurrency" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="WRHAB"/>
+      <measureMapping columnObjectName="Join_3" columnName="Creditamountinforeigncurrency"/>
+    </measure>
+    <measure id="Creditamountinlocalcurrency" order="17" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DMHAB"/>
+      <measureMapping columnObjectName="Join_3" columnName="Creditamountinlocalcurrency"/>
+    </measure>
+    <measure id="Debititamountinforeigncurrency" order="18" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="WRSOL"/>
+      <measureMapping columnObjectName="Join_3" columnName="Debititamountinforeigncurrency"/>
+    </measure>
+    <measure id="Debititamountinlocalcurrency" order="19" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DMSOL"/>
+      <measureMapping columnObjectName="Join_3" columnName="Debititamountinlocalcurrency"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="RES_0_30" order="31" aggregationType="sum" datatype="DECIMAL" length="13" scale="2" baseMeasure="Amountinforeigncurrency">
+      <descriptions defaultDescription="0 to 30"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CC_Aging">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="0 - 30"/>
+        </filter>
+        <attributeName>CC_Aging</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_31-60" order="32" aggregationType="sum" datatype="DECIMAL" length="13" scale="2" baseMeasure="Amountinforeigncurrency">
+      <descriptions defaultDescription="31 - 60"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CC_Aging">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="31 - 60"/>
+        </filter>
+        <attributeName>CC_Aging</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_61-90" order="33" aggregationType="sum" datatype="DECIMAL" length="13" scale="2" baseMeasure="Amountinforeigncurrency">
+      <descriptions defaultDescription="61 - 90"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CC_Aging">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="61 - 90"/>
+        </filter>
+        <attributeName>CC_Aging</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_91-120" order="34" aggregationType="sum" datatype="DECIMAL" length="13" scale="2" baseMeasure="Amountinforeigncurrency">
+      <descriptions defaultDescription="91 - 120"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CC_Aging">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="91 - 120"/>
+        </filter>
+        <attributeName>CC_Aging</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_121-150" order="35" aggregationType="sum" datatype="DECIMAL" length="13" scale="2" baseMeasure="Amountinforeigncurrency">
+      <descriptions defaultDescription="121 - 150"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CC_Aging">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="121 - 150"/>
+        </filter>
+        <attributeName>CC_Aging</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_151-180" order="36" aggregationType="sum" datatype="DECIMAL" length="13" scale="2" baseMeasure="Amountinforeigncurrency">
+      <descriptions defaultDescription="151 - 180"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CC_Aging">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="151 - 180"/>
+        </filter>
+        <attributeName>CC_Aging</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_181-210" order="37" aggregationType="sum" datatype="DECIMAL" length="13" scale="2" baseMeasure="Amountinforeigncurrency">
+      <descriptions defaultDescription="181 - 210"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CC_Aging">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="181 - 210"/>
+        </filter>
+        <attributeName>CC_Aging</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_211-99999" order="38" aggregationType="sum" datatype="DECIMAL" length="13" scale="2" baseMeasure="Amountinforeigncurrency">
+      <descriptions defaultDescription="211 - 99999"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="CC_Aging">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="211 - 99999"/>
+        </filter>
+        <attributeName>CC_Aging</attributeName>
+      </restriction>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="422" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="238"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="172"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="384" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="238"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="489" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="422" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="179"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

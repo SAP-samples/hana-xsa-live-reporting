@@ -1,0 +1,66 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "DELIVERY_HEADER",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "DELIVERY_HEADER.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {   
+            
+            "ROCANCEL"	:	1	,
+"KOSTK"	:	2	,
+"VBELN"	:	3	,
+"WBSTK"	:	4	,
+"ABLAD"	:	5	,
+"BTGEW"	:	6	,
+"BUKRS"	:	7	,
+"BZIRK"	:	8	,
+"ERDAT"	:	9	,
+"FAKSK"	:	10	,
+"GEWEI"	:	11	,
+"INCO1"	:	12	,
+"INCO2"	:	13	,
+"KDGRP"	:	14	,
+"KUNAG"	:	15	,
+"KUNNR"	:	16	,
+"LFART"	:	17	,
+"LFDAT"	:	18	,
+"LIFNR"	:	19	,
+"LIFSK"	:	20	,
+"LPRIO"	:	21	,
+"LSTEL"	:	22	,
+"NTGEW"	:	23	,
+"PKUNRE"	:	24	,
+"PKUNRG"	:	25	,
+"PSPDNR"	:	26	,
+"PVRTNR"	:	27	,
+"PZPERS"	:	28	,
+"ROUTE"	:	29	,
+"VBTYP"	:	30	,
+"VKORG"	:	31	,
+"VOLEH"	:	32	,
+"VOLUM"	:	33	,
+"VSTEL"	:	34	,
+"WADAT"	:	35	,
+"WADAT_IST"	:	36	,
+"WERKS"	:	37	,
+"ANZLI"	:	38	,
+"MCBW_ANZPK"	:	39	,
+"PERIV"	:	40	,
+"WA_DELAY_LF"	:	41
+
+								}
+        }
+    ]
+}

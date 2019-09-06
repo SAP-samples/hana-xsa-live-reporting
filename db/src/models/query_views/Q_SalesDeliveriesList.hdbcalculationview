@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="Q_Sales_Deliveries_List" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Shipping Details"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="DELIVERY_HEADER">
+    <resourceUri>DELIVERY_HEADER</resourceUri>
+  </DataSource>
+  <DataSource id="DELIVERY_ITEM">
+    <resourceUri>DELIVERY_ITEM</resourceUri>
+  </DataSource>
+  <DataSource id="Q_CustomerMasterList">
+    <resourceUri>Q_CustomerMasterList</resourceUri>
+  </DataSource>
+  <DataSource id="Q_Material">
+    <resourceUri>Q_Material</resourceUri>
+  </DataSource>
+  <DataSource id="SALESORG_TEXT">
+    <resourceUri>SALESORG_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="VBELN"/>
+      <viewAttribute id="Bill-toparty"/>
+      <viewAttribute id="Payer"/>
+      <viewAttribute id="HDR_PickStatus"/>
+      <viewAttribute id="Delay_AGItoPGI"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DELIVERY_HEADER">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-toparty" source="PKUNRE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="PKUNRG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HDR_PickStatus" source="KOSTK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delay_AGItoPGI" source="WA_DELAY_LF"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="Cancellationindicator"/>
+      <viewAttribute id="Delivery"/>
+      <viewAttribute id="DeliveryItem"/>
+      <viewAttribute id="Companycode"/>
+      <viewAttribute id="Customergroup"/>
+      <viewAttribute id="ConfirmedDeliverydate"/>
+      <viewAttribute id="Deliveryblock"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="Salesorganization"/>
+      <viewAttribute id="Salesdocumentcategory"/>
+      <viewAttribute id="BWTransactionkey"/>
+      <viewAttribute id="Deliveryquantity"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Materialgroup"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="Sold-toparty"/>
+      <viewAttribute id="Item_Pickingstatus"/>
+      <viewAttribute id="Item_Pickconfirmation"/>
+      <viewAttribute id="ActualGIdate"/>
+      <viewAttribute id="Referencedocument"/>
+      <viewAttribute id="Referenceitem"/>
+      <viewAttribute id="Actualdeliveryquantity"/>
+      <viewAttribute id="Delay_AGI_PGI"/>
+      <viewAttribute id="Ship-toparty"/>
+      <viewAttribute id="PlannedGIDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DELIVERY_ITEM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Cancellationindicator" source="ROCANCEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delivery" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeliveryItem" source="POSNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Companycode" source="BUKRS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customergroup" source="KDGRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedDeliverydate" source="LFDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryblock" source="LIFSK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="LIFNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesorganization" source="VKORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesdocumentcategory" source="VBTYP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BWTransactionkey" source="BWVORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryquantity" source="LFIMG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Materialgroup" source="MATKL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="MEINS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Sold-toparty" source="KUNAG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickingstatus" source="KOSTA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickconfirmation" source="KOQUA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualGIdate" source="WADAT_IST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referencedocument" source="VGBEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referenceitem" source="VGPOS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actualdeliveryquantity" source="LGMNG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delay_AGI_PGI" source="WA_DELAY_LF"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-toparty" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedGIDate" source="WADAT"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="Cancellationindicator"/>
+      <viewAttribute id="Delivery"/>
+      <viewAttribute id="DeliveryItem"/>
+      <viewAttribute id="Companycode"/>
+      <viewAttribute id="Customergroup"/>
+      <viewAttribute id="ConfirmedDeliverydate"/>
+      <viewAttribute id="Deliveryblock"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="Salesorganization"/>
+      <viewAttribute id="Salesdocumentcategory"/>
+      <viewAttribute id="BWTransactionkey"/>
+      <viewAttribute id="Deliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Materialgroup"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="Sold-toparty"/>
+      <viewAttribute id="Item_Pickingstatus"/>
+      <viewAttribute id="Item_Pickconfirmation"/>
+      <viewAttribute id="ActualGIdate"/>
+      <viewAttribute id="Referencedocument"/>
+      <viewAttribute id="Referenceitem"/>
+      <viewAttribute id="Actualdeliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Delay_AGI_PGI" aggregationType="sum"/>
+      <viewAttribute id="HDR_PickStatus"/>
+      <viewAttribute id="Bill-toparty"/>
+      <viewAttribute id="Payer"/>
+      <viewAttribute id="Ship-toparty"/>
+      <viewAttribute id="PlannedGIDate"/>
+      <viewAttribute hidden="true" id="JOIN$VBELN$Delivery"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HDR_PickStatus" source="HDR_PickStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-toparty" source="Bill-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$VBELN$Delivery" source="VBELN"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Cancellationindicator" source="Cancellationindicator"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delivery" source="Delivery"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeliveryItem" source="DeliveryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Companycode" source="Companycode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customergroup" source="Customergroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedDeliverydate" source="ConfirmedDeliverydate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryblock" source="Deliveryblock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesorganization" source="Salesorganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesdocumentcategory" source="Salesdocumentcategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BWTransactionkey" source="BWTransactionkey"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryquantity" source="Deliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Materialgroup" source="Materialgroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Sold-toparty" source="Sold-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickingstatus" source="Item_Pickingstatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickconfirmation" source="Item_Pickconfirmation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualGIdate" source="ActualGIdate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referencedocument" source="Referencedocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referenceitem" source="Referenceitem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actualdeliveryquantity" source="Actualdeliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delay_AGI_PGI" source="Delay_AGI_PGI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-toparty" source="Ship-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedGIDate" source="PlannedGIDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$VBELN$Delivery" source="Delivery"/>
+    </input>
+    <joinAttribute name="JOIN$VBELN$Delivery"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="CountryText"/>
+      <viewAttribute id="CustomerNumber"/>
+      <viewAttribute id="CustomerText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Q_CustomerMasterList"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="Cancellationindicator"/>
+      <viewAttribute id="Delivery"/>
+      <viewAttribute id="DeliveryItem"/>
+      <viewAttribute id="Companycode"/>
+      <viewAttribute id="Customergroup"/>
+      <viewAttribute id="ConfirmedDeliverydate"/>
+      <viewAttribute id="Deliveryblock"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="Salesorganization"/>
+      <viewAttribute id="Salesdocumentcategory"/>
+      <viewAttribute id="BWTransactionkey"/>
+      <viewAttribute id="Deliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Materialgroup"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="Sold-toparty"/>
+      <viewAttribute id="Item_Pickingstatus"/>
+      <viewAttribute id="Item_Pickconfirmation"/>
+      <viewAttribute id="ActualGIdate"/>
+      <viewAttribute id="Referencedocument"/>
+      <viewAttribute id="Referenceitem"/>
+      <viewAttribute id="Actualdeliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Delay_AGI_PGI" aggregationType="sum"/>
+      <viewAttribute id="HDR_PickStatus"/>
+      <viewAttribute id="Bill-toparty"/>
+      <viewAttribute id="Payer"/>
+      <viewAttribute id="Ship-toparty"/>
+      <viewAttribute id="SoldToPartyText"/>
+      <viewAttribute id="PlannedGIDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Cancellationindicator" source="Cancellationindicator"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delivery" source="Delivery"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeliveryItem" source="DeliveryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Companycode" source="Companycode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customergroup" source="Customergroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedDeliverydate" source="ConfirmedDeliverydate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryblock" source="Deliveryblock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesorganization" source="Salesorganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesdocumentcategory" source="Salesdocumentcategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BWTransactionkey" source="BWTransactionkey"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryquantity" source="Deliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Materialgroup" source="Materialgroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Sold-toparty" source="Sold-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickingstatus" source="Item_Pickingstatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickconfirmation" source="Item_Pickconfirmation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualGIdate" source="ActualGIdate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referencedocument" source="Referencedocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referenceitem" source="Referenceitem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actualdeliveryquantity" source="Actualdeliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delay_AGI_PGI" source="Delay_AGI_PGI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HDR_PickStatus" source="HDR_PickStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-toparty" source="Bill-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-toparty" source="Ship-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedGIDate" source="PlannedGIDate"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SoldToPartyText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Sold-toparty" source="CustomerNumber"/>
+    </input>
+    <joinAttribute name="Sold-toparty"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ShipToPartyText"/>
+      <viewAttribute id="Cancellationindicator"/>
+      <viewAttribute id="Delivery"/>
+      <viewAttribute id="DeliveryItem"/>
+      <viewAttribute id="Companycode"/>
+      <viewAttribute id="Customergroup"/>
+      <viewAttribute id="ConfirmedDeliverydate"/>
+      <viewAttribute id="Deliveryblock"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="Salesorganization"/>
+      <viewAttribute id="Salesdocumentcategory"/>
+      <viewAttribute id="BWTransactionkey"/>
+      <viewAttribute id="Deliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Materialgroup"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="Sold-toparty"/>
+      <viewAttribute id="Item_Pickingstatus"/>
+      <viewAttribute id="Item_Pickconfirmation"/>
+      <viewAttribute id="ActualGIdate"/>
+      <viewAttribute id="Referencedocument"/>
+      <viewAttribute id="Referenceitem"/>
+      <viewAttribute id="Actualdeliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Delay_AGI_PGI" aggregationType="sum"/>
+      <viewAttribute id="HDR_PickStatus"/>
+      <viewAttribute id="Bill-toparty"/>
+      <viewAttribute id="Payer"/>
+      <viewAttribute id="Ship-toparty"/>
+      <viewAttribute id="SoldToPartyText"/>
+      <viewAttribute id="PlannedGIDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Cancellationindicator" source="Cancellationindicator"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delivery" source="Delivery"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeliveryItem" source="DeliveryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Companycode" source="Companycode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customergroup" source="Customergroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedDeliverydate" source="ConfirmedDeliverydate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryblock" source="Deliveryblock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesorganization" source="Salesorganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesdocumentcategory" source="Salesdocumentcategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BWTransactionkey" source="BWTransactionkey"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryquantity" source="Deliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Materialgroup" source="Materialgroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Sold-toparty" source="Sold-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickingstatus" source="Item_Pickingstatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickconfirmation" source="Item_Pickconfirmation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualGIdate" source="ActualGIdate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referencedocument" source="Referencedocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referenceitem" source="Referenceitem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actualdeliveryquantity" source="Actualdeliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delay_AGI_PGI" source="Delay_AGI_PGI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HDR_PickStatus" source="HDR_PickStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-toparty" source="Bill-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-toparty" source="Ship-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SoldToPartyText" source="SoldToPartyText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedGIDate" source="PlannedGIDate"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ShipToPartyText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-toparty" source="CustomerNumber"/>
+    </input>
+    <joinAttribute name="Ship-toparty"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Q_Material"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ShipToPartyText"/>
+      <viewAttribute id="Cancellationindicator"/>
+      <viewAttribute id="Delivery"/>
+      <viewAttribute id="DeliveryItem"/>
+      <viewAttribute id="Companycode"/>
+      <viewAttribute id="Customergroup"/>
+      <viewAttribute id="ConfirmedDeliverydate"/>
+      <viewAttribute id="Deliveryblock"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="Salesorganization"/>
+      <viewAttribute id="Salesdocumentcategory"/>
+      <viewAttribute id="BWTransactionkey"/>
+      <viewAttribute id="Deliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Materialgroup"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="Sold-toparty"/>
+      <viewAttribute id="Item_Pickingstatus"/>
+      <viewAttribute id="Item_Pickconfirmation"/>
+      <viewAttribute id="ActualGIdate"/>
+      <viewAttribute id="Referencedocument"/>
+      <viewAttribute id="Referenceitem"/>
+      <viewAttribute id="Actualdeliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Delay_AGI_PGI" aggregationType="sum"/>
+      <viewAttribute id="HDR_PickStatus"/>
+      <viewAttribute id="Bill-toparty"/>
+      <viewAttribute id="Payer"/>
+      <viewAttribute id="Ship-toparty"/>
+      <viewAttribute id="SoldToPartyText"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    
+      <viewAttribute id="PlannedGIDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ShipToPartyText" source="ShipToPartyText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Cancellationindicator" source="Cancellationindicator"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delivery" source="Delivery"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeliveryItem" source="DeliveryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Companycode" source="Companycode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customergroup" source="Customergroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedDeliverydate" source="ConfirmedDeliverydate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryblock" source="Deliveryblock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesorganization" source="Salesorganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesdocumentcategory" source="Salesdocumentcategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BWTransactionkey" source="BWTransactionkey"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryquantity" source="Deliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Materialgroup" source="Materialgroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Sold-toparty" source="Sold-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickingstatus" source="Item_Pickingstatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickconfirmation" source="Item_Pickconfirmation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualGIdate" source="ActualGIdate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referencedocument" source="Referencedocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referenceitem" source="Referenceitem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actualdeliveryquantity" source="Actualdeliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delay_AGI_PGI" source="Delay_AGI_PGI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HDR_PickStatus" source="HDR_PickStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-toparty" source="Bill-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-toparty" source="Ship-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SoldToPartyText" source="SoldToPartyText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedGIDate" source="PlannedGIDate"/>
+    </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+    </input>
+    <joinAttribute name="Material"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="VKORG"/>
+      <viewAttribute id="VTEXT"/>
+      <viewAttribute id="SPRAS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SALESORG_TEXT"/>
+    <filter>&quot;SPRAS&quot;='E'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_5" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ShipToPartyText"/>
+      <viewAttribute id="Cancellationindicator"/>
+      <viewAttribute id="Delivery"/>
+      <viewAttribute id="DeliveryItem"/>
+      <viewAttribute id="Companycode"/>
+      <viewAttribute id="Customergroup"/>
+      <viewAttribute id="ConfirmedDeliverydate"/>
+      <viewAttribute id="Deliveryblock"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="Salesorganization"/>
+      <viewAttribute id="Salesdocumentcategory"/>
+      <viewAttribute id="BWTransactionkey"/>
+      <viewAttribute id="Deliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="Materialgroup"/>
+      <viewAttribute id="BaseUOM"/>
+      <viewAttribute id="Sold-toparty"/>
+      <viewAttribute id="Item_Pickingstatus"/>
+      <viewAttribute id="Item_Pickconfirmation"/>
+      <viewAttribute id="ActualGIdate"/>
+      <viewAttribute id="Referencedocument"/>
+      <viewAttribute id="Referenceitem"/>
+      <viewAttribute id="Actualdeliveryquantity" aggregationType="sum"/>
+      <viewAttribute id="Delay_AGI_PGI" aggregationType="sum"/>
+      <viewAttribute id="HDR_PickStatus"/>
+      <viewAttribute id="Bill-toparty"/>
+      <viewAttribute id="Payer"/>
+      <viewAttribute id="Ship-toparty"/>
+      <viewAttribute id="SoldToPartyText"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+      <viewAttribute id="SalesOrgText"/>
+    
+      <viewAttribute id="PlannedGIDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_SalesOrg" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;Salesorganization&quot;,' - '), &quot;SalesOrgText&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_Material" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;Material&quot;,' - '), &quot;MaterialName&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_SoldToParty" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;Sold-toparty&quot;,' - '), &quot;SoldToPartyText&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_MaterialGroup" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;Materialgroup&quot;,' - '), &quot;MaterialGroupText&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_ShipToParty" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;Ship-toparty&quot;,' - '), &quot;ShipToPartyText&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ShipToPartyText" source="ShipToPartyText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Cancellationindicator" source="Cancellationindicator"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delivery" source="Delivery"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DeliveryItem" source="DeliveryItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Companycode" source="Companycode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Customergroup" source="Customergroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedDeliverydate" source="ConfirmedDeliverydate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryblock" source="Deliveryblock"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesorganization" source="Salesorganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesdocumentcategory" source="Salesdocumentcategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BWTransactionkey" source="BWTransactionkey"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryquantity" source="Deliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Materialgroup" source="Materialgroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BaseUOM" source="BaseUOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Sold-toparty" source="Sold-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickingstatus" source="Item_Pickingstatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Item_Pickconfirmation" source="Item_Pickconfirmation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ActualGIdate" source="ActualGIdate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referencedocument" source="Referencedocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Referenceitem" source="Referenceitem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Actualdeliveryquantity" source="Actualdeliveryquantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delay_AGI_PGI" source="Delay_AGI_PGI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HDR_PickStatus" source="HDR_PickStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-toparty" source="Bill-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-toparty" source="Ship-toparty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SoldToPartyText" source="SoldToPartyText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlannedGIDate" source="PlannedGIDate"/>
+    </input>
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrgText" source="VTEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Salesorganization" source="VKORG"/>
+    </input>
+    <joinAttribute name="Salesorganization"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_5">
+  <attributes>
+    <attribute id="Cancellationindicator" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Cancellationindicator"/>
+      <keyMapping columnObjectName="Join_5" columnName="Cancellationindicator"/>
+    </attribute>
+    <attribute id="Delivery" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Delivery"/>
+      <keyMapping columnObjectName="Join_5" columnName="Delivery"/>
+    </attribute>
+    <attribute id="DeliveryItem" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DeliveryItem"/>
+      <keyMapping columnObjectName="Join_5" columnName="DeliveryItem"/>
+    </attribute>
+    <attribute id="Customergroup" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Customergroup"/>
+      <keyMapping columnObjectName="Join_5" columnName="Customergroup"/>
+    </attribute>
+    <attribute id="ConfirmedDeliverydate" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ConfirmedDeliverydate"/>
+      <keyMapping columnObjectName="Join_5" columnName="ConfirmedDeliverydate"/>
+    </attribute>
+    <attribute id="Deliveryblock" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Deliveryblock"/>
+      <keyMapping columnObjectName="Join_5" columnName="Deliveryblock"/>
+    </attribute>
+    <attribute id="Vendor" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Vendor"/>
+      <keyMapping columnObjectName="Join_5" columnName="Vendor"/>
+    </attribute>
+    <attribute id="Salesdocumentcategory" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Salesdocumentcategory"/>
+      <keyMapping columnObjectName="Join_5" columnName="Salesdocumentcategory"/>
+    </attribute>
+    <attribute id="BWTransactionkey" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BWTransactionkey"/>
+      <keyMapping columnObjectName="Join_5" columnName="BWTransactionkey"/>
+    </attribute>
+    <attribute id="BaseUOM" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BaseUOM"/>
+      <keyMapping columnObjectName="Join_5" columnName="BaseUOM"/>
+    </attribute>
+    <attribute id="Item_Pickingstatus" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Item_Pickingstatus"/>
+      <keyMapping columnObjectName="Join_5" columnName="Item_Pickingstatus"/>
+    </attribute>
+    <attribute id="Item_Pickconfirmation" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Item_Pickconfirmation"/>
+      <keyMapping columnObjectName="Join_5" columnName="Item_Pickconfirmation"/>
+    </attribute>
+    <attribute id="ActualGIdate" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ActualGIdate"/>
+      <keyMapping columnObjectName="Join_5" columnName="ActualGIdate"/>
+    </attribute>
+    <attribute id="Referencedocument" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Referencedocument"/>
+      <keyMapping columnObjectName="Join_5" columnName="Referencedocument"/>
+    </attribute>
+    <attribute id="Referenceitem" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Referenceitem"/>
+      <keyMapping columnObjectName="Join_5" columnName="Referenceitem"/>
+    </attribute>
+    <attribute id="HDR_PickStatus" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HDR_PickStatus"/>
+      <keyMapping columnObjectName="Join_5" columnName="HDR_PickStatus"/>
+    </attribute>
+    <attribute id="Bill-toparty" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Bill-toparty"/>
+      <keyMapping columnObjectName="Join_5" columnName="Bill-toparty"/>
+    </attribute>
+    <attribute id="Payer" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Payer"/>
+      <keyMapping columnObjectName="Join_5" columnName="Payer"/>
+    </attribute>
+  
+    <attribute id="CC_SalesOrg" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_SalesOrg"/>
+  
+      <keyMapping columnObjectName="Join_5" columnName="CC_SalesOrg"/>
+  
+    </attribute>
+    <attribute id="CC_Material" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Material"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_Material"/>
+    </attribute>
+    <attribute id="CC_SoldToParty" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_SoldToParty"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_SoldToParty"/>
+    </attribute>
+    <attribute id="CC_MaterialGroup" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_MaterialGroup"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_MaterialGroup"/>
+    </attribute>
+    <attribute id="CC_ShipToParty" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_ShipToParty"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_ShipToParty"/>
+    </attribute>
+  
+    <attribute id="PlannedGIDate" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlannedGIDate"/>
+  
+      <keyMapping columnObjectName="Join_5" columnName="PlannedGIDate"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="CC_AGI_Date" order="29" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Actual GI Date"/>
+      <keyCalculation datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;ActualGIdate&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  
+    <calculatedAttribute id="CC_AGIyear" order="30" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="13">
+        <formula>YEAR(&quot;ActualGIdate&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="Deliveryquantity" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Deliveryquantity"/>
+      <measureMapping columnObjectName="Join_5" columnName="Deliveryquantity"/>
+    </measure>
+    <measure id="Actualdeliveryquantity" order="17" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Actualdeliveryquantity"/>
+      <measureMapping columnObjectName="Join_5" columnName="Actualdeliveryquantity"/>
+    </measure>
+    <measure id="Delay_AGI_PGI" order="18" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Delay_AGI_PGI"/>
+      <measureMapping columnObjectName="Join_5" columnName="Delay_AGI_PGI"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="CC_CountDelMissed" order="27" aggregationType="count" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE" unconverted="true" aggregatable="true" engineAggregation="max">
+      <formula>if(&quot;Delay_AGI_PGI&quot;&gt;0,1,0)</formula>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="394" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="996"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="301" y="996"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="836"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="167"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="204"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="382" y="836"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="167" y="676"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="204"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="327" y="289"/>
+      <rectangleSize width="172"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="194" y="516"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="363" y="346"/>
+      <rectangleSize width="172"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="663" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="404" y="516"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="332" y="251"/>
+      <rectangleSize width="175"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="478" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="394" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="296" y="222"/>
+      <rectangleSize width="136"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,55 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "MATERIAL_STOCK",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "MATERIAL_STOCK.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : {  
+            
+            "BKLAS" 		: 	1	,
+			"BSTAUS" 		: 	2   ,
+			"BSTTYP" 		: 	3   ,
+			"BUDAT" 		: 	4   ,
+			"BWAPPLNM" 		: 	5   ,
+			"BWGEO" 		: 	6   ,
+			"BWGVO" 		: 	7   ,
+			"BWGVP" 		: 	8   ,
+			"BWKEY" 		: 	9   ,
+			"BWMNG" 		: 	10  ,
+			"BWPSPEX" 		: 	11  ,
+			"BWTAR" 		: 	12  ,
+			"CHARG" 		: 	13  ,
+			"KDAUF" 		: 	14  ,
+			"KDPOS" 		: 	15  ,
+			"KUNNR" 		: 	16  ,
+			"KZBWS" 		: 	17  ,
+			"LGORT" 		: 	18  ,
+			"LIFNR" 		: 	19  ,
+			"MATNR" 		: 	20  ,
+			"MEINS" 		: 	21  ,
+			"PS_PSP_PNR"	: 	22  ,
+			"SOBKZ"			: 	23  ,
+			"WAERS" 		: 	24  ,
+			"WERKS" 		: 	25  ,
+			"ITEM_CAT" 		: 	26  ,
+			"REC_TYPE" 		: 	27  ,
+			"ATTYP" 		: 	28  ,
+			"VLFKZ" 		: 	29  
+
+                                    
+                                }
+        }
+    ]
+}

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="Q_GoodsReceiptsGoodsIssues" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="GI/GR"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MATERIAL_MOVEMENTS">
+    <resourceUri>MATERIAL_MOVEMENTS</resourceUri>
+  </DataSource>
+  <DataSource id="Q_Material">
+    <resourceUri>Q_Material</resourceUri>
+  </DataSource>
+  <DataSource id="PLANT_TEXT">
+    <resourceUri>PLANT_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="D_COMPANY_CODE">
+    <resourceUri>D_COMPANY_CODE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="COLUMN_ENGINE">
+    <viewAttributes>
+      <viewAttribute id="BUDAT"/>
+      <viewAttribute id="BWGEO"/>
+      <viewAttribute id="BWMNG"/>
+      <viewAttribute id="EBELN"/>
+      <viewAttribute id="EBELP"/>
+      <viewAttribute id="LGORT"/>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="MBLNR"/>
+      <viewAttribute id="MEINS"/>
+      <viewAttribute id="WAERS"/>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="ZEILE"/>
+      <viewAttribute id="BWART"/>
+      <viewAttribute id="BUKRS"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_DocYear" datatype="NVARCHAR" expressionLanguage="SQL" length="13">
+        <formula>YEAR(TO_DATE(&quot;BUDAT&quot;))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="MATERIAL_MOVEMENTS"/>
+    <filter>in(&quot;BWART&quot;,'101','102','261','262')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Q_Material"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="ValueinLocalCurrency" aggregationType="sum"/>
+      <viewAttribute id="Quantity" aggregationType="sum"/>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PurchasingDocumentItem"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="MaterialDocumentNumber"/>
+      <viewAttribute id="UnitofMeasure"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="MaterialDocumentItem"/>
+      <viewAttribute id="MovementType"/>
+      <viewAttribute id="CompanyCode"/>
+    
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    
+      <viewAttribute id="CC_DocYear"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_PostingDate" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;PostingDate&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="BUDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueinLocalCurrency" source="BWGEO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Quantity" source="BWMNG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="EBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentItem" source="EBELP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="LGORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialDocumentNumber" source="MBLNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UnitofMeasure" source="MEINS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="WAERS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialDocumentItem" source="ZEILE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MovementType" source="BWART"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="BUKRS"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocYear" source="CC_DocYear"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="Material"/>
+    </input>
+    <joinAttribute name="MaterialNumber"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="PlantText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PLANT_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlantText" source="TXTMD"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="ValueinLocalCurrency" aggregationType="sum"/>
+      <viewAttribute id="Quantity" aggregationType="sum"/>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PurchasingDocumentItem"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="MaterialDocumentNumber"/>
+      <viewAttribute id="UnitofMeasure"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="MaterialDocumentItem"/>
+      <viewAttribute id="MovementType"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="CC_PostingDate"/>
+      <viewAttribute id="PlantText"/>
+    
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    
+      <viewAttribute id="CC_DocYear"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueinLocalCurrency" source="ValueinLocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Quantity" source="Quantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="PurchasingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentItem" source="PurchasingDocumentItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MaterialNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialDocumentNumber" source="MaterialDocumentNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UnitofMeasure" source="UnitofMeasure"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialDocumentItem" source="MaterialDocumentItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MovementType" source="MovementType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocYear" source="CC_DocYear"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlantText" source="PlantText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+    </input>
+    <joinAttribute name="Plant"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="CompanyCodeName"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="D_COMPANY_CODE"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="ValueinLocalCurrency" aggregationType="sum"/>
+      <viewAttribute id="Quantity" aggregationType="sum"/>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PurchasingDocumentItem"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="MaterialDocumentNumber"/>
+      <viewAttribute id="UnitofMeasure"/>
+      <viewAttribute id="LocalCurrency"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="MaterialDocumentItem"/>
+      <viewAttribute id="MovementType"/>
+      <viewAttribute id="CompanyCode"/>
+      <viewAttribute id="CC_PostingDate"/>
+      <viewAttribute id="PlantText"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+      <viewAttribute id="CompanyCodeName"/>
+    
+      <viewAttribute id="CC_DocYear"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ValueinLocalCurrency" source="ValueinLocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Quantity" source="Quantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="PurchasingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentItem" source="PurchasingDocumentItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MaterialNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialDocumentNumber" source="MaterialDocumentNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UnitofMeasure" source="UnitofMeasure"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LocalCurrency" source="LocalCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialDocumentItem" source="MaterialDocumentItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MovementType" source="MovementType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlantText" source="PlantText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocYear" source="CC_DocYear"/>
+    </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeName" source="CompanyCodeName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+    </input>
+    <joinAttribute name="CompanyCode"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_3">
+  <attributes>
+    <attribute id="PostingDate" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PostingDate"/>
+      <keyMapping columnObjectName="Join_3" columnName="PostingDate"/>
+    </attribute>
+    <attribute id="PurchasingDocument" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchasingDocument"/>
+      <keyMapping columnObjectName="Join_3" columnName="PurchasingDocument"/>
+    </attribute>
+    <attribute id="PurchasingDocumentItem" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchasingDocumentItem"/>
+      <keyMapping columnObjectName="Join_3" columnName="PurchasingDocumentItem"/>
+    </attribute>
+    <attribute id="StorageLocation" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="StorageLocation"/>
+      <keyMapping columnObjectName="Join_3" columnName="StorageLocation"/>
+    </attribute>
+    <attribute id="MaterialNumber" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialNumber"/>
+      <keyMapping columnObjectName="Join_3" columnName="MaterialNumber"/>
+    </attribute>
+    <attribute id="MaterialDocumentNumber" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialDocumentNumber"/>
+      <keyMapping columnObjectName="Join_3" columnName="MaterialDocumentNumber"/>
+    </attribute>
+    <attribute id="UnitofMeasure" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UnitofMeasure"/>
+      <keyMapping columnObjectName="Join_3" columnName="UnitofMeasure"/>
+    </attribute>
+    <attribute id="LocalCurrency" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LocalCurrency"/>
+      <keyMapping columnObjectName="Join_3" columnName="LocalCurrency"/>
+    </attribute>
+    <attribute id="Plant" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Plant"/>
+      <keyMapping columnObjectName="Join_3" columnName="Plant"/>
+    </attribute>
+    <attribute id="MaterialDocumentItem" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialDocumentItem"/>
+      <keyMapping columnObjectName="Join_3" columnName="MaterialDocumentItem"/>
+    </attribute>
+    <attribute id="MovementType" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MovementType"/>
+      <keyMapping columnObjectName="Join_3" columnName="MovementType"/>
+    </attribute>
+    <attribute id="CompanyCode" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCode"/>
+      <keyMapping columnObjectName="Join_3" columnName="CompanyCode"/>
+    </attribute>
+    <attribute id="CC_PostingDate" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_PostingDate"/>
+      <keyMapping columnObjectName="Join_3" columnName="CC_PostingDate"/>
+    </attribute>
+    <attribute id="PlantText" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PlantText"/>
+      <keyMapping columnObjectName="Join_3" columnName="PlantText"/>
+    </attribute>
+  
+    <attribute id="MaterialName" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialName"/>
+  
+      <keyMapping columnObjectName="Join_3" columnName="MaterialName"/>
+  
+    </attribute>
+    <attribute id="MaterialGroupText" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialGroupText"/>
+      <keyMapping columnObjectName="Join_3" columnName="MaterialGroupText"/>
+    </attribute>
+  
+    <attribute id="CompanyCodeName" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CompanyCodeName"/>
+  
+      <keyMapping columnObjectName="Join_3" columnName="CompanyCodeName"/>
+  
+    </attribute>
+  
+    <attribute id="CC_DocYear" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_DocYear"/>
+  
+      <keyMapping columnObjectName="Join_3" columnName="CC_DocYear"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ValueinLocalCurrency" order="2" aggregationType="sum" measureType="simple" hidden="true">
+      <descriptions defaultDescription="ValueinLocalCurrency"/>
+      <measureMapping columnObjectName="Join_3" columnName="ValueinLocalCurrency"/>
+    </measure>
+    <measure id="Quantity" order="3" aggregationType="sum" measureType="simple" hidden="true">
+      <descriptions defaultDescription="Quantity"/>
+      <measureMapping columnObjectName="Join_3" columnName="Quantity"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="RES_GoodsIssuesQty" order="20" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="Quantity">
+      <descriptions defaultDescription="Good Issues Quantity"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MovementType">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="261"/>
+        </filter>
+        <attributeName>MovementType</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MovementType">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="262"/>
+        </filter>
+        <attributeName>MovementType</attributeName>
+      </restriction>
+    </measure>
+    <measure id="RES_GoodsReceiptsQty" order="21" aggregationType="sum" datatype="DECIMAL" length="15" scale="3" baseMeasure="Quantity">
+      <descriptions defaultDescription="Goods Receipts Quantity"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MovementType">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="101"/>
+        </filter>
+        <attributeName>MovementType</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MovementType">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="102"/>
+        </filter>
+        <attributeName>MovementType</attributeName>
+      </restriction>
+    </measure>
+  
+    <measure id="RES_GoodsIssuesAmt" order="22" aggregationType="sum" datatype="DECIMAL" length="19" scale="2" baseMeasure="ValueinLocalCurrency">
+      <descriptions defaultDescription="Goods Issues Amount"/>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MovementType">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="261"/>
+        </filter>
+  
+        <attributeName>MovementType</attributeName>
+  
+      </restriction>
+  
+      <restriction logicalOperator="AND">
+  
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MovementType">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="262"/>
+        </filter>
+  
+        <attributeName>MovementType</attributeName>
+  
+      </restriction>
+  
+    </measure>
+    <measure id="RES_GoodsReceiptsAmt" order="23" aggregationType="sum" datatype="DECIMAL" length="19" scale="2" baseMeasure="ValueinLocalCurrency">
+      <descriptions defaultDescription="Goods Receipts Amount"/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MovementType">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="101"/>
+        </filter>
+        <attributeName>MovementType</attributeName>
+      </restriction>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="MovementType">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="102"/>
+        </filter>
+        <attributeName>MovementType</attributeName>
+      </restriction>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="422" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="384" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="214"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="489" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="422" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

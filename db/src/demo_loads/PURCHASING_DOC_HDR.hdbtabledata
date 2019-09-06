@@ -1,0 +1,52 @@
+{
+    "format_version": 1,
+    "imports":
+    [
+        {
+            "target_table": "PURCHASING_DOC_HDR",
+            "source_data":
+            {
+                "data_type": "CSV",
+                "file_name": "PURCHASING_DOC_HDR.csv",
+                "has_header": false
+            },
+            "import_settings":
+              {
+                "include_filter": [],
+                "import_columns": []
+              },
+            "column_mappings" : {  
+"ROCANCEL" :	1	,
+"HDRVORG" :	2	,
+"ALIEF" :	3	,
+"ARECH" :	4	,
+"BEDAT" :	5	,
+"BSART" :	6	,
+"BSTYP" :	7	,
+"BUDAT" :	8	,
+"EBELN" :	9	,
+"EKGRP" :	10	,
+"EKORG" :	11	,
+"KDATB" :	12	,
+"KDATE" :	13	,
+"LIFNR" :	14	,
+"LIFRE" :	15	,
+"LLIEF" :	16	,
+"LOGSY" :	17	,
+"ORGLOGSY" :	18	,
+"RESWK" :	19	,
+"STATU" :	20	,
+"SYDAT" :	21	,
+"WAERS" :	22	,
+"WKURS" :	23	,
+"NOHDR" :	24	,
+"PWLIF" :	25	,
+"PREST" :	26	,
+"PLIWK" :	27	,
+"PLIEF" :	28	,
+"PBEST" :	29	,
+"PERIV" :	30	
+	                                }
+        }
+    ]
+}

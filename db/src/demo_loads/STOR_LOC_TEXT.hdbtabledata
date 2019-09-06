@@ -1,0 +1,25 @@
+{
+    "format_version": 1,
+    "imports":
+    [
+        {
+            "target_table": "STOR_LOC_TEXT",
+            "source_data":
+            {
+                "data_type": "CSV",
+                "file_name": "STOR_LOC_TEXT.csv",
+                "has_header": false
+            },
+            "import_settings":
+              {
+                "include_filter": [],
+                "import_columns": []
+              },
+            "column_mappings" : {  
+                                   	"WERKS" : 1 ,
+									"LGORT" : 2 ,
+									"TXTMD" : 3
+                                }
+        }
+    ]
+}

@@ -75,7 +75,8 @@
 									   "UPDAT" : 56,
 									   "UPTIM" : 57,
 									   "NODEL" : 58,
-									   "TLFNS" : 59
+									   "TLFNS" : 59								
+									
 								}
         }
     ]

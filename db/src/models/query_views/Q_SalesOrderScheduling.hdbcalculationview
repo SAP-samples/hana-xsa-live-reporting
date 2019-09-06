@@ -66,15 +66,11 @@
       <viewAttribute id="SalesDocTypeText"/>
       <viewAttribute id="OrderQuantity"/>
       <viewAttribute id="CC_DocYearMonth"/>
-      <viewAttribute id="SalesDocumentRejectReason"/>
     
-      <viewAttribute id="TargetQuantityUnit"/>
-    
-      <viewAttribute id="SD_Count"/>
-    </viewAttributes>
+      <viewAttribute id="TargetQuantityUnit"/></viewAttributes>
     <calculatedViewAttributes/>
     <input node="Q_SalesOrderListItems"/></calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="VBELN"/>
       <viewAttribute id="POSNR"/>
@@ -83,14 +79,27 @@
       <viewAttribute id="Bill-to-party"/>
       <viewAttribute id="Payer"/>
       <viewAttribute id="PKUNWE"/>
+    
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="MATKL"/>
+      <viewAttribute id="AUART"/>
+      <viewAttribute id="BUKRS"/>
+      <viewAttribute id="CHARG"/>
+      <viewAttribute id="ETTYP"/>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="LIFSK"/>
+      <viewAttribute id="LIFSP"/>
+    
+      <viewAttribute id="KUNNR"/>
+    
+      <viewAttribute id="VKORG"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="SALES_DOC_SCH_LINE">
       <mapping xsi:type="Calculation:AttributeMapping" target="ScheduleLineNumber" source="ETENR"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedQuantity" source="BMENG"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-party" source="PKUNRE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="PKUNRG"/></input>
-  </calculationView>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="PKUNRG"/></input></calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
     <viewAttributes>
       <viewAttribute id="CompanyCode"/>
@@ -99,14 +108,12 @@
       <viewAttribute id="SalesDocument"/>
       <viewAttribute id="SalesDocumentItem"/>
       <viewAttribute id="StorageLocation"/>
-      <viewAttribute id="Material"/>
       <viewAttribute id="NetAmount" aggregationType="sum"/>
       <viewAttribute id="Plant"/>
       <viewAttribute id="TransactionCurrency"/>
       <viewAttribute id="SoldToParty"/>
       <viewAttribute id="SalesDocByYear" aggregationType="sum"/>
       <viewAttribute id="MaterialText"/>
-      <viewAttribute id="MaterialGroup"/>
       <viewAttribute id="CustomerText"/>
       <viewAttribute id="MatGroupText"/>
       <viewAttribute id="Country"/>
@@ -118,7 +125,6 @@
       <viewAttribute id="SalesDocTypeText"/>
       <viewAttribute id="OrderQuantity" aggregationType="sum"/>
       <viewAttribute id="CC_DocYearMonth"/>
-      <viewAttribute id="SalesDocumentRejectReason"/>
       <viewAttribute id="ScheduleLineNumber"/>
       <viewAttribute id="ConfirmedQuantity" aggregationType="sum"/>
       <viewAttribute id="Bill-to-party"/>
@@ -126,17 +132,48 @@
       <viewAttribute id="Ship-to-Party"/>
     
       <viewAttribute id="TargetQuantityUnit"/>
-    
-      <viewAttribute id="SD_Count" aggregationType="sum"/>
-    </viewAttributes>
+      <viewAttribute id="Deliveryblockscheduleline"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialGroup"/></viewAttributes>
     <calculatedViewAttributes/>
-    <input node="Projection_1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentItem" source="SalesDocumentItem"/></input>
     <input node="Projection_2">
       <mapping xsi:type="Calculation:AttributeMapping" target="Ship-to-Party" source="PKUNWE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ScheduleLineNumber" source="ScheduleLineNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedQuantity" source="ConfirmedQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-party" source="Bill-to-party"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="VBELN"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentItem" source="POSNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="BUKRS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SoldToParty" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Deliveryblockscheduleline" source="LIFSP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MATKL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentType" source="AUART"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganization" source="VKORG"/>
+    </input>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocByYear" source="SalesDocByYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="CompanyCodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrgText" source="SalesOrgText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocTypeText" source="SalesDocTypeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQuantity" source="OrderQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocYearMonth" source="CC_DocYearMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQuantityUnit" source="TargetQuantityUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentItem" source="SalesDocumentItem"/>
     </input>
     <joinAttribute name="SalesDocument"/>
     <joinAttribute name="SalesDocumentItem"/>
@@ -157,14 +194,12 @@
       <viewAttribute id="SalesDocument"/>
       <viewAttribute id="SalesDocumentItem"/>
       <viewAttribute id="StorageLocation"/>
-      <viewAttribute id="Material"/>
       <viewAttribute id="NetAmount" aggregationType="sum"/>
       <viewAttribute id="Plant"/>
       <viewAttribute id="TransactionCurrency"/>
       <viewAttribute id="SoldToParty"/>
       <viewAttribute id="SalesDocByYear" aggregationType="sum"/>
       <viewAttribute id="MaterialText"/>
-      <viewAttribute id="MaterialGroup"/>
       <viewAttribute id="CustomerText"/>
       <viewAttribute id="MatGroupText"/>
       <viewAttribute id="Country"/>
@@ -176,7 +211,6 @@
       <viewAttribute id="SalesDocTypeText"/>
       <viewAttribute id="OrderQuantity" aggregationType="sum"/>
       <viewAttribute id="CC_DocYearMonth"/>
-      <viewAttribute id="SalesDocumentRejectReason"/>
       <viewAttribute id="ScheduleLineNumber"/>
       <viewAttribute id="ConfirmedQuantity" aggregationType="sum"/>
       <viewAttribute id="Bill-to-party"/>
@@ -186,12 +220,44 @@
     
       <viewAttribute id="TargetQuantityUnit"/>
     
-      <viewAttribute id="SD_Count" aggregationType="sum"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialGroup"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-party" source="Bill-to-party"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-party" source="Bill-to-party"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentType" source="SalesDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganization" source="SalesOrganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentItem" source="SalesDocumentItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SoldToParty" source="SoldToParty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocByYear" source="SalesDocByYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="CompanyCodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrgText" source="SalesOrgText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocTypeText" source="SalesDocTypeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQuantity" source="OrderQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocYearMonth" source="CC_DocYearMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ScheduleLineNumber" source="ScheduleLineNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedQuantity" source="ConfirmedQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-to-Party" source="Ship-to-Party"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQuantityUnit" source="TargetQuantityUnit"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+    </input>
     <input node="Projection_3">
       <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-partyText" source="CustomerText"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-party" source="CustomerNumber"/>
@@ -206,14 +272,12 @@
       <viewAttribute id="SalesDocument"/>
       <viewAttribute id="SalesDocumentItem"/>
       <viewAttribute id="StorageLocation"/>
-      <viewAttribute id="Material"/>
       <viewAttribute id="NetAmount" aggregationType="sum"/>
       <viewAttribute id="Plant"/>
       <viewAttribute id="TransactionCurrency"/>
       <viewAttribute id="SoldToParty"/>
       <viewAttribute id="SalesDocByYear" aggregationType="sum"/>
       <viewAttribute id="MaterialText"/>
-      <viewAttribute id="MaterialGroup"/>
       <viewAttribute id="CustomerText"/>
       <viewAttribute id="MatGroupText"/>
       <viewAttribute id="Country"/>
@@ -225,7 +289,6 @@
       <viewAttribute id="SalesDocTypeText"/>
       <viewAttribute id="OrderQuantity" aggregationType="sum"/>
       <viewAttribute id="CC_DocYearMonth"/>
-      <viewAttribute id="SalesDocumentRejectReason"/>
       <viewAttribute id="ScheduleLineNumber"/>
       <viewAttribute id="ConfirmedQuantity" aggregationType="sum"/>
       <viewAttribute id="Bill-to-party"/>
@@ -236,12 +299,45 @@
     
       <viewAttribute id="TargetQuantityUnit"/>
     
-      <viewAttribute id="SD_Count" aggregationType="sum"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialGroup"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_2">
       <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentType" source="SalesDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganization" source="SalesOrganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentItem" source="SalesDocumentItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SoldToParty" source="SoldToParty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocByYear" source="SalesDocByYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="CompanyCodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrgText" source="SalesOrgText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocTypeText" source="SalesDocTypeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQuantity" source="OrderQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocYearMonth" source="CC_DocYearMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ScheduleLineNumber" source="ScheduleLineNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedQuantity" source="ConfirmedQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-party" source="Bill-to-party"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-to-Party" source="Ship-to-Party"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-partyText" source="Bill-to-partyText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQuantityUnit" source="TargetQuantityUnit"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+    </input>
     <input node="Projection_3">
       <mapping xsi:type="Calculation:AttributeMapping" target="PayerText" source="CustomerText"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="CustomerNumber"/>
@@ -256,14 +352,12 @@
       <viewAttribute id="SalesDocument"/>
       <viewAttribute id="SalesDocumentItem"/>
       <viewAttribute id="StorageLocation"/>
-      <viewAttribute id="Material"/>
       <viewAttribute id="NetAmount" aggregationType="sum"/>
       <viewAttribute id="Plant"/>
       <viewAttribute id="TransactionCurrency"/>
       <viewAttribute id="SoldToParty"/>
       <viewAttribute id="SalesDocByYear" aggregationType="sum"/>
       <viewAttribute id="MaterialText"/>
-      <viewAttribute id="MaterialGroup"/>
       <viewAttribute id="CustomerText"/>
       <viewAttribute id="MatGroupText"/>
       <viewAttribute id="Country"/>
@@ -275,7 +369,6 @@
       <viewAttribute id="SalesDocTypeText"/>
       <viewAttribute id="OrderQuantity" aggregationType="sum"/>
       <viewAttribute id="CC_DocYearMonth"/>
-      <viewAttribute id="SalesDocumentRejectReason"/>
       <viewAttribute id="ScheduleLineNumber"/>
       <viewAttribute id="ConfirmedQuantity" aggregationType="sum"/>
       <viewAttribute id="Bill-to-party"/>
@@ -287,12 +380,46 @@
     
       <viewAttribute id="TargetQuantityUnit"/>
     
-      <viewAttribute id="SD_Count" aggregationType="sum"/>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialGroup"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_3">
       <mapping xsi:type="Calculation:AttributeMapping" target="CustomerText" source="CustomerText"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-to-Party" source="Ship-to-Party"/></input>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Ship-to-Party" source="Ship-to-Party"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCode" source="CompanyCode"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentType" source="SalesDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrganization" source="SalesOrganization"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocument" source="SalesDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocumentItem" source="SalesDocumentItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TransactionCurrency" source="TransactionCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SoldToParty" source="SoldToParty"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocByYear" source="SalesDocByYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialText" source="MaterialText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MatGroupText" source="MatGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CountryText" source="CountryText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYC" source="CITYC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CompanyCodeText" source="CompanyCodeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrgText" source="SalesOrgText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesDocTypeText" source="SalesDocTypeText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OrderQuantity" source="OrderQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocYearMonth" source="CC_DocYearMonth"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ScheduleLineNumber" source="ScheduleLineNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ConfirmedQuantity" source="ConfirmedQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-party" source="Bill-to-party"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Payer" source="Payer"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Bill-to-partyText" source="Bill-to-partyText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PayerText" source="PayerText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TargetQuantityUnit" source="TargetQuantityUnit"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+    </input>
     <input node="Projection_3">
       <mapping xsi:type="Calculation:AttributeMapping" target="Ship-to-partyText" source="CustomerText"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="Ship-to-Party" source="CustomerNumber"/>
@@ -326,135 +453,129 @@
       <descriptions defaultDescription="Storage location"/>
       <keyMapping columnObjectName="Join_4" columnName="StorageLocation"/>
     </attribute>
-    <attribute id="Material" order="7" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Material"/>
-      <keyMapping columnObjectName="Join_4" columnName="Material"/>
-    </attribute>
-    <attribute id="Plant" order="9" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Plant" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Plant"/>
       <keyMapping columnObjectName="Join_4" columnName="Plant"/>
     </attribute>
-    <attribute id="TransactionCurrency" order="10" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TransactionCurrency" order="9" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Transaction Currency"/>
       <keyMapping columnObjectName="Join_4" columnName="TransactionCurrency"/>
     </attribute>
-    <attribute id="SoldToParty" order="11" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="SoldToParty" order="10" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Sold To Party"/>
       <keyMapping columnObjectName="Join_4" columnName="SoldToParty"/>
     </attribute>
-    <attribute id="MaterialText" order="13" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="MaterialText" order="12" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Material Text"/>
       <keyMapping columnObjectName="Join_4" columnName="MaterialText"/>
     </attribute>
-    <attribute id="MaterialGroup" order="14" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Material Group"/>
-      <keyMapping columnObjectName="Join_4" columnName="MaterialGroup"/>
-    </attribute>
-    <attribute id="CustomerText" order="15" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CustomerText" order="13" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Customer Text"/>
       <keyMapping columnObjectName="Join_4" columnName="CustomerText"/>
     </attribute>
-    <attribute id="MatGroupText" order="16" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="MatGroupText" order="14" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Mat Group Text"/>
       <keyMapping columnObjectName="Join_4" columnName="MatGroupText"/>
     </attribute>
-    <attribute id="Country" order="17" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Country" order="15" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Country"/>
       <keyMapping columnObjectName="Join_4" columnName="Country"/>
     </attribute>
-    <attribute id="CountryText" order="18" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CountryText" order="16" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Country text"/>
       <keyMapping columnObjectName="Join_4" columnName="CountryText"/>
     </attribute>
-    <attribute id="Region" order="19" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Region" order="17" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Region"/>
       <keyMapping columnObjectName="Join_4" columnName="Region"/>
     </attribute>
-    <attribute id="CITYC" order="20" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CITYC" order="18" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="City"/>
       <keyMapping columnObjectName="Join_4" columnName="CITYC"/>
     </attribute>
-    <attribute id="CompanyCodeText" order="21" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CompanyCodeText" order="19" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Company Code Text"/>
       <keyMapping columnObjectName="Join_4" columnName="CompanyCodeText"/>
     </attribute>
-    <attribute id="SalesOrgText" order="22" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="SalesOrgText" order="20" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Sales Org Text"/>
       <keyMapping columnObjectName="Join_4" columnName="SalesOrgText"/>
     </attribute>
-    <attribute id="SalesDocTypeText" order="23" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="SalesDocTypeText" order="21" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Sales Doc Type Text"/>
       <keyMapping columnObjectName="Join_4" columnName="SalesDocTypeText"/>
     </attribute>
-    <attribute id="CC_DocYearMonth" order="25" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="CC_DocYearMonth" order="23" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Year Month"/>
       <keyMapping columnObjectName="Join_4" columnName="CC_DocYearMonth"/>
     </attribute>
-    <attribute id="SalesDocumentRejectReason" order="26" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="SalesDocumentRejectReason"/>
-      <keyMapping columnObjectName="Join_4" columnName="SalesDocumentRejectReason"/>
-    </attribute>
-    <attribute id="ScheduleLineNumber" order="27" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="ScheduleLineNumber" order="24" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="ETENR"/>
       <keyMapping columnObjectName="Join_4" columnName="ScheduleLineNumber"/>
     </attribute>
-    <attribute id="Bill-to-party" order="29" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Bill-to-party" order="26" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Bill-to-party"/>
       <keyMapping columnObjectName="Join_4" columnName="Bill-to-party"/>
     </attribute>
-    <attribute id="Payer" order="30" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Payer" order="27" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Payer"/>
       <keyMapping columnObjectName="Join_4" columnName="Payer"/>
     </attribute>
-    <attribute id="Ship-to-Party" order="31" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Ship-to-Party" order="28" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PKUNWE"/>
       <keyMapping columnObjectName="Join_4" columnName="Ship-to-Party"/>
     </attribute>
-    <attribute id="Bill-to-partyText" order="32" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Bill-to-partyText" order="29" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Bill-to-partyText"/>
       <keyMapping columnObjectName="Join_4" columnName="Bill-to-partyText"/>
     </attribute>
-    <attribute id="PayerText" order="33" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="PayerText" order="30" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="PayerText"/>
       <keyMapping columnObjectName="Join_4" columnName="PayerText"/>
     </attribute>
-    <attribute id="Ship-to-partyText" order="34" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="Ship-to-partyText" order="31" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="Ship-to-partyText"/>
       <keyMapping columnObjectName="Join_4" columnName="Ship-to-partyText"/>
     </attribute>
   
-    <attribute id="TargetQuantityUnit" order="38" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="TargetQuantityUnit" order="33" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="TargetQuantityUnit"/>
   
       <keyMapping columnObjectName="Join_4" columnName="TargetQuantityUnit"/>
   
     </attribute>
+  
+    <attribute id="Material" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Material"/>
+  
+      <keyMapping columnObjectName="Join_4" columnName="Material"/>
+  
+    </attribute>
+    <attribute id="MaterialGroup" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialGroup"/>
+      <keyMapping columnObjectName="Join_4" columnName="MaterialGroup"/>
+    </attribute>
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="NetAmount" order="8" aggregationType="sum" measureType="simple" hidden="true">
+    <measure id="NetAmount" order="7" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="Net Amount"/>
       <measureMapping columnObjectName="Join_4" columnName="NetAmount"/>
     </measure>
-    <measure id="SalesDocByYear" order="12" aggregationType="sum" measureType="simple">
+    <measure id="SalesDocByYear" order="11" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="Sales Orders By Year"/>
       <measureMapping columnObjectName="Join_4" columnName="SalesDocByYear"/>
     </measure>
-    <measure id="OrderQuantity" order="24" aggregationType="sum" measureType="simple" hidden="true">
+    <measure id="OrderQuantity" order="22" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="Order Quantity"/>
       <measureMapping columnObjectName="Join_4" columnName="OrderQuantity"/>
     </measure>
-    <measure id="ConfirmedQuantity" order="28" aggregationType="sum" measureType="simple">
+    <measure id="ConfirmedQuantity" order="25" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="ConfirmedQuantity"/>
       <measureMapping columnObjectName="Join_4" columnName="ConfirmedQuantity"/>
-    </measure>
-    <measure id="SD_Count" order="39" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="SD_Count"/>
-      <measureMapping columnObjectName="Join_4" columnName="SD_Count"/>
-    </measure>
-  </baseMeasures>
+    </measure></baseMeasures>
   <calculatedMeasures>
-    <measure id="SD_Item_Count" order="35" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="INTEGER" length="">
+    <measure id="SD_Item_Count" order="32" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="INTEGER" length="">
       <descriptions defaultDescription="SD item count"/>
       <exceptionAggregation>
         <attribute attributeName="SalesDocument"/>
@@ -462,58 +583,16 @@
         <attribute attributeName="ScheduleLineNumber"/>
       </exceptionAggregation>
       <formula>1</formula>
+      
       </measure>
-    <measure id="CC_NetAmount" order="36" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="15" scale="2" expressionLanguage="SQL" aggregatable="true">
-      <formula>&quot;NetAmount&quot;/&quot;SD_Count&quot;</formula>
-      </measure>
-    <measure id="CC_OrderQty" order="37" aggregationType="sum" measureType="simple" aggregatable="true" datatype="DECIMAL" length="15" scale="3" expressionLanguage="SQL">
-      <formula>&quot;OrderQuantity&quot;/&quot;SD_Item_Count&quot;</formula>
+  
+    <measure id="CC_QtyDiff" order="34" aggregationType="sum" measureType="simple" aggregatable="true" datatype="DECIMAL" length="15" scale="3" expressionLanguage="SQL">
+      <formula>&quot;ConfirmedQuantity&quot;-&quot;OrderQuantity&quot;</formula>
+    
       </measure>
   </calculatedMeasures>
   <restrictedMeasures/>
-  <localDimensions>
-    <localDimension id="MaterialGroupHier">
-      <attributeRef xsi:type="DataFoundation:Attribute">MaterialGroup</attributeRef>
-      <attributeRef xsi:type="DataFoundation:Attribute">Material</attributeRef>
-      <hierarchies>
-        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="MaterialGroupHier" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
-          <descriptions defaultDescription="MaterialGroupHier"/>
-          <levels>
-            <level levelAttribute="MaterialGroup" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="MatGroupText" sortDirection="ASC"/>
-            <level levelAttribute="Material" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="MaterialText" sortDirection="ASC"/>
-          </levels>
-        </hierarchy>
-      </hierarchies>
-    </localDimension>
-    <localDimension id="SalesOrgHier">
-      <attributeRef xsi:type="DataFoundation:Attribute">CompanyCodeText</attributeRef>
-      <attributeRef xsi:type="DataFoundation:Attribute">SalesOrgText</attributeRef>
-      <hierarchies>
-        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="SalesOrgHier" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
-          <descriptions defaultDescription="SalesOrgHier"/>
-          <levels>
-            <level levelAttribute="CompanyCodeText" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="CompanyCode" sortDirection="ASC"/>
-            <level levelAttribute="SalesOrgText" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="SalesOrgText" sortDirection="ASC"/>
-          </levels>
-        </hierarchy>
-      </hierarchies>
-    </localDimension>
-    <localDimension id="CountryHier">
-      <attributeRef xsi:type="DataFoundation:Attribute">CountryText</attributeRef>
-      <attributeRef xsi:type="DataFoundation:Attribute">Region</attributeRef>
-      <attributeRef xsi:type="DataFoundation:Attribute">CITYC</attributeRef>
-      <hierarchies>
-        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="CountryHier" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
-          <descriptions defaultDescription="Country Hierarchy"/>
-          <levels>
-            <level levelAttribute="CountryText" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="CountryText" sortDirection="ASC"/>
-            <level levelAttribute="Region" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="Region" sortDirection="ASC"/>
-            <level levelAttribute="CITYC" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="CITYC" sortDirection="ASC"/>
-          </levels>
-        </hierarchy>
-      </hierarchies>
-    </localDimension>
-  </localDimensions>
+  <localDimensions/>
 </logicalModel>
 <layout>
   <shapes>
@@ -535,11 +614,11 @@
       <upperLeftCorner x="118" y="696"/>
       <rectangleSize height="30" width="160"/>
     </shape>
-    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="250"/>
     </shape>
-    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="250"/>
     </shape>

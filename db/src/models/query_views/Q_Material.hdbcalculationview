@@ -14,138 +14,52 @@
 <calculationViews>
   <calculationView xsi:type="Calculation:ProjectionView" id="Material_P">
     <viewAttributes>
-      <viewAttribute id="Material">
-        <descriptions defaultDescription="MATNR"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialType">
-        <descriptions defaultDescription="MTART"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialGroup">
-        <descriptions defaultDescription="MATKL"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialBaseUnit">
-        <descriptions defaultDescription="MEINS"/>
-      </viewAttribute>
-      <viewAttribute id="ProductHierarchy">
-        <descriptions defaultDescription="PRDHA"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialCategory">
-        <descriptions defaultDescription="ATTYP"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialName">
-        <descriptions defaultDescription="TXTMD"/>
-      </viewAttribute>
-      <viewAttribute id="IndustrySector">
-        <descriptions defaultDescription="MBRSH"/>
-      </viewAttribute>
-      <viewAttribute id="BasicMaterial">
-        <descriptions defaultDescription="WRKST"/>
-      </viewAttribute>
-      <viewAttribute id="IndustryStandardName">
-        <descriptions defaultDescription="NORMT"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialWeightUnit">
-        <descriptions defaultDescription="GEWEI"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialNetWeight">
-        <descriptions defaultDescription="NTGEW"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialExternalGroup">
-        <descriptions defaultDescription="EXTWG"/>
-      </viewAttribute>
-      <viewAttribute id="Division">
-        <descriptions defaultDescription="SPART"/>
-      </viewAttribute>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialType"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="MaterialBaseUnit"/>
+      <viewAttribute id="ProductHierarchy"/>
+      <viewAttribute id="MaterialCategory"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="IndustrySector"/>
+      <viewAttribute id="BasicMaterial"/>
+      <viewAttribute id="IndustryStandardName"/>
+      <viewAttribute id="MaterialWeightUnit"/>
+      <viewAttribute id="MaterialNetWeight"/>
+      <viewAttribute id="MaterialExternalGroup"/>
+      <viewAttribute id="Division"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <restrictedViewAttributes/>
-    <input node="D_Material">
-      <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialType" source="MaterialType"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialBaseUnit" source="MaterialBaseUnit"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ProductHierarchy" source="ProductHierarchy"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialCategory" source="MaterialCategory"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="IndustrySector" source="IndustrySector"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="BasicMaterial" source="BasicMaterial"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="IndustryStandardName" source="IndustryStandardName"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialWeightUnit" source="MaterialWeightUnit"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNetWeight" source="MaterialNetWeight"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialExternalGroup" source="MaterialExternalGroup"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="Division" source="Division"/>
-    </input>
+    <input node="D_Material"/>
   </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="MatGroupTxt_P">
     <viewAttributes>
-      <viewAttribute id="SPRAS">
-        <descriptions defaultDescription="SPRAS"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialGroup">
-        <descriptions defaultDescription="MATKL"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialGroupText">
-        <descriptions defaultDescription="TXTSH"/>
-      </viewAttribute>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="MaterialGroupText"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <restrictedViewAttributes/>
-    <input node="D_MATGROUP_TEXT">
-      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
-    </input>
+    <input node="D_MATGROUP_TEXT"/>
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="textTable" languageColumn="SPRAS">
     <viewAttributes>
-      <viewAttribute id="Material">
-        <descriptions defaultDescription="MATNR"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialType">
-        <descriptions defaultDescription="MTART"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialGroup">
-        <descriptions defaultDescription="MATKL"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialBaseUnit">
-        <descriptions defaultDescription="MEINS"/>
-      </viewAttribute>
-      <viewAttribute id="ProductHierarchy">
-        <descriptions defaultDescription="PRDHA"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialCategory">
-        <descriptions defaultDescription="ATTYP"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialName">
-        <descriptions defaultDescription="TXTMD"/>
-      </viewAttribute>
-      <viewAttribute id="IndustrySector">
-        <descriptions defaultDescription="MBRSH"/>
-      </viewAttribute>
-      <viewAttribute id="BasicMaterial">
-        <descriptions defaultDescription="WRKST"/>
-      </viewAttribute>
-      <viewAttribute id="IndustryStandardName">
-        <descriptions defaultDescription="NORMT"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialWeightUnit">
-        <descriptions defaultDescription="GEWEI"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialNetWeight" aggregationType="sum">
-        <descriptions defaultDescription="NTGEW"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialExternalGroup">
-        <descriptions defaultDescription="EXTWG"/>
-      </viewAttribute>
-      <viewAttribute id="Division">
-        <descriptions defaultDescription="SPART"/>
-      </viewAttribute>
-      <viewAttribute id="MaterialGroupText">
-        <descriptions defaultDescription="TXTSH"/>
-      </viewAttribute>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialType"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="MaterialBaseUnit"/>
+      <viewAttribute id="ProductHierarchy"/>
+      <viewAttribute id="MaterialCategory"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="IndustrySector"/>
+      <viewAttribute id="BasicMaterial"/>
+      <viewAttribute id="IndustryStandardName"/>
+      <viewAttribute id="MaterialWeightUnit"/>
+      <viewAttribute id="MaterialNetWeight" aggregationType="sum"/>
+      <viewAttribute id="MaterialExternalGroup"/>
+      <viewAttribute id="Division"/>
+      <viewAttribute id="MaterialGroupText"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <restrictedViewAttributes/>
     <input node="Material_P">
       <mapping xsi:type="Calculation:AttributeMapping" target="Material" source="Material"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MaterialType" source="MaterialType"/>
@@ -249,6 +163,9 @@
     <localDimension id="MaterialID_Hier">
       <attributeRef xsi:type="DataFoundation:Attribute">MaterialGroup</attributeRef>
       <attributeRef xsi:type="DataFoundation:Attribute">Material</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">MaterialCategory</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">IndustrySector</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">ProductHierarchy</attributeRef>
       <hierarchies>
         <hierarchy xsi:type="Dimension:LeveledHierarchy" id="MaterialID_Hier" aggregateAllNodes="false" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="DO_NOT_ADD_ROOT_NODE" withRootNode="false" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="false">
           <descriptions defaultDescription="MaterialID_Hier"/>
@@ -256,6 +173,9 @@
           <levels>
             <level levelAttribute="MaterialGroup" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="MaterialGroup" sortDirection="ASC"/>
             <level levelAttribute="Material" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="Material" sortDirection="ASC"/>
+            <level levelAttribute="MaterialCategory" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="MaterialCategory" sortDirection="ASC"/>
+            <level levelAttribute="IndustrySector" levelType="MDLEVEL_TYPE_REGULAR" order="4" orderAttribute="IndustrySector" sortDirection="ASC"/>
+            <level levelAttribute="ProductHierarchy" levelType="MDLEVEL_TYPE_REGULAR" order="5" orderAttribute="ProductHierarchy" sortDirection="ASC"/>
           </levels>
         </hierarchy>
       </hierarchies>
@@ -263,6 +183,9 @@
     <localDimension id="MaterialTxt_Hier">
       <attributeRef xsi:type="DataFoundation:Attribute">MaterialGroupText</attributeRef>
       <attributeRef xsi:type="DataFoundation:Attribute">MaterialName</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">MaterialType</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">ProductHierarchy</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">IndustrySector</attributeRef>
       <hierarchies>
         <hierarchy xsi:type="Dimension:LeveledHierarchy" id="MaterialTxt_Hier" aggregateAllNodes="false" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="DO_NOT_ADD_ROOT_NODE" withRootNode="false" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="false">
           <descriptions defaultDescription="MaterialTxt_Hier"/>
@@ -270,6 +193,9 @@
           <levels>
             <level levelAttribute="MaterialGroupText" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="MaterialGroupText" sortDirection="ASC"/>
             <level levelAttribute="MaterialName" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="MaterialName" sortDirection="ASC"/>
+            <level levelAttribute="MaterialType" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="MaterialType" sortDirection="ASC"/>
+            <level levelAttribute="ProductHierarchy" levelType="MDLEVEL_TYPE_REGULAR" order="4" orderAttribute="ProductHierarchy" sortDirection="ASC"/>
+            <level levelAttribute="IndustrySector" levelType="MDLEVEL_TYPE_REGULAR" order="5" orderAttribute="IndustrySector" sortDirection="ASC"/>
           </levels>
         </hierarchy>
       </hierarchies>

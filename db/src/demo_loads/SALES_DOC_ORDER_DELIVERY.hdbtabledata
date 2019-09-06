@@ -1,0 +1,37 @@
+{
+    "format_version": 1,
+    "imports": 
+    [
+        {
+            "target_table": "SALES_DOC_ORDER_DELIVERY",
+            "source_data": 
+            {
+                "data_type": "CSV",
+                "file_name": "SALES_DOC_ORDER_DELIVERY.csv",
+                "has_header": false
+            },
+            "import_settings": 
+              {
+                "include_filter": [], 
+                "import_columns": []
+              },
+              
+            "column_mappings" : { 
+            
+      "ROW" : 1 ,
+	"VBELN" : 2,
+	"POSNR" : 3 ,
+	"LFGSA" : 4 ,
+	"LFSTA" : 5 ,
+	"MCEX_B_LFDAT": 6 ,
+	"MCEX_I_LFDAT": 7 ,
+	"MCEX_W_LFDAT": 8 ,
+	"BMENG" : 9 ,
+	"VSMNG" : 10 ,
+	"WMENG" : 11
+                                    
+                                    
+                                    }
+        }
+    ]
+}

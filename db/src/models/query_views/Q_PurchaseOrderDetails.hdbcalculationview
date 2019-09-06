@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="Q_PurchaseOrderDetails" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Purchase Order Details"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PURCHASING_DOC_HDR">
+    <resourceUri>PURCHASING_DOC_HDR</resourceUri>
+  </DataSource>
+  <DataSource id="PURCHASING_DOC_ITM">
+    <resourceUri>PURCHASING_DOC_ITM</resourceUri>
+  </DataSource>
+  <DataSource id="Q_Material">
+    <resourceUri>Q_Material</resourceUri>
+  </DataSource>
+  <DataSource id="VENDOR_TEXT">
+    <resourceUri>VENDOR_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="PLANT_TEXT">
+    <resourceUri>PLANT_TEXT</resourceUri>
+  </DataSource>
+  <DataSource id="STOR_LOC_TEXT">
+    <resourceUri>STOR_LOC_TEXT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="PurchasingDocumentCategory"/>
+      <viewAttribute id="PurchasingDocumentType"/>
+      <viewAttribute id="PurchasingGroup"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="POCurrency"/>
+      <viewAttribute id="ROCANCEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_PostingDate" datatype="DATE" expressionLanguage="SQL">
+        <formula>TO_DATE(&quot;PostingDate&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_Postingyear" datatype="NVARCHAR" length="4" expressionLanguage="SQL">
+    
+        <formula>YEAR(&quot;PostingDate&quot;)</formula>
+    
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="PURCHASING_DOC_HDR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="EBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="BUDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentCategory" source="BSTYP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="BSART"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="EKGRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="LIFNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POCurrency" source="WAERS"/></input></calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="EBELN"/>
+      <viewAttribute id="PO_ItemNumber"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="POUnit"/>
+      <viewAttribute id="POQuantity"/>
+      <viewAttribute id="NetPrice"/>
+      <viewAttribute id="NetPOValue"/>
+      <viewAttribute id="PriceUnit"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="POCurrency"/>
+      <viewAttribute id="MaterialGroup"/>
+    
+      <viewAttribute id="LIFNR"/>
+    
+      <viewAttribute id="BWVORG"/>
+    
+      <viewAttribute id="DocumentDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_POValue" datatype="DECIMAL" length="13" scale="2" expressionLanguage="COLUMN_ENGINE">
+        <formula>if(&quot;BWVORG&quot;='001',if(&quot;ROCANCEL&quot;='X' or &quot;ROCANCEL&quot;='R' ,&quot;NetPOValue&quot;*-1,&quot;NetPOValue&quot;),0)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="CC_PODocumentDate" datatype="DATE" expressionLanguage="SQL">
+    
+        <formula>TO_DATE(&quot;DocumentDate&quot;)</formula>
+    
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_DocumentYear" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+        <formula>YEAR(&quot;DocumentDate&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="PURCHASING_DOC_ITM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ItemNumber" source="EBELP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="LGORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POUnit" source="MEINS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POQuantity" source="MENGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPrice" source="NETPR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPOValue" source="NETWR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PriceUnit" source="PEINH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POCurrency" source="WAERS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MATKL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DocumentDate" source="BEDAT"/>
+    </input></calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="PurchasingDocumentCategory"/>
+      <viewAttribute id="PurchasingDocumentType"/>
+      <viewAttribute id="PurchasingGroup"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="CC_PostingDate"/>
+      <viewAttribute id="PO_ItemNumber"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="POUnit"/>
+      <viewAttribute id="POQuantity" aggregationType="sum"/>
+      <viewAttribute id="NetPrice" aggregationType="sum"/>
+      <viewAttribute id="NetPOValue" aggregationType="sum"/>
+      <viewAttribute id="PriceUnit" aggregationType="sum"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="POCurrency"/>
+    
+      <viewAttribute id="CC_Postingyear"/>
+      <viewAttribute id="CC_DocumentYear"/>
+      <viewAttribute id="CC_PODocumentDate"/>
+      <viewAttribute hidden="true" id="JOIN$EBELN$PurchasingDocument"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ItemNumber" source="PO_ItemNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MaterialNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POUnit" source="POUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POQuantity" source="POQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPrice" source="NetPrice"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPOValue" source="CC_POValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PriceUnit" source="PriceUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ROCANCEL" source="ROCANCEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POCurrency" source="POCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="LIFNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocumentYear" source="CC_DocumentYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PODocumentDate" source="CC_PODocumentDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$EBELN$PurchasingDocument" source="EBELN"/>
+    </input>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="PurchasingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentCategory" source="PurchasingDocumentCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Postingyear" source="CC_Postingyear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$EBELN$PurchasingDocument" source="PurchasingDocument"/>
+    </input>
+    <joinAttribute name="JOIN$EBELN$PurchasingDocument"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <viewAttributes>
+      <viewAttribute id="Material"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Q_Material"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="PurchasingDocumentCategory"/>
+      <viewAttribute id="PurchasingDocumentType"/>
+      <viewAttribute id="PurchasingGroup"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="CC_PostingDate"/>
+      <viewAttribute id="PO_ItemNumber"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="POUnit"/>
+      <viewAttribute id="POQuantity" aggregationType="sum"/>
+      <viewAttribute id="NetPrice" aggregationType="sum"/>
+      <viewAttribute id="NetPOValue" aggregationType="sum"/>
+      <viewAttribute id="PriceUnit" aggregationType="sum"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="POCurrency"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+    
+      <viewAttribute id="CC_Postingyear"/>
+    
+      <viewAttribute id="CC_DocumentYear"/>
+      <viewAttribute id="CC_PODocumentDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Material" datatype="NVARCHAR" length="136" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;MaterialNumber&quot;,' - '), &quot;MaterialName&quot;)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_MaterialGroup" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;MaterialGroup&quot;,' - '), &quot;MaterialGroupText&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="PurchasingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentCategory" source="PurchasingDocumentCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ItemNumber" source="PO_ItemNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MaterialNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POUnit" source="POUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POQuantity" source="POQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPrice" source="NetPrice"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPOValue" source="NetPOValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PriceUnit" source="PriceUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ROCANCEL" source="ROCANCEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POCurrency" source="POCurrency"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Postingyear" source="CC_Postingyear"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocumentYear" source="CC_DocumentYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PODocumentDate" source="CC_PODocumentDate"/>
+    </input>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="Material"/>
+    </input>
+    <joinAttribute name="MaterialNumber"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <viewAttributes>
+      <viewAttribute id="LIFNR"/>
+      <viewAttribute id="TXTMD"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="VENDOR_TEXT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="PurchasingDocumentCategory"/>
+      <viewAttribute id="PurchasingDocumentType"/>
+      <viewAttribute id="PurchasingGroup"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="CC_PostingDate"/>
+      <viewAttribute id="PO_ItemNumber"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="POUnit"/>
+      <viewAttribute id="POQuantity" aggregationType="sum"/>
+      <viewAttribute id="NetPrice" aggregationType="sum"/>
+      <viewAttribute id="NetPOValue" aggregationType="sum"/>
+      <viewAttribute id="PriceUnit" aggregationType="sum"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="POCurrency"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+      <viewAttribute id="VendorName"/>
+    
+      <viewAttribute id="CC_Material"/>
+      <viewAttribute id="CC_MaterialGroup"/>
+    
+      <viewAttribute id="CC_Postingyear"/>
+    
+      <viewAttribute id="CC_DocumentYear"/>
+      <viewAttribute id="CC_PODocumentDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Vendor" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;Vendor&quot;,' - '), &quot;VendorName&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="PurchasingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentCategory" source="PurchasingDocumentCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ItemNumber" source="PO_ItemNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MaterialNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POUnit" source="POUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POQuantity" source="POQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPrice" source="NetPrice"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPOValue" source="NetPOValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PriceUnit" source="PriceUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ROCANCEL" source="ROCANCEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POCurrency" source="POCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Material" source="CC_Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_MaterialGroup" source="CC_MaterialGroup"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Postingyear" source="CC_Postingyear"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocumentYear" source="CC_DocumentYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PODocumentDate" source="CC_PODocumentDate"/>
+    </input>
+    <input node="Projection_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorName" source="TXTMD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="LIFNR"/>
+    </input>
+    <joinAttribute name="Vendor"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5">
+    <viewAttributes>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="PlantName"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PLANT_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlantName" source="TXTMD"/></input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="PurchasingDocumentCategory"/>
+      <viewAttribute id="PurchasingDocumentType"/>
+      <viewAttribute id="PurchasingGroup"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="CC_PostingDate"/>
+      <viewAttribute id="PO_ItemNumber"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="POUnit"/>
+      <viewAttribute id="POQuantity" aggregationType="sum"/>
+      <viewAttribute id="NetPrice" aggregationType="sum"/>
+      <viewAttribute id="NetPOValue" aggregationType="sum"/>
+      <viewAttribute id="PriceUnit" aggregationType="sum"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="POCurrency"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+      <viewAttribute id="VendorName"/>
+      <viewAttribute id="PlantName"/>
+    
+      <viewAttribute id="CC_Vendor"/>
+      <viewAttribute id="CC_Material"/>
+      <viewAttribute id="CC_MaterialGroup"/>
+    
+      <viewAttribute id="CC_Postingyear"/>
+    
+      <viewAttribute id="CC_DocumentYear"/>
+      <viewAttribute id="CC_PODocumentDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Plant" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;Plant&quot;,' - '), &quot;PlantName&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="PurchasingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentCategory" source="PurchasingDocumentCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ItemNumber" source="PO_ItemNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MaterialNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POUnit" source="POUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POQuantity" source="POQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPrice" source="NetPrice"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPOValue" source="NetPOValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PriceUnit" source="PriceUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ROCANCEL" source="ROCANCEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POCurrency" source="POCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorName" source="VendorName"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Vendor" source="CC_Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Material" source="CC_Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_MaterialGroup" source="CC_MaterialGroup"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Postingyear" source="CC_Postingyear"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocumentYear" source="CC_DocumentYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PODocumentDate" source="CC_PODocumentDate"/>
+    </input>
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlantName" source="PlantName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+    </input>
+    <joinAttribute name="Plant"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_6">
+    <viewAttributes>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="LGORT"/>
+      <viewAttribute id="StorageLocationtext"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="STOR_LOC_TEXT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocationtext" source="TXTMD"/></input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_5" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PurchasingDocument"/>
+      <viewAttribute id="PostingDate"/>
+      <viewAttribute id="PurchasingDocumentCategory"/>
+      <viewAttribute id="PurchasingDocumentType"/>
+      <viewAttribute id="PurchasingGroup"/>
+      <viewAttribute id="Vendor"/>
+      <viewAttribute id="CC_PostingDate"/>
+      <viewAttribute id="PO_ItemNumber"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="StorageLocation"/>
+      <viewAttribute id="POUnit"/>
+      <viewAttribute id="POQuantity" aggregationType="sum"/>
+      <viewAttribute id="NetPrice" aggregationType="sum"/>
+      <viewAttribute id="NetPOValue" aggregationType="sum"/>
+      <viewAttribute id="PriceUnit" aggregationType="sum"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="ROCANCEL"/>
+      <viewAttribute id="MaterialGroup"/>
+      <viewAttribute id="POCurrency"/>
+      <viewAttribute id="MaterialName"/>
+      <viewAttribute id="MaterialGroupText"/>
+      <viewAttribute id="VendorName"/>
+      <viewAttribute id="PlantName"/>
+      <viewAttribute id="StorageLocationtext"/>
+    
+      <viewAttribute id="CC_Vendor"/>
+      <viewAttribute id="CC_Material"/>
+      <viewAttribute id="CC_MaterialGroup"/>
+      <viewAttribute id="CC_Plant"/>
+    
+      <viewAttribute id="CC_Postingyear"/>
+    
+      <viewAttribute id="CC_DocumentYear"/>
+      <viewAttribute id="CC_PODocumentDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_SrorageLocation" datatype="NVARCHAR" length="130" expressionLanguage="SQL">
+        <formula>CONCAT(CONCAT(&quot;StorageLocation&quot;,' - '), &quot;StorageLocationtext&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocument" source="PurchasingDocument"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PostingDate" source="PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentCategory" source="PurchasingDocumentCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingDocumentType" source="PurchasingDocumentType"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchasingGroup" source="PurchasingGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PostingDate" source="CC_PostingDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_ItemNumber" source="PO_ItemNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialNumber" source="MaterialNumber"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="StorageLocation"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POUnit" source="POUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POQuantity" source="POQuantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPrice" source="NetPrice"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NetPOValue" source="NetPOValue"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PriceUnit" source="PriceUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="Plant"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ROCANCEL" source="ROCANCEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroup" source="MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POCurrency" source="POCurrency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialName" source="MaterialName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MaterialGroupText" source="MaterialGroupText"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VendorName" source="VendorName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PlantName" source="PlantName"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Vendor" source="CC_Vendor"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Material" source="CC_Material"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_MaterialGroup" source="CC_MaterialGroup"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Plant" source="CC_Plant"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Postingyear" source="CC_Postingyear"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_DocumentYear" source="CC_DocumentYear"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_PODocumentDate" source="CC_PODocumentDate"/>
+    </input>
+    <input node="Projection_6">
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocationtext" source="StorageLocationtext"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="StorageLocation" source="LGORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Plant" source="WERKS"/>
+    </input>
+    <joinAttribute name="StorageLocation"/>
+    <joinAttribute name="Plant"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_5">
+  <attributes>
+    <attribute id="PostingDate" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Posting Date"/>
+      <keyMapping columnObjectName="Join_5" columnName="PostingDate"/>
+    </attribute>
+    <attribute id="PurchasingDocumentCategory" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Purchasing Document Category"/>
+      <keyMapping columnObjectName="Join_5" columnName="PurchasingDocumentCategory"/>
+    </attribute>
+    <attribute id="PurchasingDocumentType" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Purchasing Document Type"/>
+      <keyMapping columnObjectName="Join_5" columnName="PurchasingDocumentType"/>
+    </attribute>
+    <attribute id="PurchasingGroup" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Purchasing Group"/>
+      <keyMapping columnObjectName="Join_5" columnName="PurchasingGroup"/>
+    </attribute>
+    <attribute id="Vendor" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Vendor"/>
+      <keyMapping columnObjectName="Join_5" columnName="Vendor"/>
+    </attribute>
+    <attribute id="CC_PostingDate" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Posting Date"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_PostingDate"/>
+    </attribute>
+    <attribute id="MaterialNumber" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Material Number"/>
+      <keyMapping columnObjectName="Join_5" columnName="MaterialNumber"/>
+    </attribute>
+    <attribute id="StorageLocation" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Storage Location"/>
+      <keyMapping columnObjectName="Join_5" columnName="StorageLocation"/>
+    </attribute>
+    <attribute id="POUnit" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO Unit"/>
+      <keyMapping columnObjectName="Join_5" columnName="POUnit"/>
+    </attribute>
+    <attribute id="Plant" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Plant"/>
+      <keyMapping columnObjectName="Join_5" columnName="Plant"/>
+    </attribute>
+    <attribute id="ROCANCEL" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ROCANCEL"/>
+      <keyMapping columnObjectName="Join_5" columnName="ROCANCEL"/>
+    </attribute>
+    <attribute id="MaterialGroup" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Material Group"/>
+      <keyMapping columnObjectName="Join_5" columnName="MaterialGroup"/>
+    </attribute>
+    <attribute id="POCurrency" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POCurrency"/>
+      <keyMapping columnObjectName="Join_5" columnName="POCurrency"/>
+    </attribute>
+    <attribute id="MaterialName" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Material Name"/>
+      <keyMapping columnObjectName="Join_5" columnName="MaterialName"/>
+    </attribute>
+    <attribute id="MaterialGroupText" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Material Group Text"/>
+      <keyMapping columnObjectName="Join_5" columnName="MaterialGroupText"/>
+    </attribute>
+    <attribute id="VendorName" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Vendor Name"/>
+      <keyMapping columnObjectName="Join_5" columnName="VendorName"/>
+    </attribute>
+  
+    <attribute id="CC_SrorageLocation" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_SrorageLocation"/>
+  
+      <keyMapping columnObjectName="Join_5" columnName="CC_SrorageLocation"/>
+  
+    </attribute>
+  
+    <attribute id="CC_Vendor" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Vendor"/>
+  
+      <keyMapping columnObjectName="Join_5" columnName="CC_Vendor"/>
+  
+    </attribute>
+    <attribute id="CC_Material" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Material"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_Material"/>
+    </attribute>
+    <attribute id="CC_MaterialGroup" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_MaterialGroup"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_MaterialGroup"/>
+    </attribute>
+    <attribute id="CC_Plant" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Plant"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_Plant"/>
+    </attribute>
+  
+    <attribute id="PurchasingDocument" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchasingDocument"/>
+  
+      <keyMapping columnObjectName="Join_5" columnName="PurchasingDocument"/>
+  
+    </attribute>
+    <attribute id="PO_ItemNumber" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO_ItemNumber"/>
+      <keyMapping columnObjectName="Join_5" columnName="PO_ItemNumber"/>
+    </attribute>
+  
+    <attribute id="CC_Postingyear" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Postingyear"/>
+  
+      <keyMapping columnObjectName="Join_5" columnName="CC_Postingyear"/>
+  
+    </attribute>
+  
+    <attribute id="CC_DocumentYear" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_DocumentYear"/>
+  
+      <keyMapping columnObjectName="Join_5" columnName="CC_DocumentYear"/>
+  
+    </attribute>
+    <attribute id="CC_PODocumentDate" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_PODocumentDate"/>
+      <keyMapping columnObjectName="Join_5" columnName="CC_PODocumentDate"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="Month" order="33" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Month"/>
+      <keyCalculation datatype="VARCHAR" expressionLanguage="SQL" length="13">
+        <formula>monthname(&quot;CC_PODocumentDate&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="Year" order="34" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Year"/>
+      <keyCalculation datatype="VARCHAR" expressionLanguage="SQL" length="13">
+        <formula>year(&quot;CC_PODocumentDate&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  
+    <calculatedAttribute id="Quarter" order="35" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Quarter"/>
+      <keyCalculation datatype="VARCHAR" expressionLanguage="SQL" length="13">
+        <formula>QUARTER(&quot;CC_PODocumentDate&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="POQuantity" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PO Quantity"/>
+      <measureMapping columnObjectName="Join_5" columnName="POQuantity"/>
+    </measure>
+    <measure id="NetPrice" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Net Price"/>
+      <measureMapping columnObjectName="Join_5" columnName="NetPrice"/>
+    </measure>
+    <measure id="NetPOValue" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Net PO Value"/>
+      <measureMapping columnObjectName="Join_5" columnName="NetPOValue"/>
+    </measure>
+    <measure id="PriceUnit" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Price Unit"/>
+      <measureMapping columnObjectName="Join_5" columnName="PriceUnit"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="POCOUNT" order="26" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <descriptions defaultDescription="POCOUNT"/>
+      <exceptionAggregation>
+        <attribute attributeName="PurchasingDocument"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+    </measure>
+    <measure id="COUNT_PO_Mat" order="28" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" aggregatable="true" datatype="BIGINT" length="">
+      <descriptions defaultDescription="Material PO Count"/>
+      <exceptionAggregation>
+        <attribute attributeName="PurchasingDocument"/>
+        <attribute attributeName="PO_ItemNumber"/>
+        <attribute attributeName="MaterialNumber"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions>
+    <localDimension id="Period_Hier">
+      <attributeRef xsi:type="DataFoundation:Attribute">Year</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">Quarter</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">Month</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="Period_Hier" aggregateAllNodes="false" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="DO_NOT_ADD_ROOT_NODE" withRootNode="false" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription="Period"/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <levels>
+            <level levelAttribute="Year" levelType="MDLEVEL_TYPE_TIME_YEARS" order="1" orderAttribute="Year" sortDirection="ASC"/>
+            <level levelAttribute="Quarter" levelType="MDLEVEL_TYPE_TIME_QUARTERS" order="2" orderAttribute="Quarter" sortDirection="ASC"/>
+            <level levelAttribute="Month" levelType="MDLEVEL_TYPE_TIME_MONTHS" order="3" orderAttribute="Month" sortDirection="ASC"/>
+          </levels>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="660" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91" y="1016"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="1016"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="856"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="235"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="168"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="380" y="856"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="474" y="696"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="172" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="235"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="584" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="198" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_6" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="708" y="376"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="660" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_6" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="183"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

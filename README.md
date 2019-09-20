@@ -8,18 +8,14 @@ The current repository contains templates with Calculation Views for SAP HANA an
 
 The Calculation Views and other design-time artifacts can be cloned into SAP Web IDE Full Stack or SAP Web IDE for SAP HANA. The artifacts can be deployed into SAP Cloud Platform, SAP HANA Service in Cloud Foundry or SAP HANA, extended application services, advanced model (XS Advanced).
 
-## Templates in this release
+## Available templates
 
-**Master Data**
-- Materials 
-- Customers
-- Vendors
+1.	**Master Data**:  Material Master List, Customer Master List, Vendor Master List
+2.	**Sales**: Sales Order List (Header), Sales Order List (Items), Sales Order List (Scheduling), Sales Organization Analysis, Credit Memo Analysis, Billing Document List, Return Analysis (SD), Perfect Order Fulfillment, Credit Memo vs. Billing Document Ratio Report, Stock Overview (SD)
+3.	**Purchasing**: Purchase Orders Analysis, Goods Receipts / Goods Issues , Logistic Invoice Analysis, Stock Overview (MM) , Order History Overview
+4.	**Shipping**: Flexible customer open item reporting (Debtor), Flexible vendor open items  reporting (Creditor), Overdue item reporting, Customer open item analysis (Day sales outstanding )
+5.	**Accounting**: Outbound Delivery Overview, Outbound Delivery Items Overview, Outbound Deliveries for Picking, Outbound Delivery Items for Picking
 
-**Sales**
-- Sales Order List (Header) 
-- Sales Order List (Items)  
-- Credit Memo Analysis
-- Billing Document List
 
 
 ## Requirements
@@ -33,7 +29,7 @@ The replication from the SAP Netweaver system is done through the activation of 
     - Version 2.3.5.2 or higher of the Data Provisioning Agent available in the [SAP Development Tools](https://tools.hana.ondemand.com/#cloudintegration) or the [SAP Software Downloads Center](https://launchpad.support.sap.com/#/softwarecenter/search/dpagent)
 
 - To clone the calculation views:
-    - SAP Cloud Platform, SAP HANA Service in Cloud Foundry (requires a productive account) **or** SAP HANA (on-premises) with XS Advanced. The trial account in Cloud Foundry can only be used with the test data and does not allow for integration with SAP Analytics Cloud.
+    - SAP Cloud Platform, SAP HANA Service in Cloud Foundry (requires a productive account) **or** SAP HANA (on-premises) with XS Advanced (including, SAP HANA, express edition). The trial account in Cloud Foundry can only be used with the test data and does not allow for integration with SAP Analytics Cloud.
     - SAP Web IDE Full Stack in SAP CLoud Platform **or** SAP Web IDE for SAP HANA in XS Advanced
     - Permissions to create a user-provided service in the same organization and space in which the HDI container will be deployed
 - To expose the models through Information Access

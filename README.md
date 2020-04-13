@@ -88,4 +88,4 @@ Follow the instructions in this [blog post series for installation on SAP Cloud 
 3. Open the models to make sure the connection has been successful.
 
 # LICENSE
-Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the SAP Sample Code License except as noted otherwise in the LICENSE file.
+Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE file](LICENSE).

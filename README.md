@@ -4,7 +4,7 @@
 
 
 ## Description
-The current repository contains templates with Calculation Views for SAP HANA and models and dashboards for consumption in SAP Analytics Cloud.
+The current repository contains templates with Calculation Views for SAP HANA and models and setup instructions for connecting to this content from SAP Analytics Cloud.
 
 The Calculation Views and other design-time artifacts can be cloned into SAP Web IDE Full Stack or SAP Web IDE for SAP HANA. The artifacts can be deployed into SAP Cloud Platform, SAP HANA Service in Cloud Foundry or SAP HANA, extended application services, advanced model (XS Advanced).
 
@@ -34,9 +34,6 @@ The replication from the SAP Netweaver system is done through the activation of 
     - Permissions to create a user-provided service in the same organization and space in which the HDI container will be deployed
 - To expose the models through Information Access
     - The latest version of the SAP HANA Analytics Adapter, available in [SAP Development Tools](https://tools.hana.ondemand.com/#hanatools)
-- To import the pre-defined models for SAP Analytics CLoud:
-    - A productive tenant of SAP Analytics Cloud
-    - The following roles assigned to the user performing the import: *Admin*, *Analytics Hub Admin*, *BI Admin*
 
 ## Download and Installation
 
@@ -84,8 +81,6 @@ Follow the instructions in this [blog post series for installation on SAP Cloud 
 
 ### Configure SAP Analytics Cloud
 1. Create a connection to your HANA Analytics Adapter entry endpoint called `HANALIVE`. **Note that the models currently depend on the connection being called HANALIVE**. This can be adapter later. 
-2. Download the [sample models](https://github.com/SAP-samples/hana-xsa-live-reporting/blob/pictures/SAC.tgz) and import them from **Deployment -> Import**
-3. Open the models to make sure the connection has been successful.
 
 # LICENSE
 Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE file](LICENSE).

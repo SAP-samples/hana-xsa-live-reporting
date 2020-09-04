@@ -1,8 +1,5 @@
 # SAP HANA Operational Reporting Templates for SAP ECC
 
-![Sample deployment architecture](https://github.com/SAPDocuments/Tutorials/blob/master/tutorials/haas-ecc-operational-reporting-sample-data/prod.png)
-
-
 ## Description
 The current repository contains templates with Calculation Views for SAP HANA and models and setup instructions for connecting to this content from SAP Analytics Cloud.
 

@@ -1,5 +1,7 @@
 # SAP HANA Operational Reporting Templates for SAP ECC
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/hana-xsa-live-reporting)](https://api.reuse.software/info/github.com/SAP-samples/hana-xsa-live-reporting)
+
 ## Description
 The current repository contains templates with Calculation Views for SAP HANA and models and setup instructions for connecting to this content from SAP Analytics Cloud.
 

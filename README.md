@@ -82,4 +82,4 @@ Follow the instructions in this [blog post series for installation on SAP Cloud 
 1. Create a connection to your HANA Analytics Adapter entry endpoint called `HANALIVE`. **Note that the models currently depend on the connection being called HANALIVE**. This can be adapter later. 
 
 # LICENSE
-Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE file](LICENSE).
+Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE file](LICENSE).
